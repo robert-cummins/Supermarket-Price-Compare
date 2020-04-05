@@ -7,14 +7,16 @@ async function scrapeSite(url){
     await page.goto(url)
 
     let data = await page.evaluate(() => {
-        return document.querySelector('div[class="szppmdbYutt__middle-slot-promo"] > a').innerText
+        let titles = [... document.querySelectorAll('div[class="fs-product-card__description"] > h3')]
+        return titles.map((title) => title.textContent.trim())
     })
+    
 
-    console.log(data)
+   console.log(data)
     
 }
 
-scrapeSite('https://www.google.com')
+scrapeSite('https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery')
 
 module.exports = {
     scrapeSite
