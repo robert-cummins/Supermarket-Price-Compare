@@ -35,7 +35,7 @@ async function scrapeSite(url) {
 
 }
 
-scrapeSite('https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery')
+scrapeSite('https://www.ishopnewworld.co.nz/category/pantry')
 
 module.exports = {
     scrapeSite
