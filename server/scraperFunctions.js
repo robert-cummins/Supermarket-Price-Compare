@@ -5,34 +5,18 @@ async function scrapeSite(url) {
     const page = await browser.newPage()
     await page.goto(url, { waitUntil: 'networkidle2' })
 
-    const elementText = await scrapeNewworldTextData(page, ".fs-product-card")
-    const newWorldData = await getNewworldDataObject(elementText)
+    // const elementText = await scrapeNewworldTextData(page, ".fs-product-card")
+    // const newWorldData = await getNewworldDataObject(elementText)
+    
+    const countdownElementText = await scrapeNewworldTextData(page, ".product-entry")
+    
+    countdownElementText.map()
 
-
-    console.log(newWorldData)
+    console.log(countdownElementText)
+    
+    
 
 }
-
-
-
-
-async function scrapeNewworldTextData(page, element) {
-    const elements = await page.$$(element)
-
-    const elementHandles = await Promise.all(elements.map(handle => {
-        return handle.getProperty('innerText')
-    }))
-
-    const elementText = await Promise.all(elementHandles.map(handle => {
-        return handle.jsonValue()
-    }))
-
-    return elementText.map(el => {
-        return el.split(/\r?\n/)
-    })
-}
-
-
 
 
 function getNewworldDataObject(trimedArr) {
@@ -51,7 +35,34 @@ function getNewworldDataObject(trimedArr) {
     return dataArray
 }
 
-scrapeSite('https://www.ishopnewworld.co.nz/category/pantry')
+
+
+async function scrapeNewworldTextData(page, element) {
+    const elements = await page.$$(element)
+    const elementHandles = await Promise.all(elements.map(handle => {
+        return handle.getProperty('innerText')
+    }))
+
+    const elementText = await Promise.all(elementHandles.map(handle => {
+        return handle.jsonValue()
+    }))
+
+    return elementText.map(el => {
+        return el.split(/\r?\n/)
+    })
+}
+
+
+
+
+
+
+function getCountdownDataObject(trimedArr){
+    let dataArray = []
+    
+}
+
+scrapeSite('https://shop.countdown.co.nz/shop/browse/fruit-vegetables')
 
 module.exports = {
     scrapeSite
