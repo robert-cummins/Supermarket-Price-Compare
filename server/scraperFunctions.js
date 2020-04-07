@@ -1,12 +1,8 @@
 const puppeteer = require('puppeteer');
 
 async function scrapeSites() {
-
-
     const browser = await puppeteer.launch({ headless: true })
     const page = await browser.newPage()
-
-
     await page.setRequestInterception(true);
 
     page.on('request', request => {
@@ -15,8 +11,6 @@ async function scrapeSites() {
         else
             request.continue();
     });
-
-
 
     let newWorldDataArray = []
     let countdownDataArray = []
@@ -31,26 +25,11 @@ async function scrapeSites() {
         const newWorldElementTextArr = await scrapeNewworldTextData(page, ".fs-product-card")
         const newWorldData = await getNewworldDataObject(newWorldElementTextArr)
         newWorldDataArray.push(newWorldData)
-
     }
 
-    // await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables`, { waitUntil: 'networkidle2' })
-    // const john = await page.waitForSelector('select[name="pageSize"]')
-    // const select = await page.select('select[name="pageSize"]', '120')
-    // const countdownElementTextArr = await scrapeNewworldTextData(page, ".product-entry")
-    // let countdownData = getCountdownDataObject(countdownElementTextArr)
-
-
-
-    // console.log(select)
-
-
     console.log(newWorldDataArray)
-
     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-
     console.log(countdownDataArray)
-
 }
 
 
