@@ -1,22 +1,61 @@
 const puppeteer = require('puppeteer');
 
-async function scrapeSite(url) {
+async function scrapeSites() {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
-    await page.goto(url, { waitUntil: 'networkidle2' })
+    let arr = []
+    // for(let i=1; i<=4; i++){
+    //     await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
 
-    // const elementText = await scrapeNewworldTextData(page, ".fs-product-card")
-    // const newWorldData = await getNewworldDataObject(elementText)
-    
-    const countdownElementText = await scrapeNewworldTextData(page, ".product-entry")
-    
-    countdownElementText.map()
+    //     const newWorldElementTextArr = await scrapeNewworldTextData(page, ".fs-product-card")
 
-    console.log(countdownElementText)
+    //     const newWorldData = await getNewworldDataObject(newWorldElementTextArr)
+
+    //     arr.push(newWorldData)
+    // }
+    
+    // console.log(newWorldDataArray)
     
     
 
+    for(let i=1; i<=14; i++){
+        await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
+
+        const countdownElementTextArr = await scrapeNewworldTextData(page, ".product-entry")
+    
+        let countdownData = getCountdownDataObject(countdownElementTextArr)
+
+        arr.push(countdownData)
+    }
+    
+
+    
+    
+
+    console.log(arr)
+//     console.log(newWorldData)
+//   ('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+//     console.log(newWorldData2)
 }
+
+
+function getCountdownDataObject(trimedArr){
+    let dataArray = []
+    trimedArr.map(el => {
+        productObject = { name: el[0], price: '', type: '' }
+        if(!isNaN(el[el.length-1])){
+            productObject.price = `${el[el.length - 2]}.${el[el.length - 1]}`
+            productObject.type = 'ea'
+        } else {
+            productObject.price = `${el[el.length - 3]}.${el[el.length - 2]}`
+            productObject.type = 'kg'
+        }
+        return dataArray.push(productObject)
+    })
+    return dataArray
+}
+
+
 
 
 function getNewworldDataObject(trimedArr) {
@@ -52,19 +91,10 @@ async function scrapeNewworldTextData(page, element) {
     })
 }
 
+scrapeSites()
 
-
-
-
-
-function getCountdownDataObject(trimedArr){
-    let dataArray = []
-    
-}
-
-scrapeSite('https://shop.countdown.co.nz/shop/browse/fruit-vegetables')
 
 module.exports = {
-    scrapeSite
+    scrapeSites
 }
 
