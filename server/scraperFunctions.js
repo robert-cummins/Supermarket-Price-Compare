@@ -3,47 +3,35 @@ const puppeteer = require('puppeteer');
 async function scrapeSites() {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
-    let arr = []
-    // for(let i=1; i<=4; i++){
-    //     await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
-
-    //     const newWorldElementTextArr = await scrapeNewworldTextData(page, ".fs-product-card")
-
-    //     const newWorldData = await getNewworldDataObject(newWorldElementTextArr)
-
-    //     arr.push(newWorldData)
-    // }
-    
-    // console.log(newWorldDataArray)
-    
-    
-
-    for(let i=1; i<=14; i++){
+    let newWorldDataArray = []
+    let countdownDataArray = []
+    for (let i = 1; i <= 14; i++) {
+        if (i <= 4) {
+            await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
+            const newWorldElementTextArr = await scrapeNewworldTextData(page, ".fs-product-card")
+            const newWorldData = await getNewworldDataObject(newWorldElementTextArr)
+            newWorldDataArray.push(newWorldData)
+        }
         await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
-
         const countdownElementTextArr = await scrapeNewworldTextData(page, ".product-entry")
-    
         let countdownData = getCountdownDataObject(countdownElementTextArr)
-
-        arr.push(countdownData)
+        countdownDataArray.push(countdownData)
     }
-    
 
-    
-    
+    console.log(newWorldDataArray)
 
-    console.log(arr)
-//     console.log(newWorldData)
-//   ('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-//     console.log(newWorldData2)
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+
+    console.log(countdownDataArray)
+
 }
 
 
-function getCountdownDataObject(trimedArr){
+function getCountdownDataObject(trimedArr) {
     let dataArray = []
     trimedArr.map(el => {
         productObject = { name: el[0], price: '', type: '' }
-        if(!isNaN(el[el.length-1])){
+        if (!isNaN(el[el.length - 1])) {
             productObject.price = `${el[el.length - 2]}.${el[el.length - 1]}`
             productObject.type = 'ea'
         } else {
