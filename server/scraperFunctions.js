@@ -12,31 +12,38 @@ async function scrapeSites() {
             request.continue();
     });
 
+    await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=1`, { waitUntil: 'networkidle2' })
+    const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+    console.log(newWorldElementTextArr)
    
 
-    await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=1`, { waitUntil: 'networkidle2' })
-    const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-    const pakSaveData = await getPakSaveObject(pakSaveElementTextArr)
-    console.log(pakSaveData)
+    // let newWorldDataArray = []
+    // let countdownDataArray = []
+    // let pakSaveDataArray = []
+    // for (let i = 1; i <= 4; i++) {
+        // if (i <= 3) {
+        //     await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?ps=120&page=${i}`, { waitUntil: 'networkidle2' })
+        //     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
+        //     const countdownData = getCountdownDataObject(countdownElementTextArr)
+        //     countdownDataArray.push(countdownData)
+        // }
 
-//     let newWorldDataArray = []
-//     let countdownDataArray = []
-//     for (let i = 1; i <= 4; i++) {
-//         if (i <= 3) {
-//             await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?ps=120&page=${i}`, { waitUntil: 'networkidle2' })
-//             const countdownElementTextArr = await scrapeNewSuperMarketTextData(page, ".product-entry")
-//             const countdownData = getCountdownDataObject(countdownElementTextArr)
-//             countdownDataArray.push(countdownData)
-//         }
-//         await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
-//         const newWorldElementTextArr = await scrapeNewSuperMarketTextData(page, ".fs-product-card")
-//         const newWorldData = await getNewworldDataObject(newWorldElementTextArr)
-//         newWorldDataArray.push(newWorldData)
-//     }
+        // await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
+        // const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+        // const newWorldData = await getNewworldDataObject(newWorldElementTextArr)
+        // newWorldDataArray.push(newWorldData)
 
-//     console.log(newWorldDataArray)
-//     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-//     console.log(countdownDataArray)
+        // await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=1`, { waitUntil: 'networkidle2' })
+        // const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+        // const pakSaveData = await getPakSaveObject(pakSaveElementTextArr)
+        // pakSaveDataArray.push(pakSaveData)
+    // }
+
+    // console.log(newWorldDataArray)
+    // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    // console.log(countdownDataArray)
+    // console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+    // console.log(pakSaveDataArray)
 }
 
 
@@ -108,6 +115,7 @@ async function scrapeSuperMarketTextData(page, element) {
     const elementText = await Promise.all(elementHandles.map(handle => {
         return handle.jsonValue()
     }))
+    console.log(elementText)
 
     return elementText.map(el => {
         return el.split(/\r?\n/)
