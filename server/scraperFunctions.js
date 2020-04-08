@@ -3,13 +3,11 @@ const puppeteer = require('puppeteer');
 async function scrapeSites() {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
+    
     let newWorldDataArray = []
     let countdownDataArray = []
     let pakSaveDataArray = []
-    // await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=1`, { waitUntil: 'networkidle2' })
-    // const pakSaveElementTextArr = await scrapeNewworldTextData(page, ".fs-product-card")
-    // const pakData = getNewworldDataObject(pakSaveElementTextArr)
-    // console.log(pakData)
+    
     for (let i = 1; i <= 14; i++) {
         if (i <= 4) {
             await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
@@ -93,29 +91,7 @@ async function scrapeNewworldTextData(page, element) {
     })
 }
 
-function seperatePakSavePriceFromType(arr, arrIndex) {
-    let numLettterSplitArr = arr[arr.length - arrIndex].match(/[a-zA-Z]+|[0-9]+/g)
-    productObject.type = numLettterSplitArr[1]
-    if (numLettterSplitArr[0].length == 3) {
-        productObject.price = `${numLettterSplitArr[0].slice(0, 1)}.${numLettterSplitArr[0].slice(1, 3)}`
-    } else {
-        productObject.price = `${numLettterSplitArr[0].slice(0, 2)}.${numLettterSplitArr[0].slice(2, 4)}`
-    }
-}
 
-function getPakSaveObject(trimedArr) {
-    let dataArray = []
-    trimedArr.map(arr => {
-        productObject = { name: arr[0], price: '', type: '' }
-        if (arr[arr.length - 4].charAt(0) == '$') {
-            seperatePakSavePriceFromType(arr, 5)
-        } else {
-            seperatePakSavePriceFromType(arr, 4)
-        }
-        return dataArray.push(productObject)
-    })
-    return dataArray
-}
 
 scrapeSites()
 
