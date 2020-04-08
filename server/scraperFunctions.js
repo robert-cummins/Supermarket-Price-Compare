@@ -81,11 +81,6 @@ async function scrapeSuperMarketTextData(page, element) {
     })
 }
 
-
-
-scrapeSites()
-
-
 module.exports = {
     scrapeSites
 }
