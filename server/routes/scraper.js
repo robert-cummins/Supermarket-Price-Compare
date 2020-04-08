@@ -4,8 +4,10 @@ const scraperFunctions = require('../scraperFunctions')
 
 
 router.get('/data', (req, res) => {
-  const data = await scraperFunctions.scrapeSites()
-  res.json(data)
+  console.log('route')
+  scraperFunctions.scrapeSites()
+  .then(data => res.json(data))
+  
 })
 
 
