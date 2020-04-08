@@ -25,17 +25,8 @@ async function scrapeSites() {
         const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
         pakSaveDataArray.push(pakData)
     }
-
-    console.log(newWorldDataArray)
-
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-
-    console.log(countdownDataArray)
-
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-
-    console.log(pakSaveDataArray)
-
+    
+    return [newWorldDataArray, countdownDataArray, pakSaveDataArray]
 }
 
 
