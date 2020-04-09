@@ -1,32 +1,48 @@
 const puppeteer = require('puppeteer');
+const mongoose = require('mongoose')
+const NewWorldProduct = mongoose.model('New World')
+const CountdownProduct = mongoose.model('Countdown')
+const PakAndSaveProduct = mongoose.model('Pak and Save')
 
 async function scrapeSites() {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
-    
-    let newWorldDataArray = []
-    let countdownDataArray = []
-    let pakSaveDataArray = []
-    
-    for (let i = 1; i <= 14; i++) {
-        if (i <= 4) {
-            await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
-            const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-            const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr)
-            newWorldDataArray.push(newWorldData)
-        }
+
+    for (let i = 1; i <= 12; i++) {
+        
+        await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
+        const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+        const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr)
+        insertData(newWorldData, NewWorldProduct)
+
+        await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
+        const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+        const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
+        insertData(pakData, PakAndSaveProduct)
+           
         await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
         const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
         const countdownData = getCountdownDataObject(countdownElementTextArr)
-        countdownDataArray.push(countdownData)
+        insertData(countdownData, CountdownProduct)
 
-        await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=1`, { waitUntil: 'networkidle2' })
-        const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-        const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
-        pakSaveDataArray.push(pakData)
     }
-    
-    return [newWorldDataArray, countdownDataArray, pakSaveDataArray]
+}
+
+
+function insertData(arr, superMarket) {
+    arr.map(el => {
+        let newWorldProduct = new superMarket()
+        newWorldProduct.name = el.name
+        newWorldProduct.price = el.price
+        newWorldProduct.type = el.type
+        newWorldProduct.save((err, doc) => {
+            if (!err) {
+                console.log("success")
+            } else {
+                console.log("failed: " + err)
+            }
+        })
+    })
 }
 
 
@@ -84,3 +100,5 @@ async function scrapeSuperMarketTextData(page, element) {
 module.exports = {
     scrapeSites
 }
+
+// scrapeSites()
