@@ -1,4 +1,8 @@
 const puppeteer = require('puppeteer');
+const mongoose = require('mongoose')
+const NewWorldProduct = mongoose.model('New World')
+const CountdownProduct = mongoose.model('Countdown')
+const PakAndSaveProduct = mongoose.model('Pak and Save')
 
 async function scrapeSites() {
     const browser = await puppeteer.launch()
@@ -13,20 +17,40 @@ async function scrapeSites() {
             await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
             const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
             const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr)
+            insertData(newWorldData, NewWorldProduct)
             newWorldDataArray.push(newWorldData)
         }
-        await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
+        await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?ps=120page=${i}`, { waitUntil: 'networkidle2' })
         const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
         const countdownData = getCountdownDataObject(countdownElementTextArr)
+        insertData(countdownData, CountdownProduct)
         countdownDataArray.push(countdownData)
 
-        await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=1`, { waitUntil: 'networkidle2' })
+        await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
         const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
         const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
+        insertData(pakData, PakAndSaveProduct)
         pakSaveDataArray.push(pakData)
     }
-    
-    return [newWorldDataArray, countdownDataArray, pakSaveDataArray]
+    // return [newWorldDataArray, countdownDataArray, pakSaveDataArray]
+    // console.log(pakSaveDataArray)
+}
+
+
+function insertData(arr, superMarket) {
+    arr.map(el => {
+        let newWorldProduct = new superMarket()
+        newWorldProduct.name = el.name
+        newWorldProduct.price = el.price
+        newWorldProduct.type = el.type
+        newWorldProduct.save((err, doc) => {
+            if(!err){
+                console.log("success")
+            } else {
+                console.log("failed: " + err)
+            }
+        })
+    })
 }
 
 
@@ -84,3 +108,5 @@ async function scrapeSuperMarketTextData(page, element) {
 module.exports = {
     scrapeSites
 }
+
+scrapeSites()
