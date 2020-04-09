@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "express": "^4.16.4",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.7",
     "puppeteer": "^2.1.1",
     "superagent": "^5.2.2"
   },
