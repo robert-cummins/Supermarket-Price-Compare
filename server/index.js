@@ -1,4 +1,5 @@
 const server = require('./server')
+require('./models/db')
 
 const port = process.env.PORT || 3000
 

@@ -10,10 +10,10 @@ class LandingPage extends React.Component {
     }
 
     componentDidMount() {
-        scraper()
-            .then(res => {
-                console.log(res)
-             })
+        // scraper()
+        //     .then(res => {
+        //         console.log(res)
+        //      })
     }
 
     render() {
