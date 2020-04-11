@@ -1,13 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const scraperFunctions = require('../scraperFunctions')
+const scraper = require('../scraperFunctions')
+const Supermarket = require('../models/productDetails.model')
 
 
 router.get('/data', (req, res) => {
-  console.log('route')
-  scraperFunctions.scrapeSites()
-  .then(data => res.json(data))
-  
+  Supermarket.pakAndSave.find((err, supermarkets) => {
+    if(err){
+      console.log("There is an error: " + err)
+    } else {
+      console.log('hello')
+      res.json(supermarkets)
+    }
+  })
 })
 
 
