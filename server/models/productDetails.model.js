@@ -14,9 +14,6 @@ const productSchema = new mongoose.Schema({
     },
 })
 
-// mongoose.model('Countdown', productSchema)
-// mongoose.model('New World', productSchema)
-// mongoose.model('Pak and Save', productSchema)
 
 const countdown  = mongoose.model('Countdown', productSchema)
 const newWorld = mongoose.model('New World', productSchema)
