@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 require('./models/db')
-const scraper = require('./routes/scraper')
+const scraper = require('./routes/superMarkets')
 
 const server = express()
 
