@@ -8,9 +8,7 @@ class LandingPage extends React.Component {
             newWorldData: [],
             countdownData: [],
             pakSaveData: [],
-            searchNewWorld: [],
-            searchCountdown: [],
-            searchpakSave: []
+            searchWord: ''
         }
     }
 
@@ -22,7 +20,7 @@ class LandingPage extends React.Component {
                 })
             })
             .then(() => {
-                this.SearchFoodItem('apple')
+                // this.SearchFoodItem('apple', this.state.newWorldData, "SearchNewWorld")
             })
             
         getCountdownData()
@@ -40,20 +38,30 @@ class LandingPage extends React.Component {
             })
     }
 
-    SearchFoodItem = (item) => {
-        const newWorldSearch = this.state.newWorldData.filter(foodItem => {
+    searchFoodItem = (item, supermarket, stateArray) => {
+        const supermarketSearch = supermarket.filter(foodItem => {
            return foodItem.name.toLowerCase().includes(item.toLowerCase())
-            // return arr.filter(foodItem => {
-            //     return foodItem.name.includes(item)
-            // })
+        
         })
-        console.log(newWorldSearch)
+        this.setState({[stateArray] : supermarketSearch})
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault()
+        this.searchFoodItem(this.state.searchWord, this.state.newWorldData, "SearchNewWorld")
+        this.searchFoodItem(this.state.searchWord, this.state.countdownData, "searchCountdown")
+        this.searchFoodItem(this.state.searchWord, this.state.pakSaveData, "searchPakSave")
     }
 
     render() {
         return (
             <>
                 <h1>Super Market compare</h1>
+                <form onSubmit={this.onSubmit}>
+                    <label>Item Search</label>
+                    <input type="text" value={this.state.searchWord} onChange={(e) => this.setState({searchWord: e.target.value})}></input>
+                    <button>submit</button>
+                </form>
             </>
         )
     }
