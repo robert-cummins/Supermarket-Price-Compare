@@ -22,14 +22,14 @@ class LandingPage extends React.Component {
             .then(() => {
                 // this.SearchFoodItem('apple', this.state.newWorldData, "SearchNewWorld")
             })
-            
+
         getCountdownData()
             .then(res => {
                 this.setState({
                     countdownData: res
                 })
             })
-            
+
         getPakSaveData()
             .then(res => {
                 this.setState({
@@ -40,15 +40,15 @@ class LandingPage extends React.Component {
 
     searchFoodItem = (item, supermarket, stateArray) => {
         const supermarketSearch = supermarket.filter(foodItem => {
-           return foodItem.name.toLowerCase().includes(item.toLowerCase())
-        
+            return foodItem.name.toLowerCase().includes(item.toLowerCase())
+
         })
-        this.setState({[stateArray] : supermarketSearch})
+        this.setState({ [stateArray]: supermarketSearch })
     }
 
     onSubmit = (e) => {
         e.preventDefault()
-        this.searchFoodItem(this.state.searchWord, this.state.newWorldData, "SearchNewWorld")
+        this.searchFoodItem(this.state.searchWord, this.state.newWorldData, "searchNewWorld")
         this.searchFoodItem(this.state.searchWord, this.state.countdownData, "searchCountdown")
         this.searchFoodItem(this.state.searchWord, this.state.pakSaveData, "searchPakSave")
     }
@@ -59,9 +59,47 @@ class LandingPage extends React.Component {
                 <h1>Super Market compare</h1>
                 <form onSubmit={this.onSubmit}>
                     <label>Item Search</label>
-                    <input type="text" value={this.state.searchWord} onChange={(e) => this.setState({searchWord: e.target.value})}></input>
+                    <input type="text" value={this.state.searchWord} onChange={(e) => this.setState({ searchWord: e.target.value })}></input>
                     <button>submit</button>
                 </form>
+                {this.state.searchNewWorld && <h1>New World</h1>}
+                {this.state.searchNewWorld && this.state.searchNewWorld.map(item => {
+                    return (
+                        <>
+                            <p>{item.name}</p>
+                            <p>{item.price}</p>
+                            <p>{item.type}</p>
+                            <br />
+                        </>
+                    )
+
+                })}
+
+                {this.state.searchCountdown && <h1>Countdown</h1>}
+                {this.state.searchCountdown && this.state.searchCountdown.map(item => {
+                    return (
+                        <>
+                            <p>{item.name}</p>
+                            <p>{item.price}</p>
+                            <p>{item.type}</p>
+                            <br />
+                        </>
+                    )
+
+                })}
+
+                {this.state.searchPakSave && <h1>Pak and Save</h1>}
+                {this.state.searchPakSave && this.state.searchPakSave.map(item => {
+                    return (
+                        <>
+                            <p>{item.name}</p>
+                            <p>{item.price}</p>
+                            <p>{item.type}</p>
+                            <br />
+                        </>
+                    )
+
+                })}
             </>
         )
     }
