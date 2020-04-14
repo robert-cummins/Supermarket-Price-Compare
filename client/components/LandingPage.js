@@ -1,5 +1,5 @@
 import React from 'react'
-import {getNewWorldData} from '../api/superMarkets'
+import { getNewWorldData, getCountdownData, getPakSaveData } from '../api/superMarkets'
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -17,10 +17,21 @@ class LandingPage extends React.Component {
                 this.setState({
                     newWorldData: res
                 })
-             })
-             .then(() => {
-                 console.log(this.state)
-             })
+            })
+            
+        getCountdownData()
+            .then(res => {
+                this.setState({
+                    countdownData: res
+                })
+            })
+            
+        getPakSaveData()
+            .then(res => {
+                this.setState({
+                    pakSaveData: res
+                })
+            })
     }
 
     render() {
