@@ -1,19 +1,37 @@
 import React from 'react'
-import scraper from '../api/scraper'
+import { getNewWorldData, getCountdownData, getPakSaveData } from '../api/superMarkets'
 
 class LandingPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: []
+            newWorldData: [],
+            countdownData: [],
+            pakSaveData: []
         }
     }
 
     componentDidMount() {
-        // scraper()
-        //     .then(res => {
-        //         console.log(res)
-        //      })
+        getNewWorldData()
+            .then(res => {
+                this.setState({
+                    newWorldData: res
+                })
+            })
+            
+        getCountdownData()
+            .then(res => {
+                this.setState({
+                    countdownData: res
+                })
+            })
+            
+        getPakSaveData()
+            .then(res => {
+                this.setState({
+                    pakSaveData: res
+                })
+            })
     }
 
     render() {
