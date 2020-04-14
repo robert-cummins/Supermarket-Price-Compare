@@ -14,7 +14,12 @@ class LandingPage extends React.Component {
     componentDidMount() {
         getNewWorldData()
             .then(res => {
-                console.log(res)
+                this.setState({
+                    newWorldData: res
+                })
+             })
+             .then(() => {
+                 console.log(this.state)
              })
     }
 
