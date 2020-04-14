@@ -1,5 +1,5 @@
 import React from 'react'
-import scraper from '../api/scraper'
+import scraper from '../api/superMarkets'
 
 class LandingPage extends React.Component {
     constructor(props) {
