@@ -7,7 +7,10 @@ class LandingPage extends React.Component {
         this.state = {
             newWorldData: [],
             countdownData: [],
-            pakSaveData: []
+            pakSaveData: [],
+            searchNewWorld: [],
+            searchCountdown: [],
+            searchpakSave: []
         }
     }
 
@@ -17,6 +20,9 @@ class LandingPage extends React.Component {
                 this.setState({
                     newWorldData: res
                 })
+            })
+            .then(() => {
+                this.SearchFoodItem('apple')
             })
             
         getCountdownData()
@@ -32,6 +38,16 @@ class LandingPage extends React.Component {
                     pakSaveData: res
                 })
             })
+    }
+
+    SearchFoodItem = (item) => {
+        const newWorldSearch = this.state.newWorldData.filter(foodItem => {
+           return foodItem.name.toLowerCase().includes(item.toLowerCase())
+            // return arr.filter(foodItem => {
+            //     return foodItem.name.includes(item)
+            // })
+        })
+        console.log(newWorldSearch)
     }
 
     render() {
