@@ -1,5 +1,7 @@
 import React from 'react'
 import { getNewWorldData, getCountdownData, getPakSaveData } from '../api/superMarkets'
+import { connect } from 'react-redux'
+import {fetchNewWorldData} from '../actions/index'
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -13,29 +15,30 @@ class LandingPage extends React.Component {
     }
 
     componentDidMount() {
-        getNewWorldData()
-            .then(res => {
-                this.setState({
-                    newWorldData: res
-                })
-            })
-            .then(() => {
-                // this.SearchFoodItem('apple', this.state.newWorldData, "SearchNewWorld")
-            })
+        // getNewWorldData()
+        //     .then(res => {
+        //         this.setState({
+        //             newWorldData: res
+        //         })
+        //     })
+        //     .then(() => {
+        //         // this.SearchFoodItem('apple', this.state.newWorldData, "SearchNewWorld")
+        //     })
 
-        getCountdownData()
-            .then(res => {
-                this.setState({
-                    countdownData: res
-                })
-            })
+        // getCountdownData()
+        //     .then(res => {
+        //         this.setState({
+        //             countdownData: res
+        //         })
+        //     })
 
-        getPakSaveData()
-            .then(res => {
-                this.setState({
-                    pakSaveData: res
-                })
-            })
+        // getPakSaveData()
+        //     .then(res => {
+        //         this.setState({
+        //             pakSaveData: res
+        //         })
+        //     })
+        this.props.dispatch(fetchNewWorldData())
     }
 
     searchFoodItem = (item, supermarket, stateArray) => {
@@ -49,8 +52,8 @@ class LandingPage extends React.Component {
     onSubmit = (e) => {
         e.preventDefault()
         this.searchFoodItem(this.state.searchWord, this.state.newWorldData, "searchNewWorld")
-        this.searchFoodItem(this.state.searchWord, this.state.countdownData, "searchCountdown")
-        this.searchFoodItem(this.state.searchWord, this.state.pakSaveData, "searchPakSave")
+        // this.searchFoodItem(this.state.searchWord, this.state.countdownData, "searchCountdown")
+        // this.searchFoodItem(this.state.searchWord, this.state.pakSaveData, "searchPakSave")
     }
 
     render() {
@@ -105,4 +108,10 @@ class LandingPage extends React.Component {
     }
 }
 
-export default LandingPage
+const mapStateToProps = (state) => {
+    return {
+        newWorld: state.newWorld
+    }
+}
+
+export default connect(mapStateToProps)(LandingPage)
