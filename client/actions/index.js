@@ -26,7 +26,6 @@ export function fetchNewWorldData() {
     return dispatch => {
         return getNewWorldData()
             .then(items => {
-                console.log(items)
                 return dispatch(getNewWorldItems(items))
             })
     }
@@ -36,7 +35,6 @@ export function fetchCountdownData() {
     return dispatch => {
         return getCountdownData()
             .then(items => {
-                console.log(items)
                 return dispatch(getCountdownItems(items))
             })
     }
@@ -46,7 +44,6 @@ export function fetchPakSaveData() {
     return dispatch => {
         return getPakSaveData()
             .then(items => {
-                console.log(items)
                 return dispatch(getPakSaveItems(items))
             })
     }
