@@ -1,41 +1,19 @@
 import React from 'react'
-import { getNewWorldData, getCountdownData, getPakSaveData } from '../api/superMarkets'
+import { connect } from 'react-redux'
+import {fetchNewWorldData, fetchCountdownData, fetchPakSaveData} from '../actions/index'
 
 class LandingPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            newWorldData: [],
-            countdownData: [],
-            pakSaveData: [],
             searchWord: ''
         }
     }
 
     componentDidMount() {
-        getNewWorldData()
-            .then(res => {
-                this.setState({
-                    newWorldData: res
-                })
-            })
-            .then(() => {
-                // this.SearchFoodItem('apple', this.state.newWorldData, "SearchNewWorld")
-            })
-
-        getCountdownData()
-            .then(res => {
-                this.setState({
-                    countdownData: res
-                })
-            })
-
-        getPakSaveData()
-            .then(res => {
-                this.setState({
-                    pakSaveData: res
-                })
-            })
+        this.props.dispatch(fetchNewWorldData())
+        this.props.dispatch(fetchCountdownData())
+        this.props.dispatch(fetchPakSaveData())
     }
 
     searchFoodItem = (item, supermarket, stateArray) => {
@@ -48,9 +26,9 @@ class LandingPage extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        this.searchFoodItem(this.state.searchWord, this.state.newWorldData, "searchNewWorld")
-        this.searchFoodItem(this.state.searchWord, this.state.countdownData, "searchCountdown")
-        this.searchFoodItem(this.state.searchWord, this.state.pakSaveData, "searchPakSave")
+        this.searchFoodItem(this.state.searchWord, this.props.newWorld, "searchNewWorld")
+        this.searchFoodItem(this.state.searchWord, this.props.countdown, "searchCountdown")
+        this.searchFoodItem(this.state.searchWord, this.props.pakSave, "searchPakSave")
     }
 
     render() {
@@ -105,4 +83,12 @@ class LandingPage extends React.Component {
     }
 }
 
-export default LandingPage
+const mapStateToProps = (state) => {
+    return {
+        newWorld: state.newWorld,
+        countdown: state.countdown,
+        pakSave: state.pakSave
+    }
+}
+
+export default connect(mapStateToProps)(LandingPage)
