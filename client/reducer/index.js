@@ -10,6 +10,28 @@ function newWorldReducer(state=[], action){
     }
 }
 
+function countdownReducer(state=[], action){
+    switch(action.type){
+        case "GET_COUNTDOWN_ITEMS":
+            return action.items
+        
+        default:
+            return state
+    }
+}
+
+function pakSaveReducer(state=[], action){
+    switch(action.type){
+        case "GET_PAKSAVE_ITEMS":
+            return action.items
+        
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
-    newWorld: newWorldReducer
+    newWorld: newWorldReducer,
+    countdown: countdownReducer,
+    pakSave: pakSaveReducer
 })

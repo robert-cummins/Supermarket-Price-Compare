@@ -1,7 +1,6 @@
 import React from 'react'
-import { getNewWorldData, getCountdownData, getPakSaveData } from '../api/superMarkets'
 import { connect } from 'react-redux'
-import {fetchNewWorldData} from '../actions/index'
+import {fetchNewWorldData, fetchCountdownData, fetchPakSaveData} from '../actions/index'
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -39,6 +38,8 @@ class LandingPage extends React.Component {
         //         })
         //     })
         this.props.dispatch(fetchNewWorldData())
+        this.props.dispatch(fetchCountdownData())
+        this.props.dispatch(fetchPakSaveData())
     }
 
     searchFoodItem = (item, supermarket, stateArray) => {
