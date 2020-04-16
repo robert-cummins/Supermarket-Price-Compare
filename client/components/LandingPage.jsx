@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {fetchNewWorldData, fetchCountdownData, fetchPakSaveData} from '../actions/index'
+import {fetchNewWorldData, fetchCountdownData, fetchPakSaveData, getSearchedCountdownItems} from '../actions/index'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
 
@@ -23,9 +23,9 @@ class LandingPage extends React.Component {
             <>
                 <h1>Super Market compare</h1>
                 <SearchBar/>
-                <SearchResults supermarket={this.props.searchNewWorldItems}/>
-                <SearchResults supermarket={this.props.searchedCountdownItems}/>
-                <SearchResults supermarket={this.props.searchedPakSaveItems} />
+                <SearchResults supermarket={'searchedNewWorldItems'}/>
+                <SearchResults supermarket={'searchedCountdownItems'}/>
+                <SearchResults supermarket={'searchedPakSaveItems'} />
                 {/* <SearchBar/>
                 {this.state.searchNewWorld && <h1>New World</h1>}
                 {this.state.searchNewWorld && this.state.searchNewWorld.map(item => {
