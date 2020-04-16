@@ -1,10 +1,14 @@
 const puppeteer = require('puppeteer');
 const mongoose = require('mongoose')
+const db = mongoose.connection;
 const NewWorldProduct = mongoose.model('New World')
 const CountdownProduct = mongoose.model('Countdown')
 const PakAndSaveProduct = mongoose.model('Pak and Save')
 
 async function scrapeSites() {
+    deleteCollection('new worlds')
+    deleteCollection('pak and saves')
+    deleteCollection('countdowns')
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
 
@@ -25,7 +29,9 @@ async function scrapeSites() {
         const countdownData = getCountdownDataObject(countdownElementTextArr)
         insertData(countdownData, CountdownProduct)
 
+        
     }
+    await browser.close();
 }
 
 
@@ -44,6 +50,14 @@ function insertData(arr, superMarket) {
         })
     })
 }
+
+function deleteCollection(collection){
+    db.dropCollection(collection, function (err, result) {
+        if (err) {console.log("error delete collection")} 
+        else {console.log("delete collection success")}
+    });
+}
+
 
 
 function getCountdownDataObject(trimedArr) {
@@ -101,4 +115,4 @@ module.exports = {
     scrapeSites
 }
 
-// scrapeSites()
+scrapeSites()
