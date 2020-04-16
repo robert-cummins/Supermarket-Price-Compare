@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {fetchNewWorldData, fetchCountdownData, fetchPakSaveData} from '../actions/index'
+import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, getSearchedCountdownItems } from '../actions/index'
 import SearchBar from './SearchBar'
+import SearchResults from './SearchResults'
 
 class LandingPage extends React.Component {
     constructor(props) {
         super(props)
-       
+
     }
 
     componentDidMount() {
@@ -21,8 +22,18 @@ class LandingPage extends React.Component {
         return (
             <>
                 <h1>Super Market compare</h1>
-                <SearchBar/>
-                {/* <SearchBar/>
+                <SearchBar />
+                <div class="ui grid">
+                    <div class="three column row">
+                        <div class="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
+                        <div class="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
+                        <div class="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
+                    </div>
+                </div>
+                    
+                   
+                    
+                    {/* <SearchBar/>
                 {this.state.searchNewWorld && <h1>New World</h1>}
                 {this.state.searchNewWorld && this.state.searchNewWorld.map(item => {
                     return (
@@ -68,9 +79,12 @@ class LandingPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        newWorld: state.newWorld,
+                    newWorld: state.newWorld,
         countdown: state.countdown,
-        pakSave: state.pakSave
+        pakSave: state.pakSave,
+        searchNewWorldItems: state.searchNewWorldItems,
+        searchedCountdownItems: state.searchedCountdownItems,
+        searchedPakSaveItems: state.searchedPakSaveItems
     }
 }
 
