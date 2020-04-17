@@ -9,16 +9,23 @@ async function scrapeSites() {
     deleteCollection('new worlds')
     deleteCollection('pak and saves')
     deleteCollection('countdowns')
-    const browser = await puppeteer.launch()
+    
+    const browser = await puppeteer.launch({headless: false})
     const page = await browser.newPage()
+    
+    
 
     for (let i = 1; i <= 12; i++) {
         
+        const context = browser.defaultBrowserContext();
+        await context.overridePermissions(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, ['geolocation'])
         await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
         const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
         const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr)
         insertData(newWorldData, NewWorldProduct)
 
+      
+        await context.overridePermissions(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, ['geolocation'])
         await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
         const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
         const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
@@ -115,4 +122,4 @@ module.exports = {
     scrapeSites
 }
 
-scrapeSites()
+// scrapeSites()
