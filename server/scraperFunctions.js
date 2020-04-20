@@ -22,7 +22,6 @@ async function scrapeSites() {
         await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
         const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
         const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr)
-        console.log(newWorldData)
         insertData(newWorldData, NewWorldProduct)
 
       
@@ -30,14 +29,12 @@ async function scrapeSites() {
         await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
         const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
         const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
-        console.log(pakData)
         insertData(pakData, PakAndSaveProduct)
            
         await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
         const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
         // console.log(countdownElementTextArr)
         const countdownData = getCountdownDataObject(countdownElementTextArr)
-        console.log(countdownData)
         insertData(countdownData, CountdownProduct)
 
         
@@ -126,4 +123,4 @@ module.exports = {
     scrapeSites
 }
 
-scrapeSites()
+// scrapeSites()

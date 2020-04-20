@@ -14,6 +14,7 @@ const SearchResults = (props) => {
                             <tr>
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
+                                <td>{item.weight}</td>
                                 <td>{item.type}</td>
                             </tr>
                         )
@@ -30,7 +31,6 @@ const SearchResults = (props) => {
 
 
 const mapStateToProps = (state) => {
-    // console.log(state)
     return {
         searchedNewWorldItems: state.searchedNewWorldItems,
         searchedCountdownItems: state.searchedCountdownItems,
