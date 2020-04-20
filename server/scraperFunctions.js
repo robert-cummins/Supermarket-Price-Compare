@@ -48,11 +48,12 @@ async function scrapeSites() {
 
 function insertData(arr, superMarket) {
     arr.map(el => {
-        let newWorldProduct = new superMarket()
-        newWorldProduct.name = el.name
-        newWorldProduct.price = el.price
-        newWorldProduct.type = el.type
-        newWorldProduct.save((err, doc) => {
+        let supermarketProduct = new superMarket()
+        supermarketProduct.name = el.name
+        supermarketProduct.price = el.price
+        supermarketProduct.type = el.type
+        supermarketProduct.weight = el.weight
+        supermarketProduct.save((err, doc) => {
             if (!err) {
                 console.log("success")
             } else {
@@ -125,4 +126,4 @@ module.exports = {
     scrapeSites
 }
 
-// scrapeSites()
+scrapeSites()
