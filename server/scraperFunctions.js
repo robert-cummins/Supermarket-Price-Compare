@@ -26,17 +26,19 @@ async function scrapeSites() {
         insertData(newWorldData, NewWorldProduct)
 
       
-        // await context.overridePermissions(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, ['geolocation'])
-        // await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
-        // const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-        // const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
-        // console.log(pakData)
-        // insertData(pakData, PakAndSaveProduct)
+        await context.overridePermissions(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, ['geolocation'])
+        await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
+        const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+        const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
+        console.log(pakData)
+        insertData(pakData, PakAndSaveProduct)
            
-        // await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
-        // const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
-        // const countdownData = getCountdownDataObject(countdownElementTextArr)
-        // insertData(countdownData, CountdownProduct)
+        await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
+        const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
+        // console.log(countdownElementTextArr)
+        const countdownData = getCountdownDataObject(countdownElementTextArr)
+        console.log(countdownData)
+        insertData(countdownData, CountdownProduct)
 
         
     }
@@ -72,7 +74,10 @@ function deleteCollection(collection){
 function getCountdownDataObject(trimedArr) {
     let dataArray = []
     trimedArr.map(el => {
-        productObject = { name: el[0], price: '', type: '' }
+        productObject = { name: el[0], price: '', type: '', weight: 'N/A' }
+        if(el[5] != undefined && !isNaN(el[5].charAt(0))){
+            productObject.weight = el[5]
+        }
         if (!isNaN(el[el.length - 1])) {
             productObject.price = `${el[el.length - 2]}.${el[el.length - 1]}`
             productObject.type = 'ea'
@@ -120,4 +125,4 @@ module.exports = {
     scrapeSites
 }
 
-scrapeSites()
+// scrapeSites()
