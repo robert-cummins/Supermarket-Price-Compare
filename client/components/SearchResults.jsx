@@ -12,11 +12,13 @@ const SearchResults = (props) => {
                     <tr><th>Name</th>
                         <th>Price</th>
                         <th>Weight</th>
-                        <th>Type</th>
+                        <th>Sold by</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props[props.supermarket].map(item => {
+                        if(item.type == 'kg'){item.type = '/kg'}
+                        else{item.type = "Each"}
                         return (
                             <tr>
                                 <td>{item.name}</td>

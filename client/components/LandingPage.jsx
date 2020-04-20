@@ -21,57 +21,16 @@ class LandingPage extends React.Component {
     render() {
         return (
             <>
-                <h1>Super Market compare</h1>
-                <SearchBar />
-                <div class="ui grid">
-                    <div class="three column row">
-                        <div class="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
-                        <div class="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
-                        <div class="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
-                    </div>
+                <div className="ui container">
+                    <h1 className="ui center aligned header">Super Market Price Compare</h1>
+                    <SearchBar />
                 </div>
-                    
-                   
-                    
-                    {/* <SearchBar/>
-                {this.state.searchNewWorld && <h1>New World</h1>}
-                {this.state.searchNewWorld && this.state.searchNewWorld.map(item => {
-                    return (
-                        <>
-                            <p>{item.name}</p>
-                            <p>{item.price}</p>
-                            <p>{item.type}</p>
-                            <br />
-                        </>
-                    )
 
-                })}
-
-                {this.state.searchCountdown && <h1>Countdown</h1>}
-                {this.state.searchCountdown && this.state.searchCountdown.map(item => {
-                    return (
-                        <>
-                            <p>{item.name}</p>
-                            <p>{item.price}</p>
-                            <p>{item.type}</p>
-                            <br />
-                        </>
-                    )
-
-                })}
-
-                {this.state.searchPakSave && <h1>Pak and Save</h1>}
-                {this.state.searchPakSave && this.state.searchPakSave.map(item => {
-                    return (
-                        <>
-                            <p>{item.name}</p>
-                            <p>{item.price}</p>
-                            <p>{item.type}</p>
-                            <br />
-                        </>
-                    )
-
-                })} */}
+                <div class="ui three column doubling stackable grid container">
+                    <div class="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
+                    <div class="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
+                    <div class="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
+                </div>
             </>
         )
     }
@@ -79,7 +38,7 @@ class LandingPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-                    newWorld: state.newWorld,
+        newWorld: state.newWorld,
         countdown: state.countdown,
         pakSave: state.pakSave,
         searchNewWorldItems: state.searchNewWorldItems,
