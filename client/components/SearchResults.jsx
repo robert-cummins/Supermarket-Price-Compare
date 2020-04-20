@@ -8,6 +8,13 @@ const SearchResults = (props) => {
     if (props[props.supermarket].length != 0) {
         return (
             <table className="ui selectable celled table">
+                <thead>
+                    <tr><th>Name</th>
+                        <th>Price</th>
+                        <th>Weight</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {props[props.supermarket].map(item => {
                         return (
