@@ -15,6 +15,9 @@ const productSchema = new mongoose.Schema({
 
     weight: {
         type: String
+    },
+    supermarket: {
+        type: String
     }
 })
 

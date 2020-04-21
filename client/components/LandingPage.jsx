@@ -26,10 +26,10 @@ class LandingPage extends React.Component {
                     <SearchBar />
                 </div>
 
-                <div class="ui three column doubling stackable grid container">
-                    <div class="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
-                    <div class="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
-                    <div class="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
+                <div className="ui three column doubling stackable grid container">
+                    <div className="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
+                    <div className="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
+                    <div className="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
                 </div>
             </>
         )

@@ -42,6 +42,19 @@ export const getSearchedPakSaveItems = (items) => {
     }
 }
 
+export const getSelectedItems = (item) => {
+    return {
+        type: 'ITEM_SELECTED',
+        item
+    }
+}
+
+
+// export function fetchSelectedItem(item){
+//     return dispatch => {
+//         return dispatch(getSelectedItem(item))
+//     }
+// }
 
 
 

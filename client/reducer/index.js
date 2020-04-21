@@ -60,6 +60,13 @@ function searchedPakSaveReducer(state=[], action){
     }
 }
 
+const selectedItemReducer = (state = [], action) => {
+    if(action.type === 'ITEM_SELECTED'){
+        return [...state, action.item]
+    }
+    return state
+}
+
 
 export default combineReducers({
     newWorld: newWorldReducer,
@@ -67,5 +74,6 @@ export default combineReducers({
     pakSave: pakSaveReducer,
     searchedNewWorldItems: searchedNewWorldReducer,
     searchedCountdownItems: searchedCountdownReducer,
-    serchedPakSaveItems: searchedPakSaveReducer
+    serchedPakSaveItems: searchedPakSaveReducer,
+    selectedItems: selectedItemReducer
 })
