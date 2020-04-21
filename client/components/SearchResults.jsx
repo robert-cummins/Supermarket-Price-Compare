@@ -4,27 +4,33 @@ import { getSearchedNewWorldItems } from '../actions'
 
 const SearchResults = (props) => {
 
-    console.log(props[props.supermarket])
+    const handleClick = (e) => {
+        console.log(e.target.getAttribute('name'))
+    }
+
     if (props[props.supermarket].length != 0) {
         return (
             <table className="ui selectable celled table">
                 <thead>
-                    <tr><th>Name</th>
+                    <tr>
+                        <th>Name</th>
                         <th>Price</th>
-                        <th>Weight</th>
                         <th>Sold by</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {props[props.supermarket].map(item => {
-                        if(item.type == 'kg'){item.type = '/kg'}
-                        else{item.type = "Each"}
+                    {props[props.supermarket].map((item, i) => {
+                        if (item.type == 'kg') { item.type = '/ kg' }
+                        else if(item.type == 'ea' && item.weight != 'N/A'){item.type = 'Each @ ' + item.weight}
+                        else { item.type = "Each"}
                         return (
-                            <tr>
-                                <td>{item.name}</td>
-                                <td>{item.price}</td>
-                                <td>{item.weight}</td>
-                                <td>{item.type}</td>
+                            <tr name={item.name} onClick={handleClick} key={i}>
+                                <td name={item.name}>{item.name}</td>
+                                <td name={item.name}>{item.price}</td>
+                                
+                                <td name={item.name}>{item.type}</td>
+                                <td><button class="ui primary basic tiny button">Add Item</button></td>
                             </tr>
                         )
                     })}
