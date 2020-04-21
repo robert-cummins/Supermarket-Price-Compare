@@ -42,7 +42,7 @@ export const getSearchedPakSaveItems = (items) => {
     }
 }
 
-export const getSelectedItem = (item) => {
+export const getSelectedItems = (item) => {
     return {
         type: 'ITEM_SELECTED',
         item

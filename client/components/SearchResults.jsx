@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSelectedItem} from '../actions'
+import { getSelectedItems} from '../actions'
 
 class SearchResults extends React.Component  {
     constructor(props){
@@ -30,7 +30,7 @@ class SearchResults extends React.Component  {
                                     <td>{item.name}</td>
                                     <td>{item.price}</td>
                                     <td>{item.type}</td>
-                                    <td><button onClick={() => this.props.dispatch(getSelectedItem(item))}  name={item.name} className="ui primary basic tiny button">Add Item</button></td>
+                                    <td><button onClick={() => this.props.dispatch(getSelectedItems(item))}  name={item.name} className="ui primary basic tiny button">Add Item</button></td>
                                 </tr>
                             )
                         })}

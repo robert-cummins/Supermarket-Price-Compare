@@ -21,14 +21,14 @@ async function scrapeSites() {
         await context.overridePermissions(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, ['geolocation'])
         await page.goto(`https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
         const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-        const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr)
+        const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, 'NewWorld')
         insertData(newWorldData, NewWorldProduct)
 
       
         await context.overridePermissions(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, ['geolocation'])
         await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
         const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-        const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr)
+        const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr, 'PakSave')
         insertData(pakData, PakAndSaveProduct)
            
         await page.goto(`https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=${i}`, { waitUntil: 'networkidle2' })
@@ -49,7 +49,8 @@ function insertData(arr, superMarket) {
         supermarketProduct.name = el.name
         supermarketProduct.price = el.price
         supermarketProduct.type = el.type
-        supermarketProduct.weight = el.weight
+        supermarketProduct.weight = el.weight,
+        supermarketProduct.supermarket = el.supermarket
         supermarketProduct.save((err, doc) => {
             if (!err) {
                 console.log("success")
@@ -72,7 +73,7 @@ function deleteCollection(collection){
 function getCountdownDataObject(trimedArr) {
     let dataArray = []
     trimedArr.map(el => {
-        productObject = { name: el[0], price: '', type: '', weight: 'N/A' }
+        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown' }
         if(el[5] != undefined && !isNaN(el[5].charAt(0))){
             productObject.weight = el[5]
         }
@@ -91,10 +92,10 @@ function getCountdownDataObject(trimedArr) {
 
 
 
-function getNewworldOrPakSaveDataObject(trimedArr) {
+function getNewworldOrPakSaveDataObject(trimedArr, market) {
     let dataArray = []
     trimedArr.map((el) => {
-        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A' }
+        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market }
         if(!isNaN(el[2].charAt(0))){
             productObject.weight = el[2]
         }
