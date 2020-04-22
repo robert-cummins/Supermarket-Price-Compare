@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, getSearchedCountdownItems } from '../actions/index'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
+import ShoppingBasket from './ShoppingBasket'
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -30,6 +31,12 @@ class LandingPage extends React.Component {
                     <div className="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
                     <div className="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
                     <div className="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
+                </div>
+
+                <div className="ui three column doubling stackable grid container">
+                    <div className="column"><ShoppingBasket supermarket={'NewWorld'} /></div>
+                    <div className="column"><ShoppingBasket supermarket={'Countdown'} /></div>
+                    <div className="column"><ShoppingBasket supermarket={'PakSave'} /></div>
                 </div>
             </>
         )
