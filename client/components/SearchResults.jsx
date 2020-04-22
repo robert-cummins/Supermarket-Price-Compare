@@ -28,7 +28,7 @@ class SearchResults extends React.Component  {
                             return (
                                 <tr key={i}>
                                     <td>{item.name}</td>
-                                    <td>{item.price}</td>
+                                    <td>{'$'+ item.price}</td>
                                     <td>{item.type}</td>
                                     <td><button onClick={() => this.props.dispatch(getSelectedItems(item))}  name={item.name} className="ui primary basic tiny button">Add Item</button></td>
                                 </tr>

@@ -3,11 +3,20 @@ import { connect } from 'react-redux'
 import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, getSearchedCountdownItems } from '../actions/index'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
+import ShoppingBasket from './ShoppingBasket'
 
 class LandingPage extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            activeTab: 'search'
+        }
+    }
+
+    handleClick = (e) => {
+        if (e.target.name == 'shopping') { this.setState({ activeTab: 'shopping' }) }
+        else { this.setState({ activeTab: 'search' }) }
     }
 
     componentDidMount() {
@@ -19,6 +28,7 @@ class LandingPage extends React.Component {
 
 
     render() {
+
         return (
             <>
                 <div className="ui container">
@@ -26,11 +36,26 @@ class LandingPage extends React.Component {
                     <SearchBar />
                 </div>
 
-                <div className="ui three column doubling stackable grid container">
-                    <div className="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
-                    <div className="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
-                    <div className="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
+                <div id="context1">
+                    <div className="ui secondary menu">
+                        <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active' : 'item'} data-tab="first">Search</a>
+                        <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active' : 'item'}  data-tab="second">Shopping Basket</a>
+                    </div>
                 </div>
+                {this.state.activeTab == 'search' &&
+                    <div className="ui three column doubling stackable grid container">
+                        <div className="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
+                        <div className="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
+                        <div className="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
+                    </div>
+                }
+                {this.state.activeTab == 'shopping' &&
+                    <div className="ui three column doubling stackable grid container">
+                        <div className="column"><ShoppingBasket supermarket={'NewWorld'} /></div>
+                        <div className="column"><ShoppingBasket supermarket={'Countdown'} /></div>
+                        <div className="column"><ShoppingBasket supermarket={'PakSave'} /></div>
+                    </div>
+                }
             </>
         )
     }
