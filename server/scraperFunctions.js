@@ -5,25 +5,7 @@ const NewWorldProduct = mongoose.model('New World')
 const CountdownProduct = mongoose.model('Countdown')
 const PakAndSaveProduct = mongoose.model('Pak and Save')
 
-async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, marketName) {
 
-    await context.overridePermissions(url + pageNum, ['geolocation'])
-    await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
-    const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName)
-    insertData(newWorldData, marketModel)
-}
-
-async function scrapeCountdown(url, pageNum, page, marketModel) {
-    await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
-    if (pageNum <= 1) {
-        await page.select("select#pageSize", "120")
-    }
-
-    const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
-    const countdownData = getCountdownDataObject(countdownElementTextArr)
-    insertData(countdownData, marketModel)
-}
 
 async function scrapeSites() {
     deleteCollection('new worlds')
@@ -86,19 +68,29 @@ async function scrapeSites() {
         await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/pantry?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
         await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/personal-care?page=", i, page, CountdownProduct)
 
-
-
-
-
-
-
-        
-
-
-
-
     }
     await browser.close();
+}
+
+
+async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, marketName) {
+
+    await context.overridePermissions(url + pageNum, ['geolocation'])
+    await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
+    const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName)
+    insertData(newWorldData, marketModel)
+}
+
+async function scrapeCountdown(url, pageNum, page, marketModel) {
+    await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
+    if (pageNum <= 1) {
+        await page.select("select#pageSize", "120")
+    }
+
+    const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
+    const countdownData = getCountdownDataObject(countdownElementTextArr)
+    insertData(countdownData, marketModel)
 }
 
 
