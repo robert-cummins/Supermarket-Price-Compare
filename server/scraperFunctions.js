@@ -42,30 +42,30 @@ async function scrapeSites() {
             await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/liquor-beer-cider?page=", i, page, CountdownProduct)
         }
         if (i <= 3) {
-            // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/chilled-frozen-and-desserts/desserts?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+            await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/chilled-frozen-and-desserts/desserts?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
             await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=", i, page, CountdownProduct)
         }
         if (i <= 4) { await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/bakery?page=", i, page, CountdownProduct) }
         if (i <= 5) {
-            // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/desserts?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld') 
+            await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/desserts?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld') 
             await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/baby-care?page=", i, page, CountdownProduct)
             await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/canned-prepared-foods?page=", i, page, CountdownProduct)
         }
         if (i <= 6) {
-            // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/cheese?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
-            // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/chilled-frozen-and-desserts/cheese?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
-            // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/chilled-frozen-and-desserts/frozen-foods?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
-            // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/baby-toddler-and-kids?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+            await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/cheese?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+            await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/chilled-frozen-and-desserts/cheese?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+            await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/chilled-frozen-and-desserts/frozen-foods?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+            await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/baby-toddler-and-kids?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
         }
         if (i <= 7) {
-            // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/baby-toddler-and-kids?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+            await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/baby-toddler-and-kids?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
             await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/frozen-foods?page=", i, page, CountdownProduct)
 
         }
         if (i <= 8) { await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/baking-cooking?page=", i, page, CountdownProduct) }
         if (i <= 9) {
-            // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/frozen-foods?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
-            // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/drinks/cold-drinks?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+            await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/frozen-foods?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+            await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/drinks/cold-drinks?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
             await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/liquor-wine?page=", i, page, CountdownProduct)
             await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/cleaning-homecare?page=", i, page, CountdownProduct)
 
@@ -74,16 +74,16 @@ async function scrapeSites() {
         if (i <= 11) { await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/drinks-hot-cold?page=", i, page, CountdownProduct) }
         if (i <= 13) { await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/deli-chilled-foods?page=", i, page, CountdownProduct) }
         if (i <= 14) {
-            // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/beer-cider-and-wine?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
-            // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/drinks/cold-drinks?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+            await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/beer-cider-and-wine?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+            await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/drinks/cold-drinks?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
         }
-        // if (i <= 15) { await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/beer-cider-and-wine?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave') }
-        // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
-        // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/pantry?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
-        // await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/personal-care?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
-        // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/personal-care?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
-        // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
-        // await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/pantry?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+        if (i <= 15) { await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/beer-cider-and-wine?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave') }
+        await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+        await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/pantry?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+        await scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/personal-care?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+        await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/personal-care?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+        await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+        await scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/pantry?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
         await scrapeCountdown("https://shop.countdown.co.nz/shop/browse/personal-care?page=", i, page, CountdownProduct)
 
 
@@ -92,11 +92,7 @@ async function scrapeSites() {
 
 
 
-        // await context.overridePermissions(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, ['geolocation'])
-        // await page.goto(`https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/fruit--vegetables?ps=50&pg=${i}`, { waitUntil: 'networkidle2' })
-        // const pakSaveElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-        // const pakData = getNewworldOrPakSaveDataObject(pakSaveElementTextArr, 'PakSave')
-        // insertData(pakData, PakAndSaveProduct)
+        
 
 
 
@@ -187,4 +183,4 @@ module.exports = {
     scrapeSites
 }
 
-scrapeSites()
+// scrapeSites()
