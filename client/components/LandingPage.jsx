@@ -43,18 +43,24 @@ class LandingPage extends React.Component {
                     </div>
                 </div>
                 {this.state.activeTab == 'search' &&
-                    <div className="ui three column doubling stackable grid container">
+                <div className="table-container">
+                    <div className="ui three column doubling stackable grid">
                         <div className="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
                         <div className="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
                         <div className="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
                     </div>
+                </div>
+                    
                 }
                 {this.state.activeTab == 'shopping' &&
-                    <div className="ui three column doubling stackable grid container">
+                <div className="table-container">
+                    <div className="ui three column doubling stackable grid">
                         <div className="column"><ShoppingBasket supermarket={'NewWorld'} /></div>
                         <div className="column"><ShoppingBasket supermarket={'Countdown'} /></div>
                         <div className="column"><ShoppingBasket supermarket={'PakSave'} /></div>
                     </div>
+                </div>
+                    
                 }
             </>
         )

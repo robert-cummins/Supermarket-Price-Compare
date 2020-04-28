@@ -18,6 +18,9 @@ const productSchema = new mongoose.Schema({
     },
     supermarket: {
         type: String
+    },
+    numOf: {
+        type: String
     }
 })
 

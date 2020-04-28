@@ -1,4 +1,20 @@
-/* .tab {
-    margin: 0 auto;
-} */
+.table-container{
+    width: 95%;
+    margin: auto;
+}
 
+
+td { 
+    cursor: pointer; 
+}
+
+/* td:first-child { width: 25% ;} */
+table {
+    table-layout : fixed;
+}
+
+
+
+.num-input {
+    width: 50%;
+}
