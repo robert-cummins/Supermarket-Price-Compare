@@ -31,12 +31,12 @@ class SearchResults extends React.Component {
     render() {
         if (this.props[this.props.supermarket].length != 0) {
             return (
-                <table className="ui selectable celled table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Sold by</th>
+                <table key={1} className="ui selectable celled table">
+                    <thead key={2}>
+                        <tr key={3}>
+                            <th key={4}>Name</th>
+                            <th key={5}>Price</th>
+                            <th key={6}>Sold by</th>
 
                         </tr>
                     </thead>
@@ -46,8 +46,8 @@ class SearchResults extends React.Component {
                             else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
                             else { item.type = "Each" }
                             return (
-                                <>
-                                    <tr name={item.name} onClick={this.handleClick} key={i}>
+                                <React.Fragment key={i}>
+                                    <tr name={item.name} onClick={this.handleClick}>
                                         <td name={item.name}>{item.name}</td>
                                         <td>{'$' + item.price}</td>
                                         <td>{item.type}</td>
@@ -55,29 +55,16 @@ class SearchResults extends React.Component {
                                     {this.state.selectedItems.includes(item.name) &&
                                         <tr>
                                             <td>
-
-
                                                 <form className="add-item">
-                                                    <label>Enter Amount</label>
-                                                    {/* <NumberInput className="num-input" size="mini" buttonPlacement="leftAndRight" value={this.state.value} onChange={this.changeValue} /> */}
-                                                    <input
-                                                        name="numberOfGuests"
-                                                        type="number"
-                                                        value={this.state.value}
-                                                        onChange={this.changeValue} />
+                                                    <label>Enter Amount: </label>
+                                                    <input className="num-input" type="number" value={this.state.value} onChange={this.changeValue} />
                                                     <button onClick={() => this.props.dispatch(getSelectedItems(item))} name={item.name} className="ui primary basic tiny button">Add Item</button>
                                                 </form>
-
-
-
-
                                             </td>
-
-
-
                                         </tr>
                                     }
-                                </>
+                                </React.Fragment>
+
                             )
                         })}
 
