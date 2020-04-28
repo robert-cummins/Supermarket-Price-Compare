@@ -18,15 +18,7 @@ class SearchResults extends React.Component {
         this.setState({ value: e.target.value });
     }
 
-    handleClick = (e) => {
-        let name = e.target.getAttribute('name')
-        if (this.state.selectedItems.includes(name)) {
-            this.setState({ selectedItems: this.state.selectedItems.filter(t => t !== name) })
-        }
-        else {
-            this.setState({ selectedItems: [...this.state.selectedItems, name] })
-        }
-    }
+ 
 
     render() {
         if (this.props[this.props.supermarket].length != 0) {
@@ -47,22 +39,15 @@ class SearchResults extends React.Component {
                             else { item.type = "Each" }
                             return (
                                 <React.Fragment key={i}>
-                                    <tr name={item.name} onClick={this.handleClick}>
+                                    <tr name={item.name}>
                                         <td name={item.name}>{item.name}</td>
                                         <td>{'$' + item.price}</td>
                                         <td>{item.type}</td>
+                                        <td>
+                                            <input className="num-input" type="number" value={this.state.value} onChange={this.changeValue} />
+                                            <button onClick={() => this.props.dispatch(getSelectedItems(item))} name={item.name} className="ui primary basic tiny button">Add Item</button>
+                                        </td>
                                     </tr>
-                                    {this.state.selectedItems.includes(item.name) &&
-                                        <tr>
-                                            <td>
-                                                <form className="add-item">
-                                                    <label>Enter Amount: </label>
-                                                    <input className="num-input" type="number" value={this.state.value} onChange={this.changeValue} />
-                                                    <button onClick={() => this.props.dispatch(getSelectedItems(item))} name={item.name} className="ui primary basic tiny button">Add Item</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    }
                                 </React.Fragment>
                             )
                         })}

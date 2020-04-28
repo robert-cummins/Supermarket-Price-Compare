@@ -8,10 +8,13 @@ td {
     cursor: pointer; 
 }
 
-.add-item {
-    display: flex; justify-content: space-between;
+/* td:first-child { width: 25% ;} */
+table {
+    table-layout : fixed;
 }
 
+
+
 .num-input {
-    width: 30%;
+    width: 50%;
 }

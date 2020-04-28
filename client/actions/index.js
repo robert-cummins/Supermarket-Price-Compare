@@ -43,6 +43,7 @@ export const getSearchedPakSaveItems = (items) => {
 }
 
 export const getSelectedItems = (item) => {
+    console.log(item)
     return {
         type: 'ITEM_SELECTED',
         item
