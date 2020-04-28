@@ -1,4 +1,17 @@
-/* .tab {
-    margin: 0 auto;
-} */
+.table-container{
+    width: 95%;
+    margin: auto;
+}
 
+
+td { 
+    cursor: pointer; 
+}
+
+.add-item {
+    display: flex; justify-content: space-between;
+}
+
+.num-input {
+    width: 20px;
+}

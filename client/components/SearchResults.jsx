@@ -1,14 +1,34 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSelectedItems} from '../actions'
+import { getSelectedItems } from '../actions'
 
-class SearchResults extends React.Component  {
-    constructor(props){
+
+class SearchResults extends React.Component {
+    constructor(props) {
         super(props)
-        
+
+        this.state = {
+            selectedItems: [],
+            value: '0'
+        }
+
     }
-    
-    render(){
+
+    changeValue = (e) => {
+        this.setState({ value: e.target.value });
+    }
+
+    handleClick = (e) => {
+        let name = e.target.getAttribute('name')
+        if (this.state.selectedItems.includes(name)) {
+            this.setState({ selectedItems: this.state.selectedItems.filter(t => t !== name) })
+        }
+        else {
+            this.setState({ selectedItems: [...this.state.selectedItems, name] })
+        }
+    }
+
+    render() {
         if (this.props[this.props.supermarket].length != 0) {
             return (
                 <table className="ui selectable celled table">
@@ -17,24 +37,50 @@ class SearchResults extends React.Component  {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Sold by</th>
-                            <th></th>
+
                         </tr>
                     </thead>
                     <tbody>
                         {this.props[this.props.supermarket].map((item, i) => {
                             if (item.type == 'kg') { item.type = '/ kg' }
-                            else if(item.type == 'ea' && item.weight != 'N/A'){item.type = 'Each @ ' + item.weight}
-                            else { item.type = "Each"}
+                            else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
+                            else { item.type = "Each" }
                             return (
-                                <tr key={i}>
-                                    <td>{item.name}</td>
-                                    <td>{'$'+ item.price}</td>
-                                    <td>{item.type}</td>
-                                    <td><button onClick={() => this.props.dispatch(getSelectedItems(item))}  name={item.name} className="ui primary basic tiny button">Add Item</button></td>
-                                </tr>
+                                <>
+                                    <tr name={item.name} onClick={this.handleClick} key={i}>
+                                        <td name={item.name}>{item.name}</td>
+                                        <td>{'$' + item.price}</td>
+                                        <td>{item.type}</td>
+                                    </tr>
+                                    {this.state.selectedItems.includes(item.name) &&
+                                        <tr>
+                                            <td>
+
+
+                                                <form className="add-item">
+                                                    <label>Enter Amount</label>
+                                                    {/* <NumberInput className="num-input" size="mini" buttonPlacement="leftAndRight" value={this.state.value} onChange={this.changeValue} /> */}
+                                                    <input
+                                                        name="numberOfGuests"
+                                                        type="number"
+                                                        value={this.state.value}
+                                                        onChange={this.changeValue} />
+                                                    <button onClick={() => this.props.dispatch(getSelectedItems(item))} name={item.name} className="ui primary basic tiny button">Add Item</button>
+                                                </form>
+
+
+
+
+                                            </td>
+
+
+
+                                        </tr>
+                                    }
+                                </>
                             )
                         })}
-    
+
                     </tbody>
                 </table>
             )
@@ -42,7 +88,7 @@ class SearchResults extends React.Component  {
             return <div></div>
         }
     }
-    
+
 
 }
 
