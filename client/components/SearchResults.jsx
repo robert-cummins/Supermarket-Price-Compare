@@ -8,14 +8,25 @@ class SearchResults extends React.Component {
         super(props)
 
         this.state = {
-            selectedItems: [],
-            value: '0'
+            selectedItems: []
         }
 
     }
 
-    changeValue = (e) => {
-        this.setState({ value: e.target.value });
+    changeValue = (e, supermarket) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
+
+    handleClick = (e, item) => {
+        let num
+        if(this.state[e.target.name]){
+            num = this.state[e.target.name]
+        } else {
+            num = '0'
+        }
+        this.props.dispatch(getSelectedItems(item, num))
     }
 
  
@@ -44,11 +55,11 @@ class SearchResults extends React.Component {
                                         <td>{'$' + item.price}</td>
                                         <td>{item.type}</td>
                                         <td>
-                                            <input className="num-input" type="number" value={this.state.value} onChange={this.changeValue} />
-                                            <button onClick={() => this.props.dispatch(getSelectedItems(item))} name={item.name} className="ui primary basic tiny button">Add Item</button>
+                                            <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
+                                            <button onClick={(e) => this.handleClick(e,item)} name={item.name} className="ui primary basic tiny button">Add Item</button>
                                         </td>
                                     </tr>
-                                </React.Fragment>
+                                    </React.Fragment>
                             )
                         })}
 

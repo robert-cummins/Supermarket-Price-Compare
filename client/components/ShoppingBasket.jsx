@@ -27,8 +27,13 @@ class ShoppingBasket extends React.Component {
                     </thead>
                     <tbody>
                         {this.props.selectedItems.map((item, i) => {
+                            let multiplyer
                             if (this.props.supermarket == item.supermarket) {
-                                let num = parseFloat(item.price)
+                                if(item.numOf == 0 || item.numOf == 1){ multiplyer = '1'}
+                                else{multiplyer = item.numOf} 
+                                
+                                let num = parseFloat(item.price) * parseFloat(multiplyer)
+                                console.log(num)
                                 total = num + total
                                 if (item.type == 'kg') { item.type = '/ kg' }
                                 else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
