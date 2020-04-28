@@ -31,12 +31,12 @@ class SearchResults extends React.Component {
     render() {
         if (this.props[this.props.supermarket].length != 0) {
             return (
-                <table key={1} className="ui selectable celled table">
-                    <thead key={2}>
-                        <tr key={3}>
-                            <th key={4}>Name</th>
-                            <th key={5}>Price</th>
-                            <th key={6}>Sold by</th>
+                <table className="ui selectable celled table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Sold by</th>
 
                         </tr>
                     </thead>
@@ -64,7 +64,6 @@ class SearchResults extends React.Component {
                                         </tr>
                                     }
                                 </React.Fragment>
-
                             )
                         })}
 
