@@ -23,14 +23,16 @@ table {
     margin-left: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #4183c4;
   }
 
   .ui.secondary.menu a:last-child {
     margin-right: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #4183c4;
+  }
+
+  .market-headers {
+      text-align: center;
   }
 
 
