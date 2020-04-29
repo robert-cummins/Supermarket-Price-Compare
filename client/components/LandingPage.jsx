@@ -46,17 +46,17 @@ class LandingPage extends React.Component {
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
                             <div className="column">
-                                <h2>New World</h2>
+                                <h2 className="market-headers">New World</h2>
                                 <SearchResults supermarket={'searchedNewWorldItems'} />
                             </div>
 
                             <div className="column">
-                                <h2>Countdown</h2>
+                                <h2 className="market-headers">Countdown</h2>
                                 <SearchResults supermarket={'searchedCountdownItems'} />
                             </div>
 
                             <div className="column">
-                                <h2>Pak and Save</h2>
+                                <h2 className="market-headers">Pak and Save</h2>
                                 <SearchResults supermarket={'searchedPakSaveItems'} />
                             </div>
                         </div>
@@ -67,16 +67,16 @@ class LandingPage extends React.Component {
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
                             <div className="column">
-                                <h2>New World</h2>
+                                <h2 className="market-headers">New World</h2>
                                 <ShoppingBasket supermarket={'NewWorld'} />
                             </div>
 
                             <div className="column">
-                                <h2>Countdown</h2>
+                                <h2 className="market-headers">Countdown</h2>
                                 <ShoppingBasket supermarket={'Countdown'} />
                             </div>
                             <div className="column">
-                                <h2>Pak and Save</h2>
+                                <h2 className="market-headers">Pak and Save</h2>
                                 <ShoppingBasket supermarket={'PakSave'} />
                             </div>
                         </div>
