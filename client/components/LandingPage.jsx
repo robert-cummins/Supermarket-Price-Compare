@@ -37,7 +37,7 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div id="context1">
-                    <div className="ui secondary menu">
+                    <div className="ui secondary menu tabs">
                         <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active' : 'item'} data-tab="first">Search</a>
                         <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active' : 'item'}  data-tab="second">Shopping Basket</a>
                     </div>
