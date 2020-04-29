@@ -8,7 +8,7 @@ td {
     cursor: pointer; 
 }
 
-/* td:first-child { width: 25% ;} */
+
 table {
     table-layout : fixed;
 }
@@ -18,3 +18,20 @@ table {
 .num-input {
     width: 50%;
 }
+
+.ui.secondary.menu a:first-child {
+    margin-left: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #4183c4;
+  }
+
+  .ui.secondary.menu a:last-child {
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #4183c4;
+  }
+
+
+  

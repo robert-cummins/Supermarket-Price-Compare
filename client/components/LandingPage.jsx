@@ -37,30 +37,51 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div id="context1">
-                    <div className="ui secondary menu">
+                    <div className="ui secondary menu tabs">
                         <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active' : 'item'} data-tab="first">Search</a>
-                        <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active' : 'item'}  data-tab="second">Shopping Basket</a>
+                        <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active' : 'item'} data-tab="second">Shopping Basket</a>
                     </div>
                 </div>
                 {this.state.activeTab == 'search' &&
-                <div className="table-container">
-                    <div className="ui three column doubling stackable grid">
-                        <div className="column"><SearchResults supermarket={'searchedNewWorldItems'} /></div>
-                        <div className="column"><SearchResults supermarket={'searchedCountdownItems'} /></div>
-                        <div className="column"><SearchResults supermarket={'searchedPakSaveItems'} /></div>
+                    <div className="table-container">
+                        <div className="ui three column doubling stackable grid">
+                            <div className="column">
+                                <h2>New World</h2>
+                                <SearchResults supermarket={'searchedNewWorldItems'} />
+                            </div>
+
+                            <div className="column">
+                                <h2>Countdown</h2>
+                                <SearchResults supermarket={'searchedCountdownItems'} />
+                            </div>
+
+                            <div className="column">
+                                <h2>Pak and Save</h2>
+                                <SearchResults supermarket={'searchedPakSaveItems'} />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                    
+
                 }
                 {this.state.activeTab == 'shopping' &&
-                <div className="table-container">
-                    <div className="ui three column doubling stackable grid">
-                        <div className="column"><ShoppingBasket supermarket={'NewWorld'} /></div>
-                        <div className="column"><ShoppingBasket supermarket={'Countdown'} /></div>
-                        <div className="column"><ShoppingBasket supermarket={'PakSave'} /></div>
+                    <div className="table-container">
+                        <div className="ui three column doubling stackable grid">
+                            <div className="column">
+                                <h2>New World</h2>
+                                <ShoppingBasket supermarket={'NewWorld'} />
+                            </div>
+
+                            <div className="column">
+                                <h2>Countdown</h2>
+                                <ShoppingBasket supermarket={'Countdown'} />
+                            </div>
+                            <div className="column">
+                                <h2>Pak and Save</h2>
+                                <ShoppingBasket supermarket={'PakSave'} />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                    
+
                 }
             </>
         )
