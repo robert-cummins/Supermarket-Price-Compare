@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const scraper = require('../scraperFunctions')
+const scraper = require('../scraper/scraper')
 const Supermarket = require('../models/productDetails.model')
 
 

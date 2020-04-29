@@ -59,7 +59,7 @@ class SearchResults extends React.Component {
                                             <button onClick={(e) => this.handleClick(e,item)} name={item.name} className="ui primary basic tiny button">Add Item</button>
                                         </td>
                                     </tr>
-                                    </React.Fragment>
+                                </React.Fragment>
                             )
                         })}
 
