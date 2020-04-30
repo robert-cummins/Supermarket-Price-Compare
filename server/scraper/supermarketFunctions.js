@@ -4,13 +4,16 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
 
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
+    await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
     const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName)
     dbFunctions.insertData(newWorldData, marketModel)
 }
 
-async function scrapeCountdown(url, pageNum, page, marketModel) {
+async function scrapeCountdown(url, pageNum, context, page, marketModel) {
+    await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
+    await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     if (pageNum <= 1) {
         await page.select("select#pageSize", "120")
     }
