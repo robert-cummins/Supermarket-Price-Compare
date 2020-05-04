@@ -68,6 +68,10 @@ async function scrapeSites() {
         await marketFunction.scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
         await marketFunction.scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/pantry?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/personal-care?page=", i, context, page, CountdownProduct)
+        await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/kitchen-dining-and-household?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld')
+        await marketFunction.scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/kitchen-dining-and-household?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave')
+
+
 
     }
     await browser.close();
