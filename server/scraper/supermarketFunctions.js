@@ -24,7 +24,7 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
 }
 
 
-function getCountdownDataObject(trimedArr) {
+function getCountdownDataObject(trimedArr, category) {
     let dataArray = []
     trimedArr.map(el => {
         productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category }

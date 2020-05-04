@@ -26,6 +26,16 @@ async function scrapeSites() {
     const browser = await puppeteer.launch({ headless: false })
     const page = await browser.newPage()
     const context = browser.defaultBrowserContext();
+    await page.setRequestInterception(true);
+
+    page.on('request', (req) => {
+        if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
+            req.abort();
+        }
+        else {
+            req.continue();
+        }
+    });
 
 
     for (let i = 1; i <= 20; i++) {
@@ -92,4 +102,4 @@ module.exports = {
     scrapeSites
 }
 
-// scrapeSites()
+scrapeSites()
