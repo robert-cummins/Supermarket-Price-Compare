@@ -6,7 +6,7 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName)
+    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName, category)
     dbFunctions.insertData(newWorldData, marketModel)
 }
 

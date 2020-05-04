@@ -10,7 +10,8 @@ function insertData(arr, superMarket) {
         supermarketProduct.type = el.type
         supermarketProduct.weight = el.weight,
         supermarketProduct.supermarket = el.supermarket,
-        supermarketProduct.numOf = '0'
+        supermarketProduct.numOf = '0',
+        supermarketProduct.category = el.category
         supermarketProduct.save((err, doc) => {
             if (!err) {
                 console.log("success")

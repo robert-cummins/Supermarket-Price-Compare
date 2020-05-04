@@ -21,6 +21,9 @@ const productSchema = new mongoose.Schema({
     },
     numOf: {
         type: String
+    },
+    category: {
+        type: String
     }
 })
 
