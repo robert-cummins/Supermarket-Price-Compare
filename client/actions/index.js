@@ -50,12 +50,12 @@ export const getSelectedItems = (item, num) => {
     }
 }
 
-
-// export function fetchSelectedItem(item){
-//     return dispatch => {
-//         return dispatch(getSelectedItem(item))
-//     }
-// }
+export const changeCategorys = (name) => {
+    return {
+        type: 'CHANGE_CHECK',
+        name
+    }
+}
 
 
 

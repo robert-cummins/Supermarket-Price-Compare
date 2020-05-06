@@ -67,6 +67,62 @@ const selectedItemReducer = (state = [], action) => {
     return state
 }
 
+const categoryReducer = (state = [{
+    id: 12345,
+    value: "Fresh food, bakery and chilled",
+    isChecked: false
+},
+{
+    id: 12346,
+    value: "Frozen",
+    isChecked: false
+},
+{
+    id: 12347,
+    value: "Pantry and non perishable",
+    isChecked: false
+},
+{
+    id: 12348,
+    value: "Beer, cider and wine",
+    isChecked: false
+},
+{
+    id: 12349,
+    value: "Personal care",
+    isChecked: false
+},
+{
+    id: 12350,
+    value: "Baby and toddler",
+    isChecked: false
+},
+{
+    id: 12351,
+    value: "Kitchen, dining and household",
+    isChecked: false
+}], action) => {
+    
+    switch(action.type){
+        case "CHANGE_CHECK":
+            return state.map(category => {
+                if(category.value == action.name && category.isChecked == false){
+                    category.isChecked = true
+                    return category
+                } 
+                else if (category.value == action.name && category.isChecked == true) {
+                    category.isChecked = false
+                    return category
+                } else {
+                    return category
+                }
+            })
+        
+        default:
+            return state
+    }
+}
+
 
 export default combineReducers({
     newWorld: newWorldReducer,
@@ -75,5 +131,6 @@ export default combineReducers({
     searchedNewWorldItems: searchedNewWorldReducer,
     searchedCountdownItems: searchedCountdownReducer,
     serchedPakSaveItems: searchedPakSaveReducer,
-    selectedItems: selectedItemReducer
+    selectedItems: selectedItemReducer,
+    categorys: categoryReducer
 })

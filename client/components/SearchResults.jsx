@@ -29,12 +29,19 @@ class SearchResults extends React.Component {
         this.props.dispatch(getSelectedItems(item, num))
     }
 
- 
+    shouldComponentUpdate (nextProps) {
+        if(nextProps !== this.props){
+            return true
+        } else {
+            return false
+        }
+     }
 
+   
     render() {
         if (this.props[this.props.supermarket].length != 0) {
             return (
-                <table className="ui selectable celled table">
+                <table key={this.props.categorys} className="ui selectable celled table">
                     <thead>
                         <tr>
                             <th>Name</th>

@@ -1,11 +1,36 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { changeCategorys } from '../actions/index'
 
-export const CheckBox = props => {
+class Checkbox extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  handleCheck = (e) => {
+    this.props.dispatch(changeCategorys(e.target.value))
+  }
+
+
+
+  render() {
     return (
-      <React.Fragment key={props.id}>
-       <input className="category-checkbox"  onChange={props.handleCheck} type="checkbox" checked={props.isChecked} value={props.value}/> {props.value}
-       </React.Fragment>
+
+      this.props.categorys.map(category => {
+        return <React.Fragment key={category.id}>
+          <input className="category-checkbox" onChange={this.handleCheck} type="checkbox" checked={category.isChecked} value={category.value} /> {category.value}
+        </React.Fragment>
+      })
+
+
     )
+  }
 }
 
-export default CheckBox
+const mapStateToProps = (state) => {
+  return {
+    categorys: state.categorys
+  }
+}
+
+export default connect(mapStateToProps)(Checkbox)

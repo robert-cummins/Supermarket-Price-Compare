@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, getSearchedCountdownItems } from '../actions/index'
+import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, changeCategorys } from '../actions/index'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
 import ShoppingBasket from './ShoppingBasket'
@@ -52,14 +52,7 @@ class LandingPage extends React.Component {
         }
     }
 
-    handleCheck = (e) => {
-        let categorys = this.state.category
-        categorys.forEach(category => {
-           if (category.value === e.target.value)
-              category.isChecked =  e.target.checked
-        })
-        this.setState({category: categorys})
-      }
+    
 
     handleClick = (e) => {
         if (e.target.name == 'shopping') { this.setState({ activeTab: 'shopping' }) }
@@ -74,8 +67,8 @@ class LandingPage extends React.Component {
 
 
 
-    render() {
 
+    render() {
         return (
             <>
                 <div className="ui container">
@@ -84,11 +77,12 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div className="ui container">
-                    {
-                        this.state.category.map((category) => {
+                    {/* {
+                        this.props.categorys.map((category) => {
                             return (<CheckBox key={category.id} handleCheck={this.handleCheck}  {...category} />)
                         })
-                    }
+                    } */}
+                    <CheckBox/>
                 </div>
 
                 <div id="context1">
@@ -150,7 +144,8 @@ const mapStateToProps = (state) => {
         pakSave: state.pakSave,
         searchNewWorldItems: state.searchNewWorldItems,
         searchedCountdownItems: state.searchedCountdownItems,
-        searchedPakSaveItems: state.searchedPakSaveItems
+        searchedPakSaveItems: state.searchedPakSaveItems,
+        categorys: state.categorys
     }
 }
 
