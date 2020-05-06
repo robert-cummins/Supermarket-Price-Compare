@@ -7,10 +7,6 @@ class SearchResults extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            selectedItems: []
-        }
-
     }
 
     changeValue = (e, supermarket) => {
@@ -28,14 +24,6 @@ class SearchResults extends React.Component {
         }
         this.props.dispatch(getSelectedItems(item, num))
     }
-
-    shouldComponentUpdate (nextProps) {
-        if(nextProps !== this.props){
-            return true
-        } else {
-            return false
-        }
-     }
 
    
     render() {
@@ -86,7 +74,8 @@ const mapStateToProps = (state) => {
     return {
         searchedNewWorldItems: state.searchedNewWorldItems,
         searchedCountdownItems: state.searchedCountdownItems,
-        searchedPakSaveItems: state.serchedPakSaveItems
+        searchedPakSaveItems: state.serchedPakSaveItems,
+        categorys: state.categorys
     }
 }
 
