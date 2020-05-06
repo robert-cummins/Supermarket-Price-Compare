@@ -69,38 +69,38 @@ const selectedItemReducer = (state = [], action) => {
 
 const categoryReducer = (state = [{
     id: 12345,
-    value: "Fresh food, bakery and chilled",
-    isChecked: false
+    value: "Fresh food, chilled and bakery",
+    isChecked: true
 },
 {
     id: 12346,
     value: "Frozen",
-    isChecked: false
+    isChecked: true
 },
 {
     id: 12347,
-    value: "Pantry and non perishable",
-    isChecked: false
+    value: "Pantry and non perishables",
+    isChecked: true
 },
 {
     id: 12348,
     value: "Beer, cider and wine",
-    isChecked: false
+    isChecked: true
 },
 {
     id: 12349,
-    value: "Personal care",
-    isChecked: false
+    value: "Personal Care",
+    isChecked: true
 },
 {
     id: 12350,
-    value: "Baby and toddler",
-    isChecked: false
+    value: "Baby toddler",
+    isChecked: true
 },
 {
     id: 12351,
     value: "Kitchen, dining and household",
-    isChecked: false
+    isChecked: true
 }], action) => {
     
     switch(action.type){
