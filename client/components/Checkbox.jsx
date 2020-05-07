@@ -8,7 +8,7 @@ class Checkbox extends React.Component {
   }
 
   handleCheck = (e) => {
-    this.props.dispatch(changeCategorys(e.target.value))
+    this.props.dispatch(changeCategorys(e.target.getAttribute('name')))
   }
 
 
@@ -17,9 +17,11 @@ class Checkbox extends React.Component {
     return (
 
       this.props.categorys.map(category => {
-        return <React.Fragment key={category.id}>
-          <input className="category-checkbox" onChange={this.handleCheck} type="checkbox" checked={category.isChecked} value={category.value} /> {category.value}
-        </React.Fragment>
+        return (
+          <div  onClick={this.handleCheck} className={'category-checkbox'} key={category.id}>
+            <input onChange={this.handleCheck} type="checkbox" checked={category.isChecked} value={category.value} /> {category.value}
+            <span name={category.value}></span>
+          </div>)
       })
 
 
