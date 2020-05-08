@@ -11,15 +11,20 @@ class LandingPage extends React.Component {
         super(props)
 
         this.state = {
-            activeTab: 'search'
+            activeTab: 'search',
+            checked: true
         }
     }
 
-    
+
 
     handleClick = (e) => {
         if (e.target.name == 'shopping') { this.setState({ activeTab: 'shopping' }) }
         else { this.setState({ activeTab: 'search' }) }
+    }
+
+    handleCheck = (e) => {
+        console.log(e.target)
     }
 
     componentDidMount() {
@@ -40,13 +45,13 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div className="ui container">
-                    {/* {
-                        this.props.categorys.map((category) => {
-                            return (<CheckBox key={category.id} handleCheck={this.handleCheck}  {...category} />)
-                        })
-                    } */}
-                    <CheckBox/>
+                    <div class="ui checkbox">
+                        <input onChange={this.handleCheck} type="checkbox" checked={this.state.checked}  />
+                        <label>Check/Uncheck All</label>
+                    </div>
+                    <CheckBox />
                 </div>
+
 
                 <div id="context1">
                     <div className="ui secondary menu tabs">

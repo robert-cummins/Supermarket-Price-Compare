@@ -15,15 +15,14 @@ class Checkbox extends React.Component {
 
   render() {
     return (
-
       this.props.categorys.map(category => {
         return (
-          <div  onClick={this.handleCheck} className={'category-checkbox'} key={category.id}>
-            <input onChange={this.handleCheck} type="checkbox" checked={category.isChecked} value={category.value} /> {category.value}
-            <span name={category.value}></span>
-          </div>)
+          <div class="ui checkbox category-checkbox">
+            <input onChange={this.handleCheck} type="checkbox" checked={category.isChecked} name={category.value} />
+            <label>{category.value}</label>
+          </div>
+        )
       })
-
 
     )
   }
