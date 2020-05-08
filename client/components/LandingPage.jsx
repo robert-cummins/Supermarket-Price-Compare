@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, changeCategorys } from '../actions/index'
+import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, checkAll, checkNone } from '../actions/index'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
 import ShoppingBasket from './ShoppingBasket'
@@ -23,8 +23,15 @@ class LandingPage extends React.Component {
         else { this.setState({ activeTab: 'search' }) }
     }
 
-    handleCheck = (e) => {
-        console.log(e.target)
+    handleCheck = () => {
+        if(this.state.checked === true){
+            this.setState({checked: false})
+            this.props.dispatch(checkNone())
+        } else {
+            this.setState({checked: true})
+            this.props.dispatch(checkAll())
+        }
+        
     }
 
     componentDidMount() {
@@ -45,7 +52,7 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div className="ui container">
-                    <div class="ui checkbox">
+                    <div class="ui checkbox check-all">
                         <input onChange={this.handleCheck} type="checkbox" checked={this.state.checked}  />
                         <label>Check/Uncheck All</label>
                     </div>

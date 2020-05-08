@@ -118,6 +118,18 @@ const categoryReducer = (state = [{
                 }
             })
         
+        case "CHECK_ALL":
+            return state.map(category => {
+                category.isChecked = true
+                return category
+            })
+
+        case "CHECK_NONE":
+            return state.map(category => {
+                category.isChecked = false
+                return category
+            })
+        
         default:
             return state
     }

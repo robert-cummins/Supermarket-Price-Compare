@@ -57,6 +57,18 @@ export const changeCategorys = (name) => {
     }
 }
 
+export const checkAll = () => {
+    return {
+        type: 'CHECK_ALL'
+    }
+}
+
+export const checkNone = () => {
+    return {
+        type: 'CHECK_NONE'
+    }
+}
+
 
 
 export function fetchNewWorldData() {

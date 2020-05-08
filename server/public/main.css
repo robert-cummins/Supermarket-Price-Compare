@@ -35,16 +35,19 @@ table {
       text-align: center;
   }
 
-  .category-checkbox {
-      margin-top: 20px;
-      margin-right: 10px;
-      
-  }
+  .category-checkbox { 
+    margin-top: 20px;
+    margin-right: 10px;
+}
 
   li {
       list-style-type: none;
     }
 
+.check-all {
+    margin-top: 20px;
+    display: block !important;
+}
   
       
 
