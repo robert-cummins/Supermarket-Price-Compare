@@ -29,7 +29,6 @@ class SearchResults extends React.Component {
 
 
     render() {
-        console.log('hello')
         if (this.props[this.props.supermarket].length != 0) {
             return (
                 <table key={this.props.categorys} className="ui selectable celled table">
@@ -42,14 +41,6 @@ class SearchResults extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {this.props[this.props.supermarket].filter(item => {
-                            this.props.categorys.map(category => {
-                                if(item.category == category.value && category.isChecked == true){
-                                    console.log(item)
-                                    
-                                }
-                            })
-                        })} */}
                         {this.props[this.props.supermarket].map((item, i) => {
                             
                             return this.props.categorys.map(category => {

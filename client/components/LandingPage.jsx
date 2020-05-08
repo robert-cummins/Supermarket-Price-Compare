@@ -52,7 +52,7 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div className="ui container">
-                    <div class="ui checkbox check-all">
+                    <div className="ui checkbox check-all">
                         <input onChange={this.handleCheck} type="checkbox" checked={this.state.checked}  />
                         <label>Check/Uncheck All</label>
                     </div>

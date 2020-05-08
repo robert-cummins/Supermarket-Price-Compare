@@ -17,7 +17,7 @@ class Checkbox extends React.Component {
     return (
       this.props.categorys.map(category => {
         return (
-          <div class="ui checkbox category-checkbox">
+          <div key={category.value} className="ui checkbox category-checkbox">
             <input onChange={this.handleCheck} type="checkbox" checked={category.isChecked} name={category.value} />
             <label>{category.value}</label>
           </div>
