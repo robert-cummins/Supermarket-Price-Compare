@@ -21,7 +21,7 @@ class ShoppingBasket extends React.Component {
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Sold by</th>
+                            {/* <th>Sold by</th> */}
                             <th>Total</th>
                         </tr>
                     </thead>
@@ -38,8 +38,8 @@ class ShoppingBasket extends React.Component {
                                 return (
                                     <tr key={i}>
                                         <td>{item.name}</td>
-                                        <td>{item.price}</td>
-                                        <td>{item.type}</td>
+                                        <td>{item.price} <br />{item.type}</td>
+                                        {/* <td>{item.type}</td> */}
                                         <td>{'$' + num.toFixed(2)}</td>
                                     </tr>
                                 )
@@ -49,7 +49,7 @@ class ShoppingBasket extends React.Component {
                         <tr>
                             <td><h4>Total:</h4></td>
                             <td></td>
-                            <td></td>
+                            {/* <td></td> */}
                             <td><h4>{total.toFixed(2)}</h4></td>
                         </tr>
 

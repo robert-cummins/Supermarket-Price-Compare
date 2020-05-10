@@ -36,7 +36,7 @@ class SearchResults extends React.Component {
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Sold by</th>
+                            <th></th>
 
                         </tr>
                     </thead>
@@ -50,8 +50,8 @@ class SearchResults extends React.Component {
                                         <React.Fragment key={i}>
                                             <tr name={item.name}>
                                                 <td name={item.name}>{item.name}</td>
-                                                <td>{'$' + item.price}</td>
-                                                <td>{item.type}</td>
+                                                <td>{item.price} <br />{item.type}</td>
+                                                {/* <td>{item.type}</td> */}
                                                 <td>
                                                     <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
                                                     <button onClick={(e) => this.handleClick(e, item)} name={item.name} className="ui primary basic tiny button">Add Item</button>
