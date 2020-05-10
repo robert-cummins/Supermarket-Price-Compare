@@ -35,9 +35,6 @@ class ShoppingBasket extends React.Component {
                                 let num = parseFloat(item.price) * parseFloat(multiplyer)
 
                                 total = num + total
-                                if (item.type == 'kg') { item.type = '/ kg' }
-                                else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
-                                else { item.type = "Each" }
                                 return (
                                     <tr key={i}>
                                         <td>{item.name}</td>

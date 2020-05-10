@@ -1,67 +1,82 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
-function newWorldReducer(state=[], action){
-    switch(action.type){
+function newWorldReducer(state = [], action) {
+    switch (action.type) {
         case "GET_NEWWORLD_ITEMS":
-            return action.items
-        
+            return action.items.map(item => {
+                if (item.type == 'kg') { item.type = '/ kg' }
+                else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
+                else { item.type = "Each" }
+                return item
+            })
+
         default:
             return state
     }
 }
 
-function countdownReducer(state=[], action){
-    switch(action.type){
+function countdownReducer(state = [], action) {
+    switch (action.type) {
         case "GET_COUNTDOWN_ITEMS":
-            return action.items
-        
+            return action.items.map(item => {
+                if (item.type == 'kg') { item.type = '/ kg' }
+                else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
+                else { item.type = "Each" }
+                return item
+            })
+
         default:
             return state
     }
 }
 
-function pakSaveReducer(state=[], action){
-    switch(action.type){
+function pakSaveReducer(state = [], action) {
+    switch (action.type) {
         case "GET_PAKSAVE_ITEMS":
-            return action.items
-        
+            return action.items.map(item => {
+                if (item.type == 'kg') { item.type = '/ kg' }
+                else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
+                else { item.type = "Each" }
+                return item
+            })
+
         default:
             return state
     }
 }
 
-function searchedNewWorldReducer(state=[], action){
-    switch(action.type){
+function searchedNewWorldReducer(state = [], action) {
+    switch (action.type) {
         case "GET_SEARCHED_NEWWORLD_ITEMS":
             return action.items
-        
+
         default:
             return state
     }
 }
 
-function searchedCountdownReducer(state=[], action){
-    switch(action.type){
+function searchedCountdownReducer(state = [], action) {
+    switch (action.type) {
         case "GET_SEARCHED_COUNTDOWN_ITEMS":
             return action.items
-        
+
         default:
             return state
     }
 }
 
-function searchedPakSaveReducer(state=[], action){
-    switch(action.type){
+function searchedPakSaveReducer(state = [], action) {
+    switch (action.type) {
         case "GET_SEARCHED_PAKSAVE_ITEMS":
             return action.items
-        
+
         default:
             return state
     }
 }
 
 const selectedItemReducer = (state = [], action) => {
-    if(action.type === 'ITEM_SELECTED'){
+    if (action.type === 'ITEM_SELECTED') {
         return [...state, action.item]
     }
     return state
@@ -102,14 +117,14 @@ const categoryReducer = (state = [{
     value: "Kitchen, dining and household",
     isChecked: true
 }], action) => {
-    
-    switch(action.type){
+
+    switch (action.type) {
         case "CHANGE_CHECK":
             return state.map(category => {
-                if(category.value == action.name && category.isChecked == false){
+                if (category.value == action.name && category.isChecked == false) {
                     category.isChecked = true
                     return category
-                } 
+                }
                 else if (category.value == action.name && category.isChecked == true) {
                     category.isChecked = false
                     return category
@@ -117,7 +132,7 @@ const categoryReducer = (state = [{
                     return category
                 }
             })
-        
+
         case "CHECK_ALL":
             return state.map(category => {
                 category.isChecked = true
@@ -129,7 +144,7 @@ const categoryReducer = (state = [{
                 category.isChecked = false
                 return category
             })
-        
+
         default:
             return state
     }

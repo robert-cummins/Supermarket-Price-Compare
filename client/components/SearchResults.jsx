@@ -46,11 +46,6 @@ class SearchResults extends React.Component {
                             return this.props.categorys.map(category => {
 
                                 if (item.category == category.value && category.isChecked == true) {
-                                    
-                                    
-                                    if (item.type == 'kg') { item.type = '/ kg' }
-                                    else if (item.type == 'ea' && item.weight != 'N/A') { item.type = 'Each @ ' + item.weight }
-                                    else { item.type = "Each" }
                                     return (
                                         <React.Fragment key={i}>
                                             <tr name={item.name}>

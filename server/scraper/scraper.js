@@ -65,7 +65,7 @@ async function scrapeSites() {
         if (i <= 10) { await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/chocolate-sweets-snacks?page=", i, context, page, CountdownProduct, categorys.pantry) }
         if (i <= 11) { await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/drinks-hot-cold?page=", i, context, page, CountdownProduct, categorys.pantry) }
         if (i <= 13) { await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/deli-chilled-foods?page=", i, context, page, CountdownProduct, categorys.fresh) }
-        if (i <= 13) { await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meal-ingredients?page=", i, context, page, CountdownProduct, categorys.fresh) }
+        if (i <= 13) { await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meal-ingredients?page=", i, context, page, CountdownProduct, categorys.pantry) }
         if (i <= 14) {
             await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/beer-cider-and-wine?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld', categorys.alcohol)
             await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/drinks/cold-drinks?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld', categorys.pantry)
