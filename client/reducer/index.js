@@ -78,6 +78,7 @@ function searchedPakSaveReducer(state = [], action) {
 const selectedItemReducer = (state = [], action) => {
     switch (action.type) {
         case "ITEM_SELECTED":
+            
             return [...state, action.item]
     
         case "EDIT_SELECTED_ITEM":
@@ -89,7 +90,10 @@ const selectedItemReducer = (state = [], action) => {
             })
         
         case "REMOVE_SELECTED_ITEM":
-            return state.filter(item => item.name !== action.name)
+            return state.filter(item => {
+                item.selected = false
+                return item.name !== action.name
+            })
     
         default:
             return state

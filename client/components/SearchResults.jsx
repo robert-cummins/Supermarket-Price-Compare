@@ -42,7 +42,7 @@ class SearchResults extends React.Component {
                     </thead>
                     <tbody>
                         {this.props[this.props.supermarket].map((item, i) => {
-
+                            
                             return this.props.categorys.map(category => {
 
                                 if (item.category == category.value && category.isChecked == true) {
@@ -51,24 +51,22 @@ class SearchResults extends React.Component {
                                             <tr name={item.name}>
                                                 <td name={item.name}>{item.name}</td>
                                                 <td>{item.price} <br />{item.type}</td>
+                                                {/* <td>{item.type}</td> */}
                                                 <td>
-                                                    {this.props.selectedItems.length ? this.props.selectedItems.map(selectedItem => {
-                                                        if (item.name === selectedItem.name && item.supermarket === selectedItem.supermarket) {
-                                                            return <p key={item.name} className={"added-text"}>Added to shopping basket</p>
-                                                        } else {
-                                                            return (
-                                                                <React.Fragment key={item.name}>
-                                                                    <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                                                    <button onClick={(e) => this.handleClick(e, item)} name={item.name} className="ui primary basic tiny button">Add Item</button>
-                                                                </React.Fragment>
-                                                            )
-                                                        }
-                                                    }) :
+                                                    {!item.selected ? 
                                                         <>
-                                                            <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                                            <button onClick={(e) => this.handleClick(e, item)} name={item.name} className="ui primary basic tiny button">Add Item</button>
-                                                        </>
+                                                        <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
+                                                        <button onClick={(e) => this.handleClick(e, item)} name={item.name} className="ui primary basic tiny button">Add Item</button></> :
+                                                        
+                                                        <p key={item.name} className={"added-text"}>Added to shopping basket</p>
+                                                
                                                     }
+                                                    
+                                                    {/* {this.props.selectedItems.map(selectedItem => {
+                                                        if(item.name === selectedItem.name && item.supermarket === selectedItem.supermarket){
+                                                            return 
+                                                        }
+                                                    })} */}
                                                 </td>
                                             </tr>
                                         </React.Fragment>
