@@ -51,10 +51,18 @@ export const getSelectedItems = (item, num) => {
 }
 
 export const editSelectedItems = (name, num) => {
+    if(num === undefined){num = '1'}
     return {
         type: 'EDIT_SELECTED_ITEM',
         name,
         num
+    }
+}
+
+export const removeSelectedItem = (name) => {
+    return {
+        type: 'REMOVE_SELECTED_ITEM',
+        name
     }
 }
 

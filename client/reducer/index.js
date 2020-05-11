@@ -87,7 +87,10 @@ const selectedItemReducer = (state = [], action) => {
                 }
                 return item
             })
-
+        
+        case "REMOVE_SELECTED_ITEM":
+            return state.filter(item => item.name !== action.name)
+    
         default:
             return state
     }

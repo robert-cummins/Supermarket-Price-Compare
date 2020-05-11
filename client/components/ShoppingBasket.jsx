@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { editSelectedItems } from '../actions'
+import { editSelectedItems, removeSelectedItem } from '../actions'
 
 
 
@@ -22,6 +22,10 @@ class ShoppingBasket extends React.Component {
 
     handleClick = (e) => {
         this.props.dispatch(editSelectedItems(e.target.name, this.state[e.target.name]))
+    }
+
+    handleDelete = (e) => {
+        this.props.dispatch(removeSelectedItem(e.target.name))
     }
 
     render() {
@@ -55,7 +59,7 @@ class ShoppingBasket extends React.Component {
                                         <td>
                                             <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
                                             <button onClick={(e) => this.handleClick(e)} name={item.name} className="ui primary basic tiny button">Edit Amount</button>
-                                            <button className="ui negative basic tiny button">Remove Item</button>
+                                            <button onClick={(e) => this.handleDelete(e)} name={item.name} className="ui negative basic tiny button">Remove Item</button>
                                         </td>
                                     </tr>
                                 )
