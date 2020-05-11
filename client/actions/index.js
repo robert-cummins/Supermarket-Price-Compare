@@ -50,6 +50,14 @@ export const getSelectedItems = (item, num) => {
     }
 }
 
+export const editSelectedItems = (name, num) => {
+    return {
+        type: 'EDIT_SELECTED_ITEM',
+        name,
+        num
+    }
+}
+
 export const changeCategorys = (name) => {
     return {
         type: 'CHANGE_CHECK',

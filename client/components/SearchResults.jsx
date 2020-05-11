@@ -7,11 +7,11 @@ class SearchResults extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedItems: []
+            // selectedItems: []
         }
     }
 
-    changeValue = (e, supermarket) => {
+    changeValue = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })

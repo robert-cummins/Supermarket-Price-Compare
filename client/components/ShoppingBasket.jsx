@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { editSelectedItems } from '../actions'
 
 
 
@@ -12,6 +13,17 @@ class ShoppingBasket extends React.Component {
 
     }
 
+    changeValue = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+        
+    }
+
+    handleClick = (e) => {
+        this.props.dispatch(editSelectedItems(e.target.name, this.state[e.target.name]))
+    }
+
     render() {
         if (this.props.selectedItems.length != 0) {
             let total = 0
@@ -21,8 +33,8 @@ class ShoppingBasket extends React.Component {
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
-                            {/* <th>Sold by</th> */}
                             <th>Total</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,8 +51,12 @@ class ShoppingBasket extends React.Component {
                                     <tr key={i}>
                                         <td>{item.name}</td>
                                         <td>{item.price} <br />{item.type}</td>
-                                        {/* <td>{item.type}</td> */}
                                         <td>{'$' + num.toFixed(2)}</td>
+                                        <td>
+                                            <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
+                                            <button onClick={(e) => this.handleClick(e)} name={item.name} className="ui primary basic tiny button">Edit Amount</button>
+                                            <button className="ui negative basic tiny button">Remove Item</button>
+                                        </td>
                                     </tr>
                                 )
                             }
@@ -49,7 +65,6 @@ class ShoppingBasket extends React.Component {
                         <tr>
                             <td><h4>Total:</h4></td>
                             <td></td>
-                            {/* <td></td> */}
                             <td><h4>{total.toFixed(2)}</h4></td>
                         </tr>
 

@@ -76,10 +76,21 @@ function searchedPakSaveReducer(state = [], action) {
 }
 
 const selectedItemReducer = (state = [], action) => {
-    if (action.type === 'ITEM_SELECTED') {
-        return [...state, action.item]
+    switch (action.type) {
+        case "ITEM_SELECTED":
+            return [...state, action.item]
+    
+        case "EDIT_SELECTED_ITEM":
+            return state.map(item => {
+                if(item.name === action.name){
+                    item.numOf = action.num
+                }
+                return item
+            })
+
+        default:
+            return state
     }
-    return state
 }
 
 const categoryReducer = (state = [{
