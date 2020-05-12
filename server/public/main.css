@@ -3,6 +3,9 @@
     margin: auto;
 }
 
+body {
+    background-color: #fafafa
+}
 
 td { 
     cursor: pointer; 
@@ -51,6 +54,56 @@ table {
 
 .added-text {
     color: #3B83C0;
+}
+
+.newworld {
+    background-color: rgb(211, 0, 0);
+    color: white;
+}
+
+.countdown {
+    background-color: rgb(0, 109, 0);
+    color: white;
+}
+
+.paknsave {
+    
+    background-color: rgb(255, 218, 8);
+}
+
+.main-text {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    margin-top: 20px !important;
+    color: rgb(0, 81, 151);
+}
+
+.tab {
+    background-color: #3B83C0 !important;
+    color: white !important;
+}
+
+.tab-hover:hover {
+    background-color: #3B83C0  !important;
+    color: white !important;
+}
+
+#context1 a {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: white;
+    border: 1px solid #3B83C0 ;
+    color: #3B83C0;
+}
+
+#context1 a:first-child {
+    margin-right: 40px;
+    
+}
+
+#context1 a:nth-child(2) {
+    margin-left: 40px;
+    
 }
   
       
