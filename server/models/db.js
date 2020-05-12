@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-mongoose.connect(process.env.MONGODB_UI || 'mongodb://localhost:27017/SupermarketDb', {useNewUrlParser: true}, (err) => {
+mongoose.connect(process.env.MONGODB_UI || 'mongodb://robertk762:Marcelia21@ds023105.mlab.com:23105/heroku_vlwdt8kw', {useNewUrlParser: true}, (err) => {
     if(!err){
         console.log("Mongo connection Succeeded")
     } else {
