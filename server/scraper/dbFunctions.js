@@ -15,7 +15,7 @@ function insertData(arr, superMarket) {
         supermarketProduct.category = el.category
         supermarketProduct.save((err, doc) => {
             if (!err) {
-                console.log(supermarketProduct)
+                console.log("Sucess")
             } else {
                 console.log("failed: " + err)
             }

@@ -47,7 +47,7 @@ class LandingPage extends React.Component {
         return (
             <>
                 <div className="ui container">
-                    <h1 className="main-text">Super Market Price Compare</h1>
+                    <h1 className="main-text">Supermarket Price Compare</h1>
                     <SearchBar />
                 </div>
 
