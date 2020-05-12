@@ -34,8 +34,8 @@ class SearchResults extends React.Component {
                 <table key={this.props.categorys} className="ui selectable celled table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Price</th>
+                            <th>NAME</th>
+                            <th>PRICE</th>
                             <th></th>
 
                         </tr>

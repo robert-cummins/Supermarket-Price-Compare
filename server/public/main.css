@@ -4,16 +4,21 @@
 }
 
 body {
-    background-color: #fafafa
+    background-color: white;
 }
 
 td { 
     cursor: pointer; 
 }
 
+th {
+    color: #3B83C0 !important;
+}
+
 
 table {
     table-layout : fixed;
+    border: 1px solid #3B83C0 !important;
 }
 
 
@@ -105,6 +110,8 @@ table {
     margin-left: 40px;
     
 }
+
+
   
       
 

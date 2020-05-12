@@ -69,20 +69,27 @@ class LandingPage extends React.Component {
                 {this.state.activeTab == 'search' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
-                            <div className="column">
+                            {this.props.searchedNewWorldItems && !!this.props.searchedNewWorldItems.length &&
+                                <div className="column">
                                 <h2 className="market-headers newworld">NEW WORLD</h2>
                                 <SearchResults supermarket={'searchedNewWorldItems'} />
                             </div>
-
-                            <div className="column">
+                            }
+                            
+                            {this.props.searchedCountdownItems && !!this.props.searchedCountdownItems.length &&
+                                <div className="column">
                                 <h2 className="market-headers countdown">Countdown</h2>
                                 <SearchResults supermarket={'searchedCountdownItems'} />
                             </div>
-
-                            <div className="column">
+                            }
+                            
+                            {this.props.searchedPakSaveItems && !!this.props.searchedPakSaveItems.length &&
+                                <div className="column">
                                 <h2 className="market-headers paknsave">PAK'nSAVE</h2>
                                 <SearchResults supermarket={'searchedPakSaveItems'} />
                             </div>
+                            }
+                            
                         </div>
                     </div>
 
@@ -90,19 +97,24 @@ class LandingPage extends React.Component {
                 {this.state.activeTab == 'shopping' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
+                        {this.props.selectedItems && !!this.props.selectedItems.length &&
                             <div className="column">
                                 <h2 className="market-headers newworld">NEW WORLD</h2>
                                 <ShoppingBasket supermarket={'NewWorld'} />
                             </div>
-
+                        }
+                        {this.props.selectedItems && !!this.props.selectedItems.length &&
                             <div className="column">
                                 <h2 className="market-headers countdown">Countdown</h2>
                                 <ShoppingBasket supermarket={'Countdown'} />
                             </div>
+                        }
+                        {this.props.selectedItems && !!this.props.selectedItems.length &&
                             <div className="column">
                                 <h2 className="market-headers paknsave">PAK'nSAVE</h2>
                                 <ShoppingBasket supermarket={'PakSave'} />
                             </div>
+                        }
                         </div>
                     </div>
 
@@ -117,9 +129,10 @@ const mapStateToProps = (state) => {
         newWorld: state.newWorld,
         countdown: state.countdown,
         pakSave: state.pakSave,
-        searchNewWorldItems: state.searchNewWorldItems,
+        searchedNewWorldItems: state.searchedNewWorldItems,
         searchedCountdownItems: state.searchedCountdownItems,
-        searchedPakSaveItems: state.searchedPakSaveItems,
+        searchedPakSaveItems: state.serchedPakSaveItems,
+        selectedItems: state.selectedItems,
         categorys: state.categorys
     }
 }
