@@ -47,7 +47,7 @@ class LandingPage extends React.Component {
         return (
             <>
                 <div className="ui container">
-                    <h1 className="ui center aligned header">Super Market Price Compare</h1>
+                    <h1 className="main-text">Super Market Price Compare</h1>
                     <SearchBar />
                 </div>
 
@@ -62,27 +62,34 @@ class LandingPage extends React.Component {
 
                 <div id="context1">
                     <div className="ui secondary menu tabs">
-                        <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active' : 'item'} data-tab="first">Search</a>
-                        <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active' : 'item'} data-tab="second">Shopping Basket</a>
+                        <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active tab' : 'item tab-hover'} data-tab="first">Search Results</a>
+                        <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active tab' : 'item tab-hover'} data-tab="second">Shopping Basket</a>
                     </div>
                 </div>
                 {this.state.activeTab == 'search' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
-                            <div className="column">
-                                <h2 className="market-headers">New World</h2>
+                            {this.props.searchedNewWorldItems && !!this.props.searchedNewWorldItems.length &&
+                                <div className="column">
+                                <h2 className="market-headers newworld">NEW WORLD</h2>
                                 <SearchResults supermarket={'searchedNewWorldItems'} />
                             </div>
-
-                            <div className="column">
-                                <h2 className="market-headers">Countdown</h2>
+                            }
+                            
+                            {this.props.searchedCountdownItems && !!this.props.searchedCountdownItems.length &&
+                                <div className="column">
+                                <h2 className="market-headers countdown">Countdown</h2>
                                 <SearchResults supermarket={'searchedCountdownItems'} />
                             </div>
-
-                            <div className="column">
-                                <h2 className="market-headers">Pak and Save</h2>
+                            }
+                            
+                            {this.props.searchedPakSaveItems && !!this.props.searchedPakSaveItems.length &&
+                                <div className="column">
+                                <h2 className="market-headers paknsave">PAK'nSAVE</h2>
                                 <SearchResults supermarket={'searchedPakSaveItems'} />
                             </div>
+                            }
+                            
                         </div>
                     </div>
 
@@ -90,19 +97,24 @@ class LandingPage extends React.Component {
                 {this.state.activeTab == 'shopping' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
+                        {this.props.selectedItems && !!this.props.selectedItems.length &&
                             <div className="column">
-                                <h2 className="market-headers">New World</h2>
+                                <h2 className="market-headers newworld">NEW WORLD</h2>
                                 <ShoppingBasket supermarket={'NewWorld'} />
                             </div>
-
+                        }
+                        {this.props.selectedItems && !!this.props.selectedItems.length &&
                             <div className="column">
-                                <h2 className="market-headers">Countdown</h2>
+                                <h2 className="market-headers countdown">Countdown</h2>
                                 <ShoppingBasket supermarket={'Countdown'} />
                             </div>
+                        }
+                        {this.props.selectedItems && !!this.props.selectedItems.length &&
                             <div className="column">
-                                <h2 className="market-headers">Pak and Save</h2>
+                                <h2 className="market-headers paknsave">PAK'nSAVE</h2>
                                 <ShoppingBasket supermarket={'PakSave'} />
                             </div>
+                        }
                         </div>
                     </div>
 
@@ -117,9 +129,10 @@ const mapStateToProps = (state) => {
         newWorld: state.newWorld,
         countdown: state.countdown,
         pakSave: state.pakSave,
-        searchNewWorldItems: state.searchNewWorldItems,
+        searchedNewWorldItems: state.searchedNewWorldItems,
         searchedCountdownItems: state.searchedCountdownItems,
-        searchedPakSaveItems: state.searchedPakSaveItems,
+        searchedPakSaveItems: state.serchedPakSaveItems,
+        selectedItems: state.selectedItems,
         categorys: state.categorys
     }
 }
