@@ -51,12 +51,13 @@ export const getSelectedItems = (item, num) => {
     }
 }
 
-export const editSelectedItems = (name, num) => {
+export const editSelectedItems = (name, price, num) => {
     if(num === undefined){num = '1'}
     return {
         type: 'EDIT_SELECTED_ITEM',
         name,
-        num
+        num,
+        price
     }
 }
 

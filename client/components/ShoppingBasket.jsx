@@ -21,7 +21,7 @@ class ShoppingBasket extends React.Component {
     }
 
     handleClick = (e) => {
-        this.props.dispatch(editSelectedItems(e.target.name, this.state[e.target.name + e.target.getAttribute('price')]))
+        this.props.dispatch(editSelectedItems(e.target.name, e.target.getAttribute('price'), this.state[e.target.name + e.target.getAttribute('price')]))
     }
 
     handleDelete = (e) => {

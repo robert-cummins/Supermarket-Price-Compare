@@ -83,7 +83,7 @@ const selectedItemReducer = (state = [], action) => {
     
         case "EDIT_SELECTED_ITEM":
             return state.map(item => {
-                if(item.name === action.name){
+                if(item.name === action.name && item.price === action.price){
                     item.numOf = action.num
                 }
                 return item
