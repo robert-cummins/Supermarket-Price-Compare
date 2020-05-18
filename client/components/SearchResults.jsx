@@ -7,20 +7,20 @@ class SearchResults extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            // selectedItems: []
         }
     }
 
     changeValue = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            //combine e.target.name and e.target.price to stop items of the same name changing value together
+            [e.target.name + e.target.getAttribute('price')]: e.target.value
         })
     }
 
     handleClick = (e, item) => {
         let num
-        if (this.state[e.target.name]) {
-            num = this.state[e.target.name]
+        if (this.state[e.target.name + e.target.getAttribute('price')]) {
+            num = this.state[e.target.name + e.target.getAttribute('price')]
         } else {
             num = '0'
         }
@@ -51,22 +51,15 @@ class SearchResults extends React.Component {
                                             <tr name={item.name}>
                                                 <td name={item.name}>{item.name}</td>
                                                 <td>{item.price} <br />{item.type}</td>
-                                                {/* <td>{item.type}</td> */}
                                                 <td>
                                                     {!item.selected ? 
                                                         <>
-                                                        <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                                        <button onClick={(e) => this.handleClick(e, item)} name={item.name} className="ui primary basic tiny button">Add Item</button></> :
+                                                        <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
+                                                        <button price={item.price} onClick={(e) => this.handleClick(e, item)} name={item.name} className="ui primary basic tiny button">Add Item</button></> :
                                                         
                                                         <p key={item.name} className={"added-text"}>Added to shopping basket</p>
                                                 
                                                     }
-                                                    
-                                                    {/* {this.props.selectedItems.map(selectedItem => {
-                                                        if(item.name === selectedItem.name && item.supermarket === selectedItem.supermarket){
-                                                            return 
-                                                        }
-                                                    })} */}
                                                 </td>
                                             </tr>
                                         </React.Fragment>

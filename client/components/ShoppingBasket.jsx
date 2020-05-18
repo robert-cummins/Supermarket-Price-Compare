@@ -15,17 +15,17 @@ class ShoppingBasket extends React.Component {
 
     changeValue = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name + e.target.getAttribute('price')]: e.target.value
         })
         
     }
 
     handleClick = (e) => {
-        this.props.dispatch(editSelectedItems(e.target.name, this.state[e.target.name]))
+        this.props.dispatch(editSelectedItems(e.target.name, e.target.getAttribute('price'), this.state[e.target.name + e.target.getAttribute('price')]))
     }
 
     handleDelete = (e) => {
-        this.props.dispatch(removeSelectedItem(e.target.name))
+        this.props.dispatch(removeSelectedItem(e.target.name, e.target.getAttribute('price')))
     }
 
     render() {
@@ -57,9 +57,9 @@ class ShoppingBasket extends React.Component {
                                         <td>{item.price} <br />{item.type}</td>
                                         <td>{'$' + num.toFixed(2)}</td>
                                         <td>
-                                            <input className="num-input" name={item.name} type="number" value={this.state[item.name] ? this.state[item.name] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                            <button onClick={(e) => this.handleClick(e)} name={item.name} className="ui primary basic tiny button">Edit Amount</button>
-                                            <button onClick={(e) => this.handleDelete(e)} name={item.name} className="ui negative basic tiny button">Remove Item</button>
+                                            <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
+                                            <button price={item.price} onClick={(e) => this.handleClick(e)} name={item.name} className="ui primary basic tiny button">Edit Amount</button>
+                                            <button price={item.price} onClick={(e) => this.handleDelete(e)} name={item.name} className="ui negative basic tiny button">Remove Item</button>
                                         </td>
                                     </tr>
                                 )
