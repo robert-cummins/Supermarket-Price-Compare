@@ -92,7 +92,10 @@ const selectedItemReducer = (state = [], action) => {
         case "REMOVE_SELECTED_ITEM":
             return state.filter(item => {
                 item.selected = false
-                return item.name !== action.name
+                if(item.name === action.name && item.price === action.price){
+                    return false
+                }
+                return true
             })
     
         default:

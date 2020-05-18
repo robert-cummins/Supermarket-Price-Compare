@@ -60,10 +60,11 @@ export const editSelectedItems = (name, num) => {
     }
 }
 
-export const removeSelectedItem = (name) => {
+export const removeSelectedItem = (name, price) => {
     return {
         type: 'REMOVE_SELECTED_ITEM',
-        name
+        name,
+        price
     }
 }
 
