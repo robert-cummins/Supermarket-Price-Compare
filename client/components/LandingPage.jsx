@@ -52,8 +52,6 @@ class LandingPage extends React.Component {
                 <div className="ui container">
                     <h1 className="main-text">Supermarket Price Compare</h1>
                     <SearchBar />
-
-
                 </div>
 
                 <div className="ui container">
@@ -63,8 +61,7 @@ class LandingPage extends React.Component {
                     </div>
                     <CheckBox />
                 </div>
-
-
+                
                 <div id="context1">
                     <div className="ui secondary menu tabs">
                         <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active tab' : 'item tab-hover'} data-tab="first">Search Results</a>
