@@ -14,10 +14,10 @@ class SearchBar extends React.Component {
             const searchRegEx = new RegExp(regexStr, 'gi');
             return text.match(searchRegEx) !== null;
         }
-    
         const supermarketSearch = supermarket.filter(foodItem => {
             return filter(foodItem.name.replace(/'/g, ""), item.replace(/'/g, ""))
         })
+        
         return this.props.dispatch(marketFunction(supermarketSearch))
     }
 
