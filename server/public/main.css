@@ -4,6 +4,7 @@
 }
 
 body {
+    /* background-color: rgb(234, 241, 234); */
     background-color: white;
 }
 
@@ -81,6 +82,7 @@ table {
     text-align: center;
     margin-top: 20px !important;
     color: rgb(0, 81, 151);
+    font-size: 42px;
 }
 
 .tab {
@@ -104,17 +106,27 @@ table {
 #context1 a:first-child {
     margin-right: 40px;
     
-}
+} 
 
-#context1 a:nth-child(2) {
+#context1 a:nth-child(3) {
     margin-left: 40px;
     
 }
 
 .instructions {
     list-style-type: square;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
 }
 
+.intro {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.search-button {
+    margin-top: 5px !important;
+}
   
       
 

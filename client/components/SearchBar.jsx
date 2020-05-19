@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import{getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems} from '../actions/index'
+import { getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems } from '../actions/index'
 
 
 class SearchBar extends React.Component {
@@ -14,10 +14,10 @@ class SearchBar extends React.Component {
             const searchRegEx = new RegExp(regexStr, 'gi');
             return text.match(searchRegEx) !== null;
         }
-    
         const supermarketSearch = supermarket.filter(foodItem => {
             return filter(foodItem.name.replace(/'/g, ""), item.replace(/'/g, ""))
         })
+
         return this.props.dispatch(marketFunction(supermarketSearch))
     }
 
@@ -28,16 +28,19 @@ class SearchBar extends React.Component {
         this.searchFoodItem(this.state.searchWord, this.props.pakSave, getSearchedPakSaveItems)
     }
 
-    render(){
+    render() {
         return (
-        <div className="ui segment">
-            <form onSubmit={this.onSubmit} className="ui form">
-                <div className="field">
-                    <label>Item Search</label>
-                    <input type="text" value={this.state.searchWord} onChange={(e) => this.setState({searchWord: e.target.value})}></input>
-                </div>
-            </form>
-        </div>
+            <div className="ui segment">
+                <form onSubmit={this.onSubmit} className="ui form">
+                    <div className="field">
+                        <label>Item Search</label>
+                        <input type="text" value={this.state.searchWord} onChange={(e) => this.setState({ searchWord: e.target.value })}></input>
+                        <button onClick={this.onSubmit} className="ui primary large button search-button">
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }
