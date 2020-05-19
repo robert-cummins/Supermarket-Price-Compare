@@ -20,8 +20,6 @@ class LandingPage extends React.Component {
 
 
     handleClick = (e) => {
-        // if (e.target.name == 'shopping') { this.setState({ activeTab: 'shopping' }) }
-        // else { this.setState({ activeTab: 'search' }) }
         this.setState({ activeTab: e.target.name })
         console.log(this.state)
     }
