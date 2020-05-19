@@ -3,7 +3,7 @@ import React from 'react'
 const Instructions = () => {
     return (
         <div className="ui container">
-            <p>
+            <p className="intro">
                 Welcome to Supermarket Price Compare. This app allows you to see exactly how much your shopping list or an individual item will cost at each of New Zealands big supermarket chains. This will allow you to see exactly how much you could save depending on which supermarket you decided to shop at.
             </p>
             <ul>

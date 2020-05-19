@@ -61,12 +61,12 @@ class LandingPage extends React.Component {
                     </div>
                     <CheckBox />
                 </div>
-                
+
                 <div id="context1">
                     <div className="ui secondary menu tabs">
+                        <a onClick={this.handleClick} name="instructions" className={this.state.activeTab == 'instructions' ? 'item active tab' : 'item tab-hover'} data-tab="second">Instructions</a>
                         <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active tab' : 'item tab-hover'} data-tab="first">Search Results</a>
                         <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active tab' : 'item tab-hover'} data-tab="second">Shopping Basket</a>
-                        <a onClick={this.handleClick} name="instructions" className={this.state.activeTab == 'instructions' ? 'item active tab' : 'item tab-hover'} data-tab="second">Instructions</a>
                     </div>
                 </div>
                 {this.state.activeTab == 'search' &&
@@ -124,7 +124,7 @@ class LandingPage extends React.Component {
                 }
 
                 {this.state.activeTab == 'instructions' &&
-                    <Instructions/>
+                    <Instructions />
                 }
             </>
         )

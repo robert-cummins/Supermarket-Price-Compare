@@ -104,15 +104,22 @@ table {
 #context1 a:first-child {
     margin-right: 40px;
     
-}
+} 
 
-#context1 a:nth-child(2) {
+#context1 a:nth-child(3) {
     margin-left: 40px;
     
 }
 
 .instructions {
     list-style-type: square;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.intro {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
 }
 
   
