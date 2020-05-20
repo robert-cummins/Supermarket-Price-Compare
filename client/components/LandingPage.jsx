@@ -21,7 +21,6 @@ class LandingPage extends React.Component {
 
     handleClick = (e) => {
         this.setState({ activeTab: e.target.name })
-        console.log(this.state)
     }
 
     handleCheck = () => {
@@ -37,8 +36,8 @@ class LandingPage extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(fetchNewWorldData())
-        this.props.dispatch(fetchCountdownData())
         this.props.dispatch(fetchPakSaveData())
+        this.props.dispatch(fetchCountdownData())
     }
 
 

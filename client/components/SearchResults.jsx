@@ -50,7 +50,7 @@ class SearchResults extends React.Component {
                                         <React.Fragment key={i}>
                                             <tr name={item.name}>
                                                 <td name={item.name}>{item.name}</td>
-                                                <td>{item.price} <br />{item.type}</td>
+                                                <td>{'$' + item.price} <br/>{item.type}</td>
                                                 <td>
                                                     {!item.selected ? 
                                                         <>
