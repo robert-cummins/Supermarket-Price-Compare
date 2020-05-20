@@ -22,9 +22,6 @@ const Instructions = () => {
                 <li className="instructions">
                     Click on the "shopping basket" tab at any time to see the total running cost for each supermarket.
                 </li>
-                <li className="instructions">
-                    This is hosted for free and is a little slow to start up. If you do not receive results from all 3 supermarkets, refresh the page and wait 10 seconds before making a search. This will only be a problem for the first search
-                </li>
             </ul>
         </div>
     )

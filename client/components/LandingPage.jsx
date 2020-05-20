@@ -7,12 +7,13 @@ import ShoppingBasket from './ShoppingBasket'
 import CheckBox from './Checkbox'
 import Instructions from './Instructions'
 
+
 class LandingPage extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            activeTab: 'instructions',
+            spinner: true,
             checked: true
         }
     }
@@ -20,9 +21,9 @@ class LandingPage extends React.Component {
 
 
     handleClick = (e) => {
-        if(e.target.name === 'search') this.props.dispatch(activateSearchTab()) 
-        if(e.target.name === 'shopping') this.props.dispatch(activateShoppingTab())
-        if(e.target.name === 'instructions') this.props.dispatch(activateInstructionsTab())
+        if (e.target.name === 'search') this.props.dispatch(activateSearchTab())
+        if (e.target.name === 'shopping') this.props.dispatch(activateShoppingTab())
+        if (e.target.name === 'instructions') this.props.dispatch(activateInstructionsTab())
     }
 
     handleCheck = () => {
@@ -40,7 +41,7 @@ class LandingPage extends React.Component {
         this.props.dispatch(activateInstructionsTab())
         this.props.dispatch(fetchNewWorldData())
         this.props.dispatch(fetchPakSaveData())
-        this.props.dispatch(fetchCountdownData())
+        this.props.dispatch(fetchCountdownData()).then(() => this.setState({ spinner: false }))
     }
 
 
@@ -51,7 +52,14 @@ class LandingPage extends React.Component {
             <>
                 <div className="ui container">
                     <h1 className="main-text">Supermarket Price Compare</h1>
-                    <SearchBar />
+                    {this.state.spinner ?
+
+                        <div class="ui active centered inline huge loader"></div>:
+
+                        <SearchBar />
+                    }
+                    
+
                 </div>
 
                 <div className="ui container">
