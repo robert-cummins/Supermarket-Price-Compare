@@ -54,7 +54,7 @@ class ShoppingBasket extends React.Component {
                                 return (
                                     <tr key={i}>
                                         <td>{item.name}</td>
-                                        <td>{item.price} <br />{item.type}</td>
+                                        <td>{'$' + item.price} <br />{item.type}</td>
                                         <td>{'$' + num.toFixed(2)}</td>
                                         <td>
                                             <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />

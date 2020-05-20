@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, checkAll, checkNone } from '../actions/index'
+import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, checkAll, checkNone, activateSearchTab, activateShoppingTab, activateInstructionsTab } from '../actions/index'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
 import ShoppingBasket from './ShoppingBasket'
@@ -20,8 +20,9 @@ class LandingPage extends React.Component {
 
 
     handleClick = (e) => {
-        this.setState({ activeTab: e.target.name })
-        console.log(this.state)
+        if(e.target.name === 'search') this.props.dispatch(activateSearchTab()) 
+        if(e.target.name === 'shopping') this.props.dispatch(activateShoppingTab())
+        if(e.target.name === 'instructions') this.props.dispatch(activateInstructionsTab())
     }
 
     handleCheck = () => {
@@ -36,9 +37,10 @@ class LandingPage extends React.Component {
     }
 
     componentDidMount() {
+        this.props.dispatch(activateInstructionsTab())
         this.props.dispatch(fetchNewWorldData())
-        this.props.dispatch(fetchCountdownData())
         this.props.dispatch(fetchPakSaveData())
+        this.props.dispatch(fetchCountdownData())
     }
 
 
@@ -62,12 +64,12 @@ class LandingPage extends React.Component {
 
                 <div id="context1">
                     <div className="ui secondary menu tabs">
-                        <a onClick={this.handleClick} name="instructions" className={this.state.activeTab == 'instructions' ? 'item active tab' : 'item tab-hover'} data-tab="second">Instructions</a>
-                        <a onClick={this.handleClick} name="search" className={this.state.activeTab == 'search' ? 'item active tab' : 'item tab-hover'} data-tab="first">Search Results</a>
-                        <a onClick={this.handleClick} name="shopping" className={this.state.activeTab == 'shopping' ? 'item active tab' : 'item tab-hover'} data-tab="second">Shopping Basket</a>
+                        <a onClick={this.handleClick} name="instructions" className={this.props.tabs.activeTab == 'instructions' ? 'item active tab' : 'item tab-hover'} data-tab="second">Instructions</a>
+                        <a onClick={this.handleClick} name="search" className={this.props.tabs.activeTab == 'search' ? 'item active tab' : 'item tab-hover'} data-tab="first">Search Results</a>
+                        <a onClick={this.handleClick} name="shopping" className={this.props.tabs.activeTab == 'shopping' ? 'item active tab' : 'item tab-hover'} data-tab="second">Shopping Basket</a>
                     </div>
                 </div>
-                {this.state.activeTab == 'search' &&
+                {this.props.tabs.activeTab == 'search' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
                             {this.props.searchedNewWorldItems && !!this.props.searchedNewWorldItems.length &&
@@ -95,7 +97,7 @@ class LandingPage extends React.Component {
                     </div>
 
                 }
-                {this.state.activeTab == 'shopping' &&
+                {this.props.tabs.activeTab == 'shopping' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
                             {this.props.selectedItems && !!this.props.selectedItems.length &&
@@ -121,7 +123,7 @@ class LandingPage extends React.Component {
 
                 }
 
-                {this.state.activeTab == 'instructions' &&
+                {this.props.tabs.activeTab == 'instructions' &&
                     <Instructions />
                 }
             </>
@@ -138,7 +140,8 @@ const mapStateToProps = (state) => {
         searchedCountdownItems: state.searchedCountdownItems,
         searchedPakSaveItems: state.serchedPakSaveItems,
         selectedItems: state.selectedItems,
-        categorys: state.categorys
+        categorys: state.categorys,
+        tabs: state.tabs
     }
 }
 
