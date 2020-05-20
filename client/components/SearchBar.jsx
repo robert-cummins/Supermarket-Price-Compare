@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems } from '../actions/index'
+import { getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems, activateSearchTab } from '../actions/index'
 
 
 class SearchBar extends React.Component {
@@ -23,6 +23,7 @@ class SearchBar extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault()
+        this.props.dispatch(activateSearchTab()) 
         this.searchFoodItem(this.state.searchWord, this.props.newWorld, getSearchedNewWorldItems)
         this.searchFoodItem(this.state.searchWord, this.props.countdown, getSearchedCountdownItems)
         this.searchFoodItem(this.state.searchWord, this.props.pakSave, getSearchedPakSaveItems)
@@ -49,7 +50,8 @@ const mapStateToProps = (state) => {
     return {
         newWorld: state.newWorld,
         countdown: state.countdown,
-        pakSave: state.pakSave
+        pakSave: state.pakSave,
+        tabs: state.tabs
     }
 }
 
