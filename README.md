@@ -1,28 +1,14 @@
-# A starter webpack project for React
+# Supermarket Price Compare
 
-This is a starter project that uses webpack to transpile and bundle ES6 React code. To use, consider these steps:
+Supermarket Price Compare compares the cost of a single item or whole shopping list at New Zealand's largest supermarket chains (New World, Countdown and PaknSave). I built this App so families or individuals can make informed financial decisions on where to shop and to know exactly how much money they can save.
 
-* Fork this repo
-* Rename your repo according to the app you're building
 
-```sh
-git clone https://github.com/[your-account]/[your-app].git
-cd [your-app] && npm i
-```
+## Instructions
 
-To start the development server with a watcher that rebuilds your code, run `npm run dev`. The assets built by webpack are placed in `server/public`. This folder is defined as a static folder in an Express.js server that can be started with `npm run server`.
+* Search for items on your shopping list, for example "nescafe coffee" using the search bar and hit enter or press the search button.
+* Results will be shown for all 3 supermarkets under the "Search Results" tab which will be automatically selected after a search.
+* Large search results can be narrowed using the category checkboxes. Being as specific as possible with your search, e.g., searching the brand name as well as the product name or adding the word "produce" when searching for fresh vegatables, e.g., "produce carrots" will also help narrow search results.
+* Click on the "shopping basket" tab at any time to see the total running cost for each supermarket.
 
-Additional components should be placed in `client/components`.
 
-## Separate client/server
-
-The boilerplate is also set up to host the client using `webpack-dev-server` with hot module reloading etc. To use this method, in one terminal run:
-```sh
-npm run client
-```
-and in the other:
-```sh
-npm run server
-```
-The client will be available on http://localhost:8080 and the server on http://localhost:3000. Note that you will still need to manage CORS between the two, as they are on different ports.
 
