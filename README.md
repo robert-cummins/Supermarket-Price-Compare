@@ -1,6 +1,6 @@
 # Supermarket Price Compare
 
-Supermarket Price Compare compares the cost of a single item or whole shopping list at New Zealand's largest supermarket chains (New World, Countdown and PaknSave). I built this App so families or individuals can make informed financial decisions on where to shop and to know exactly how much money they can save.
+Supermarket Price Compare compares the cost of a single item or whole shopping list at New Zealand's largest supermarket chains (New World, Countdown and PaknSave). I built this App so families or individuals can make informed financial decisions on where to shop and to budget correctly as the user will be informed exactly how much their shopping list will cost.
 
 
 ## Instructions
