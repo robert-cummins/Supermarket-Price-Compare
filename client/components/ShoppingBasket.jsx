@@ -69,7 +69,7 @@ class ShoppingBasket extends React.Component {
                         <tr>
                             <td><h4>Total:</h4></td>
                             <td></td>
-                            <td><h4>{total.toFixed(2)}</h4></td>
+                            <td><h4>{'$' + total.toFixed(2)}</h4></td>
                         </tr>
 
                     </tbody>

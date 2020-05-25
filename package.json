@@ -11,7 +11,7 @@
     "dev": "nodemon & webpack --watch",
     "server": "node server",
     "start": "webpack && node server",
-    "test": "jest --watchAll",
+    "test": "jest  --colors --verbose",
     "nodemon": "nodemon",
     "webpack": "webpack --watch"
   },
@@ -42,7 +42,6 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "express": "^4.16.4",
-    "jest": "^24.7.1",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.7",
     "nodemon": "^2.0.3",
@@ -60,5 +59,7 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
 }
