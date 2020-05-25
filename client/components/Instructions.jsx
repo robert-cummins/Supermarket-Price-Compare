@@ -14,6 +14,9 @@ const Instructions = () => {
                     Results will be shown for all 3 supermarkets under the "Search Results" tab which will be automatically selected after a search.
                 </li>
                 <li className="instructions">
+                    Add your desired item for each supermarket.
+                </li>
+                <li className="instructions">
                     Large search results can be narrowed using the category checkboxes. Being as specific as possible with your search, e.g., searching the brand name as well as the product name or adding the word "produce" when searching for fresh vegatables, e.g., "produce carrots" will also help narrow search results.
                 </li>
                 <li className="instructions">
