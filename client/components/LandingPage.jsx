@@ -6,6 +6,8 @@ import SearchResults from './SearchResults'
 import ShoppingBasket from './ShoppingBasket'
 import CheckBox from './Checkbox'
 import Instructions from './Instructions'
+import Header from './Header'
+import Spinner from './Spinner'
 
 
 class LandingPage extends React.Component {
@@ -51,15 +53,11 @@ class LandingPage extends React.Component {
         return (
             <>
                 <div className="ui container">
-                    <h1 className="main-text">Supermarket Price Compare</h1>
+                    <Header />
                     {this.state.spinner ?
-
-                        <div class="ui active centered inline huge loader"></div>:
-
+                        <Spinner /> :
                         <SearchBar />
                     }
-                    
-
                 </div>
 
                 <div className="ui container">
