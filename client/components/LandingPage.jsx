@@ -2,13 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, checkAll, checkNone, activateInstructionsTab } from '../actions/index'
 import SearchBar from './SearchBar'
-import SearchResults from './SearchResults'
 import ShoppingBasket from './ShoppingBasket'
 import CheckBoxes from './Checkboxes'
 import Instructions from './Instructions'
 import Header from './Header'
 import Spinner from './Spinner'
 import Tabs from './Tabs'
+import SearchResults from './SearchResults'
 
 
 class LandingPage extends React.Component {
@@ -65,33 +65,9 @@ class LandingPage extends React.Component {
                 <Tabs />
 
                 {this.props.tabs.activeTab == 'search' &&
-                    <div className="table-container">
-                        <div className="ui three column doubling stackable grid">
-                            {this.props.searchedNewWorldItems && !!this.props.searchedNewWorldItems.length &&
-                                <div className="column">
-                                    <h2 className="market-headers newworld">NEW WORLD</h2>
-                                    <SearchResults supermarket={'searchedNewWorldItems'} />
-                                </div>
-                            }
-
-                            {this.props.searchedCountdownItems && !!this.props.searchedCountdownItems.length &&
-                                <div className="column">
-                                    <h2 className="market-headers countdown">Countdown</h2>
-                                    <SearchResults supermarket={'searchedCountdownItems'} />
-                                </div>
-                            }
-
-                            {this.props.searchedPakSaveItems && !!this.props.searchedPakSaveItems.length &&
-                                <div className="column">
-                                    <h2 className="market-headers paknsave">PAK'nSAVE</h2>
-                                    <SearchResults supermarket={'searchedPakSaveItems'} />
-                                </div>
-                            }
-
-                        </div>
-                    </div>
-
+                    <SearchResults />
                 }
+
                 {this.props.tabs.activeTab == 'shopping' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">
