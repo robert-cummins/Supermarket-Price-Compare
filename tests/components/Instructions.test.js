@@ -22,6 +22,6 @@ describe('Instructions Component', () => {
 
     test('Instructions should have 4 bullet point instructions', () => {
         const wrapper = component.find('li')
-        expect(wrapper.length).toEqual(4)
+        expect(wrapper.length).toEqual(5)
     })
 })
