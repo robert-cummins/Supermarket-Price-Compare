@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, checkAll, checkNone, activateSearchTab, activateShoppingTab, activateInstructionsTab } from '../actions/index'
+import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, checkAll, checkNone, activateInstructionsTab } from '../actions/index'
 import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
 import ShoppingBasket from './ShoppingBasket'
-import CheckBox from './Checkbox'
+import CheckBoxes from './Checkboxes'
 import Instructions from './Instructions'
 import Header from './Header'
 import Spinner from './Spinner'
+import Tabs from './Tabs'
 
 
 class LandingPage extends React.Component {
@@ -20,13 +21,6 @@ class LandingPage extends React.Component {
         }
     }
 
-
-
-    handleClick = (e) => {
-        if (e.target.name === 'search') this.props.dispatch(activateSearchTab())
-        if (e.target.name === 'shopping') this.props.dispatch(activateShoppingTab())
-        if (e.target.name === 'instructions') this.props.dispatch(activateInstructionsTab())
-    }
 
     handleCheck = () => {
         if (this.state.checked === true) {
@@ -65,16 +59,11 @@ class LandingPage extends React.Component {
                         <input onChange={this.handleCheck} type="checkbox" checked={this.state.checked} />
                         <label>Check/Uncheck All</label>
                     </div>
-                    <CheckBox />
+                    <CheckBoxes />
                 </div>
 
-                <div id="context1">
-                    <div className="ui secondary menu tabs">
-                        <a onClick={this.handleClick} name="instructions" className={this.props.tabs.activeTab == 'instructions' ? 'item active tab' : 'item tab-hover'} data-tab="second">Instructions</a>
-                        <a onClick={this.handleClick} name="search" className={this.props.tabs.activeTab == 'search' ? 'item active tab' : 'item tab-hover'} data-tab="first">Search Results</a>
-                        <a onClick={this.handleClick} name="shopping" className={this.props.tabs.activeTab == 'shopping' ? 'item active tab' : 'item tab-hover'} data-tab="second">Shopping Basket</a>
-                    </div>
-                </div>
+                <Tabs />
+
                 {this.props.tabs.activeTab == 'search' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">

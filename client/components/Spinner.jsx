@@ -2,7 +2,7 @@ import React from 'react'
 
 const Spinner = () => {
     return (
-        <div class="ui active centered inline huge loader"></div>
+        <div className="ui active centered inline huge loader"></div>
     )
 }
 

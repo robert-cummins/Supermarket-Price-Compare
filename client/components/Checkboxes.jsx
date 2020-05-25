@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { changeCategorys } from '../actions/index'
 
-class Checkbox extends React.Component {
+class Checkboxes extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -34,4 +34,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Checkbox)
+export default connect(mapStateToProps)(Checkboxes)
