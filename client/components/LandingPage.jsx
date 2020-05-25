@@ -65,9 +65,9 @@ class LandingPage extends React.Component {
                 <Tabs />
 
                 {this.props.tabs.activeTab == 'search' &&
-                    <SearchResults />
+                    <SearchResults/>
                 }
-
+                
                 {this.props.tabs.activeTab == 'shopping' &&
                     <div className="table-container">
                         <div className="ui three column doubling stackable grid">

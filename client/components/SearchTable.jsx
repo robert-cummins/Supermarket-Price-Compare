@@ -10,6 +10,7 @@ class SearchTable extends React.Component {
         }
     }
 
+
     changeValue = (e) => {
         this.setState({
             //combine e.target.name and e.target.price to stop items of the same name changing value together
