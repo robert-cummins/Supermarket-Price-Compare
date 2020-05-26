@@ -2,9 +2,8 @@ import {tabReducer} from '../../client/reducer/tabs'
 
 describe('Tabs reducer', () => {
     test('Tabs reducer should return default state', () => {
-        const defaultTabState = [{activeTab: 'instructions'}]
-        const newState = tabReducer([{activeTab: 'instructions'}], {})
-        expect(newState).toEqual(defaultTabState)
+        const newState = tabReducer(undefined, {})
+        expect(newState).toEqual([{activeTab: 'instructions'}])
     })
 
     test('Tabs reducer should return "search" as active tab', () => {
