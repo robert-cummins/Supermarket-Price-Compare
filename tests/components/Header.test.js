@@ -19,7 +19,7 @@ describe('Header Component', () => {
         expect(wrapper.length).toBe(1)
     })
 
-    test('App title is correct', () => {
+    test('App title is rendered', () => {
         expect(wrapper.text()).toEqual('Supermarket Price Compare')
     })
 })
