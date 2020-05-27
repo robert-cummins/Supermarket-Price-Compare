@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSelectedItems } from '../actions'
+import { getSelectedItems } from '../actions/selectedItems'
 
 
 class SearchTable extends React.Component {

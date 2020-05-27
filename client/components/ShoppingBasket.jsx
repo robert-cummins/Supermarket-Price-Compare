@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { editSelectedItems, removeSelectedItem } from '../actions'
+import { editSelectedItems, removeSelectedItem } from '../actions/selectedItems'
 
 
 
