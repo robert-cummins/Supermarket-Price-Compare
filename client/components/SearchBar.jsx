@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems, activateSearchTab } from '../actions/index'
+import { getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems} from '../actions/searchItems'
+import {activateSearchTab} from '../actions/tabs'
 
 
 class SearchBar extends React.Component {

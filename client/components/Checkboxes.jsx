@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { changeCategorys } from '../actions/index'
+import { changeCategorys } from '../actions/categorys'
 
 class Checkboxes extends React.Component {
   constructor(props) {

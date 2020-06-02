@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData, checkAll, checkNone, activateInstructionsTab } from '../actions/index'
+import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData } from '../actions/supermarkets'
+import {activateInstructionsTab} from '../actions/tabs'
+import {checkAll, checkNone} from '../actions/categorys'
 import SearchBar from './SearchBar'
 import ShoppingBasket from './ShoppingBasket'
 import CheckBoxes from './Checkboxes'
@@ -16,7 +18,6 @@ class LandingPage extends React.Component {
         super(props)
 
         this.state = {
-            spinner: true,
             checked: true
         }
     }
@@ -37,7 +38,7 @@ class LandingPage extends React.Component {
         this.props.dispatch(activateInstructionsTab())
         this.props.dispatch(fetchNewWorldData())
         this.props.dispatch(fetchPakSaveData())
-        this.props.dispatch(fetchCountdownData()).then(() => this.setState({ spinner: false }))
+        this.props.dispatch(fetchCountdownData())
     }
 
 
@@ -48,7 +49,7 @@ class LandingPage extends React.Component {
             <>
                 <div className="ui container">
                     <Header />
-                    {this.state.spinner ?
+                    {this.props.countdown.length == 0 ?
                         <Spinner /> :
                         <SearchBar />
                     }

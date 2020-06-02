@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { activateSearchTab, activateShoppingTab, activateInstructionsTab } from '../actions/index'
+import { activateSearchTab, activateShoppingTab, activateInstructionsTab } from '../actions/tabs'
 
 
 class Tabs extends React.Component {
