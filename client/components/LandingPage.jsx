@@ -18,7 +18,6 @@ class LandingPage extends React.Component {
         super(props)
 
         this.state = {
-            spinner: true,
             checked: true
         }
     }
@@ -39,7 +38,7 @@ class LandingPage extends React.Component {
         this.props.dispatch(activateInstructionsTab())
         this.props.dispatch(fetchNewWorldData())
         this.props.dispatch(fetchPakSaveData())
-        this.props.dispatch(fetchCountdownData()).then(() => this.setState({ spinner: false }))
+        this.props.dispatch(fetchCountdownData())
     }
 
 
@@ -50,7 +49,7 @@ class LandingPage extends React.Component {
             <>
                 <div className="ui container">
                     <Header />
-                    {this.state.spinner ?
+                    {this.props.countdown.length == 0 ?
                         <Spinner /> :
                         <SearchBar />
                     }

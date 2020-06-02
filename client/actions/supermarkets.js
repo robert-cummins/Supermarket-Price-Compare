@@ -1,4 +1,5 @@
 import { getNewWorldData, getCountdownData, getPakSaveData } from '../api/superMarkets'
+import axios from 'axios'
 
 export const getNewWorldItems = (items) => {
     return {
@@ -21,29 +22,30 @@ export const getPakSaveItems = (items) => {
     }
 }
 
-export function fetchNewWorldData() {
+export function fetchNewWorldData(){
     return dispatch => {
-        return getNewWorldData()
-            .then(items => {
-                return dispatch(getNewWorldItems(items))
-            })
+        axios.get('/api/v1/scraper/newworld')
+        .then(items => {
+            return dispatch(getNewWorldItems(items.data))
+        })
     }
+     
 }
 
 export function fetchCountdownData() {
     return dispatch => {
-        return getCountdownData()
-            .then(items => {
-                return dispatch(getCountdownItems(items))
-            })
+        axios.get('/api/v1/scraper/countdown')
+        .then(items => {
+            return dispatch(getCountdownItems(items.data))
+        })
     }
 }
 
 export function fetchPakSaveData() {
     return dispatch => {
-        return getPakSaveData()
-            .then(items => {
-                return dispatch(getPakSaveItems(items))
-            })
+        axios.get('/api/v1/scraper/pakandsave')
+        .then(items => {
+            return dispatch(getPakSaveItems(items.data))
+        })
     }
 }
