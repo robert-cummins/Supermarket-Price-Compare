@@ -4,6 +4,7 @@ import reducers from '../../client/reducer/index'
 import moxios from 'moxios'
 import { fetchNewWorldData } from '../../client/actions/supermarkets'
 import {getNewWorldData} from '../../client/api/superMarkets'
+import "@babel/polyfill"
 
 
 const middlewares = [thunk]
@@ -42,13 +43,13 @@ describe('Supermarket actions', () => {
                 status: 200,
                 response: expectedState
             })
-    
         })
 
         return store.dispatch(fetchNewWorldData())
             .then(() => {
                 const newState = store.getState()
-                expect(newState).toBe(expectedState)
+                console.log(newState.newWorld)
+                expect(newState.newWorld).toEqual(expectedState)
             })
     })
 

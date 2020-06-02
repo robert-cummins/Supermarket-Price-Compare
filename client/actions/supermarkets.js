@@ -22,14 +22,11 @@ export const getPakSaveItems = (items) => {
     }
 }
 
-export function fetchNewWorldData(){
-    return dispatch => {
-        axios.get('/api/v1/scraper/newworld')
+export const fetchNewWorldData = () => async (dispatch) => {
+        await axios.get('/api/v1/scraper/newworld')
         .then(items => {
             return dispatch(getNewWorldItems(items.data))
         })
-    }
-     
 }
 
 export function fetchCountdownData() {
