@@ -3,7 +3,6 @@ import thunk from 'redux-thunk'
 import reducers from '../../client/reducer/index'
 import moxios from 'moxios'
 import { fetchNewWorldData } from '../../client/actions/supermarkets'
-import {getNewWorldData} from '../../client/api/superMarkets'
 import "@babel/polyfill"
 
 
@@ -48,7 +47,6 @@ describe('Supermarket actions', () => {
         return store.dispatch(fetchNewWorldData())
             .then(() => {
                 const newState = store.getState()
-                console.log(newState.newWorld)
                 expect(newState.newWorld).toEqual(expectedState)
             })
     })
