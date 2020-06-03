@@ -1,28 +1,9 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import reducers from '../../client/reducer/index'
 import moxios from 'moxios'
 import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData } from '../../client/actions/supermarkets'
 import "@babel/polyfill"
+import {testStore, expectedState} from '../utils/mockStore'
 
 
-const middlewares = [thunk]
-
-const testStore = (intitilalState) => {
-    const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)
-    return createStoreWithMiddleware(reducers, intitilalState)
-}
-
-const expectedState = [{
-    name: 'Example 1',
-    price: '1'
-}, {
-    name: 'Example 2',
-    price: '2'
-}, {
-    name: 'Example 3',
-    price: '3'
-}]
 
 describe('Supermarket actions', () => {
     beforeEach(() => {
@@ -46,6 +27,7 @@ describe('Supermarket actions', () => {
             })
         })
 
+        
         return store.dispatch(fetchNewWorldData())
             .then(() => {
                 const newState = store.getState()
