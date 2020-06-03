@@ -47,7 +47,7 @@ class LandingPage extends React.Component {
     render() {
         return (
             <>
-                <div className="ui container">
+                <div className="ui container" data-test="Landing-Page">
                     <Header />
                     {this.props.countdown.length == 0 ?
                         <Spinner /> :
