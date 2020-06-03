@@ -36,4 +36,10 @@ describe('Landing page component', () => {
         const wrapper = component.find('.check-all')
         expect(wrapper.length).toBe(1)
     })
+
+    it('should call the handleCheck function and change the state', () => {
+        const handleCheck = jest.spyOn(component.instance(), 'handleCheck')
+        component.instance().handleCheck()
+        expect(handleCheck).toBeCalled()
+    })
 })
