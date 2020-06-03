@@ -1,5 +1,6 @@
-import {getSelectedItems, editSelectedItems, removeSelectedItem} from '../../client/actions/selectedItems'
 import configureStore from 'redux-mock-store'
+import {getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems} from '../../client/actions/searchItems'
+import {expectedItems} from '../utils/mockStore'
 
 describe('Searched Items Actions', () => {
     const mockStore = configureStore();
@@ -9,44 +10,38 @@ describe('Searched Items Actions', () => {
         store.clearActions();
     })
 
-    test('getSelectedItem action dispatches correct action and payload', () => {
-        const fetchedItem = {name: "Example 4", numOf: 2, price: "4", selected: true}
-    
+    test('getSearchedNewWorldItems action dispatches correct action and payload', () => {
+        
         const expectedAction = [{
-            item: fetchedItem,
-            type: "ITEM_SELECTED"
+            items: expectedItems,
+            type: "GET_SEARCHED_NEWWORLD_ITEMS"
         }]
      
-        store.dispatch(getSelectedItems( {name: 'Example 4', price: '4'}, 2))
+        store.dispatch(getSearchedNewWorldItems(expectedItems))
         
         expect(store.getActions()).toEqual(expectedAction)
     })
 
-    test('removeSelectedItem action dispatches correct action and payload', () => {
-        const itemToBeEdited = {name: "Example 4", numOf: 2, price: "4", selected: true}
-    
+    test('getSearchedCountdownItems action dispatches correct action and payload', () => {
+        
         const expectedAction = [{
-            name: itemToBeEdited.name,
-            num: itemToBeEdited.numOf,
-            price: itemToBeEdited.price,
-            type: "EDIT_SELECTED_ITEM"
+            items: expectedItems,
+            type: "GET_SEARCHED_COUNTDOWN_ITEMS"
         }]
      
-        store.dispatch(editSelectedItems("Example 4", "4", 2))
+        store.dispatch(getSearchedCountdownItems(expectedItems))
         
         expect(store.getActions()).toEqual(expectedAction)
     })
 
-    test('editSelectedItem action dispatches correct action and payload', () => {
-        const itemToBeRemoved = {name: "Example 4", numOf: 2, price: "4", selected: true}
-    
+    test('getSearchedCountdownItems action dispatches correct action and payload', () => {
+        
         const expectedAction = [{
-            name: itemToBeRemoved.name,
-            price: itemToBeRemoved.price,
-            type: "REMOVE_SELECTED_ITEM"
+            items: expectedItems,
+            type: "GET_SEARCHED_PAKSAVE_ITEMS"
         }]
      
-        store.dispatch(removeSelectedItem("Example 4", "4"))
+        store.dispatch(getSearchedPakSaveItems(expectedItems))
         
         expect(store.getActions()).toEqual(expectedAction)
     })
