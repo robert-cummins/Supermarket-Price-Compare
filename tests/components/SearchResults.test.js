@@ -31,15 +31,4 @@ describe('SearchBar component', () => {
         expect(wrapper.length).toBe(1)
     })
 
-    // it('should call the submit function', () => {
-    //     const event = {
-    //             preventDefault: function(){
-    //                 return true
-    //             }
-            
-    //     }
-    //     const onSubmit = jest.spyOn(component.instance(), 'onSubmit')
-    //     component.instance().onSubmit(event)
-    //     expect(onSubmit).toBeCalled()
-    // })
 })
