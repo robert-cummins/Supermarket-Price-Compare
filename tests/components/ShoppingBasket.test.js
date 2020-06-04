@@ -1,4 +1,4 @@
-import SearchTable from '../../client/components/SearchTable'
+import ShoppingBasket from '../../client/components/ShoppingBasket'
 import {shallow} from 'enzyme'
 import React from 'react'
 import {testStore} from '../utils/mockStore'
@@ -7,11 +7,11 @@ import "@babel/polyfill"
 
 const setUp = (initialState = {}) => {
     const store = testStore(initialState)
-    const component = shallow(<SearchTable supermarket={'searchedNewWorldItems'} store={store} />).childAt(0).dive()
+    const component = shallow(<ShoppingBasket store={store} />).childAt(0).dive()
     return component 
 }
 
-describe('SearchTable component', () => {
+describe('ShoppingBasket component', () => {
     
     let component
 
@@ -26,11 +26,10 @@ describe('SearchTable component', () => {
     
     beforeEach(() => {
         const initialState = {
-            searchedNewWorldItems: [{name: 'carrots'}],
+            searchedNewWorldItems: [],
             searchedCountdownItems: [],
             serchedPakSaveItems: [],
-            categorys: [],
-            selectedItems: []
+            selectedItems: [{name: 'test'}]
         }
         component = setUp(initialState)
     })
@@ -50,7 +49,13 @@ describe('SearchTable component', () => {
 
     it('should call the handleClick function', () => {
         const handleClick = jest.spyOn(component.instance(), 'handleClick')
-        component.instance().handleClick(event, {numOf:2})
+        component.instance().handleClick(event)
         expect(handleClick).toBeCalled()
+    })
+
+    it('should call the handleDelete function', () => {
+        const handleDelete = jest.spyOn(component.instance(), 'handleDelete')
+        component.instance().handleDelete(event)
+        expect(handleDelete).toBeCalled()
     })
 })
