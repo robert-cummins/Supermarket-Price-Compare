@@ -1,7 +1,8 @@
 import ShoppingBasket from '../../client/components/ShoppingBasket'
 import {shallow} from 'enzyme'
 import React from 'react'
-import {testStore} from '../utils/mockStore'
+import {testStore} from '../utils/utils'
+import {event} from '../utils/utils'
 import "@babel/polyfill"
 
 
@@ -14,15 +15,6 @@ const setUp = (initialState = {}) => {
 describe('ShoppingBasket component', () => {
     
     let component
-
-    const event = {
-        target: {
-            name: 'test',
-            getAttribute: function(){
-                return true
-            }
-        }
-    }
     
     beforeEach(() => {
         const initialState = {

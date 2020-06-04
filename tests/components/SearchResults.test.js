@@ -1,7 +1,7 @@
 import SearchReasults from '../../client/components/SearchResults'
 import {shallow} from 'enzyme'
 import React from 'react'
-import {testStore} from '../utils/mockStore'
+import {testStore} from '../utils/utils'
 import "@babel/polyfill"
 
 

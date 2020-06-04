@@ -1,7 +1,8 @@
 import SearchBar from '../../client/components/SearchBar'
 import {shallow} from 'enzyme'
 import React from 'react'
-import {testStore} from '../utils/mockStore'
+import {testStore} from '../utils/utils'
+import {event} from '../utils/utils'
 import "@babel/polyfill"
 
 
@@ -33,12 +34,6 @@ describe('SearchBar component', () => {
     })
 
     it('should call the submit function', () => {
-        const event = {
-                preventDefault: function(){
-                    return true
-                }
-            
-        }
         const onSubmit = jest.spyOn(component.instance(), 'onSubmit')
         component.instance().onSubmit(event)
         expect(onSubmit).toBeCalled()

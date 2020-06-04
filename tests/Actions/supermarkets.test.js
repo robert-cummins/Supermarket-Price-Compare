@@ -1,7 +1,7 @@
 import moxios from 'moxios'
 import { fetchNewWorldData, fetchCountdownData, fetchPakSaveData } from '../../client/actions/supermarkets'
 import "@babel/polyfill"
-import {testStore, expectedState} from '../utils/mockStore'
+import {testStore, expectedState} from '../utils/utils'
 
 
 

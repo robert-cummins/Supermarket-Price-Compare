@@ -21,6 +21,9 @@ export const expectedState = [{
 }]
 
 export const event = {
+    preventDefault: function(){
+        return true
+    },
     target: {
         name: 'test',
         getAttribute: function(){

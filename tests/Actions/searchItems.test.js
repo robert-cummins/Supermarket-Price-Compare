@@ -1,6 +1,6 @@
 import configureStore from 'redux-mock-store'
 import {getSearchedNewWorldItems, getSearchedCountdownItems, getSearchedPakSaveItems} from '../../client/actions/searchItems'
-import {expectedItems} from '../utils/mockStore'
+import {expectedItems} from '../utils/utils'
 
 describe('Searched Items Actions', () => {
     const mockStore = configureStore();

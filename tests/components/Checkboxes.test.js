@@ -1,7 +1,8 @@
 import Checkboxes from '../../client/components/Checkboxes'
 import {shallow} from 'enzyme'
 import React from 'react'
-import {testStore} from '../utils/mockStore'
+import {testStore} from '../utils/utils'
+import {event} from '../utils/utils'
 import "@babel/polyfill"
 
 
@@ -64,13 +65,6 @@ describe('Checkboxes component', () => {
     })
 
     it('should call the handleCheck function', () => {
-        const event = {
-            target:{
-                getAttribute: function(){
-                    return 'Fresh food, chilled and bakery'
-                }
-            }
-        }
         const handleCheck = jest.spyOn(component.instance(), 'handleCheck')
         component.instance().handleCheck(event)
         expect(handleCheck).toBeCalled()
