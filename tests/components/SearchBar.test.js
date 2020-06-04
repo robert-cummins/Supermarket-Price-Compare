@@ -27,7 +27,7 @@ describe('SearchBar component', () => {
 
     
 
-    it('should render without error', () => {
+    it('should render without error by finding 1 input', () => {
         const wrapper = component.find('input')
         expect(wrapper.length).toBe(1)
     })

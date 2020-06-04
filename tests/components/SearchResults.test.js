@@ -11,7 +11,7 @@ const setUp = (initialState = {}) => {
     return component 
 }
 
-describe('SearchBar component', () => {
+describe('SearchResults component', () => {
     
     let component
     
