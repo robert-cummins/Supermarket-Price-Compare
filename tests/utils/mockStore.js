@@ -19,3 +19,12 @@ export const expectedState = [{
     name: 'Example 3',
     price: '3'
 }]
+
+export const event = {
+    target: {
+        name: 'test',
+        getAttribute: function(){
+            return true
+        }
+    }
+}
