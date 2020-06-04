@@ -1,7 +1,7 @@
 import LandingPage from '../../client/components/LandingPage'
 import {shallow} from 'enzyme'
 import React from 'react'
-import {testStore} from '../utils/mockStore'
+import {testStore} from '../utils/utils'
 import "@babel/polyfill"
 
 
@@ -35,5 +35,11 @@ describe('Landing page component', () => {
     it('should render without errors', () => {
         const wrapper = component.find('.check-all')
         expect(wrapper.length).toBe(1)
+    })
+
+    it('should call the handleCheck function and change the state', () => {
+        const handleCheck = jest.spyOn(component.instance(), 'handleCheck')
+        component.instance().handleCheck()
+        expect(handleCheck).toBeCalled()
     })
 })
