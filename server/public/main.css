@@ -132,6 +132,10 @@ table {
 .delete-button {
     margin-top: 2px !important;
 }
+
+tr {
+    cursor: default !important;
+}
       
 
   
