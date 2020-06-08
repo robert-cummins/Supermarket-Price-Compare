@@ -64,7 +64,7 @@ class ShoppingBasket extends React.Component {
                                         <td>{'$' + num.toFixed(2)}</td>
                                         <td>
                                             <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                            <button price={item.price} onClick={(e) => this.handleClick(e)} name={item.name} className="ui primary basic tiny button">Edit Amount</button>
+                                            
                                             <button price={item.price} onClick={(e) => this.handleDelete(e)} name={item.name} className="ui negative basic tiny button">Remove Item</button>
                                         </td>
                                     </tr>
