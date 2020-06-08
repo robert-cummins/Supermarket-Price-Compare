@@ -14,9 +14,15 @@ class ShoppingBasket extends React.Component {
     }
 
     changeValue = (e) => {
+        const name = e.target.name
+        const price =  e.target.getAttribute('price')
+        const value = e.target.value
         this.setState({
-            [e.target.name + e.target.getAttribute('price')]: e.target.value
+            [name + price]: value
+        }, () => {
+            this.props.dispatch(editSelectedItems(name, price, this.state[name + price]))
         })
+        
         
     }
 
