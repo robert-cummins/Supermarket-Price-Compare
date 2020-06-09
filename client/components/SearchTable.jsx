@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getSelectedItems } from '../actions/selectedItems'
+import { Button } from 'semantic-ui-react'
 
 
 class SearchTable extends React.Component {
@@ -56,7 +57,7 @@ class SearchTable extends React.Component {
                                                     {!item.selected ? 
                                                         <>
                                                         <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                                        <button price={item.price} onClick={(e) => this.handleClick(e, item)} name={item.name} className="ui primary basic tiny button">Add Item</button></> :
+                                                        <Button primary size="tiny" className="add-item" price={item.price} onClick={(e) => this.handleClick(e, item)} name={item.name} >Add Item</Button></> :
                                                         
                                                         <p key={item.name} className={"added-text"}>Added to shopping basket</p>
                                                 
