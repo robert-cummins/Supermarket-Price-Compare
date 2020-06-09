@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { editSelectedItems, removeSelectedItem } from '../actions/selectedItems'
+import { Button } from 'semantic-ui-react'
 
 
 
@@ -64,7 +65,7 @@ class ShoppingBasket extends React.Component {
                                         <td>{'$' + num.toFixed(2)}</td>
                                         <td>
                                             <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                            <button price={item.price} onClick={(e) => this.handleDelete(e)} name={item.name} className="ui negative basic tiny button delete-button">Remove Item</button>
+                                            <Button  price={item.price} onClick={(e) => this.handleDelete(e)} name={item.name} color="red" size="mini" className="add-item">Remove Item</Button>
                                         </td>
                                     </tr>
                                 )
