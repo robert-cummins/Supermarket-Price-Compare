@@ -33,7 +33,7 @@ class SearchTable extends React.Component {
     render() {
         if (this.props[this.props.supermarket].length != 0) {
             return (
-                <table key={this.props.categorys} className="ui celled stackable table">
+                <table key={this.props.categorys} className="ui selectable celled table">
                     <thead>
                         <tr>
                             <th>NAME</th>
