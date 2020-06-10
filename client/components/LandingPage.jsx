@@ -71,7 +71,7 @@ class LandingPage extends React.Component {
                 
                 {this.props.tabs.activeTab == 'shopping' &&
                     <div className="table-container">
-                        <div className="ui three column doubling stackable grid">
+                        <div className="ui three column stackable grid">
                             {this.props.selectedItems && !!this.props.selectedItems.length &&
                                 <div className="column">
                                     <h2 className="market-headers newworld">NEW WORLD</h2>
