@@ -25,6 +25,7 @@ async function scrapeSites() {
 
     const browser = await puppeteer.launch({ headless: false })
     const page = await browser.newPage()
+    await page.setViewport({ width: 1366, height: 768})
     const context = browser.defaultBrowserContext();
 
     await page.setRequestInterception(true);

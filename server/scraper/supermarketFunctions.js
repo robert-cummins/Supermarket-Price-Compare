@@ -13,9 +13,11 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
 async function scrapeCountdown(url, pageNum, context, page, marketModel, category) {
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
+    if (await page.$('#pageSize') !== null) console.log('found');
+    else console.log('not found');
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     if (pageNum <= 1) {
-        await page.select("select#pageSize", "120")
+        if (await page.$('#pageSize') !== null) await page.select("select#pageSize", "120")
     }
 
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
@@ -27,7 +29,7 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
 function getCountdownDataObject(trimedArr, category) {
     let dataArray = []
     trimedArr.map(el => {
-        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category }
+        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate() }
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
         }
@@ -46,7 +48,7 @@ function getCountdownDataObject(trimedArr, category) {
 function getNewworldOrPakSaveDataObject(trimedArr, market, category) {
     let dataArray = []
     trimedArr.map((el) => {
-        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category }
+        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate() }
         if (!isNaN(el[2].charAt(0))) {
             productObject.weight = el[2]
         }
@@ -71,6 +73,16 @@ async function scrapeSuperMarketTextData(page, element) {
     })
 }
 
+function getDate() {
+    let today = new Date()
+    let dd = String(today.getDate()).padStart(2, '0')
+    let mm = String(today.getMonth() + 1).padStart(2, '0')
+    let yyyy = today.getFullYear()
+    today = dd + '/' + mm + '/' + yyyy
+    console.log(today)
+}
+
+getDate()
 
 module.exports = {
     scrapeNewWorldPakSave,
