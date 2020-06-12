@@ -27,6 +27,9 @@ const productSchema = new mongoose.Schema({
     },
     selected: {
         type: Boolean
+    },
+    dateAdded: {
+        type: String
     }
 })
 
