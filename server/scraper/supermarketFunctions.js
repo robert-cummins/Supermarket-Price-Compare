@@ -21,7 +21,9 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
     }
 
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
+    console.log(countdownElementTextArr)
     const countdownData = getCountdownDataObject(countdownElementTextArr, category)
+    console.log(countdownData)
     dbFunctions.insertData(countdownData, marketModel)
 }
 
@@ -32,8 +34,28 @@ function getCountdownDataObject(trimedArr, category) {
         productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate() }
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
+        } 
+        // if(el[3].charAt(el.length - 2) === 'k'){
+        //     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+        //     console.log(el)
+        // }
+        if(el[3].charAt(2) === 'p'){
+            console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+          console.log(el[3].length)
         }
-        if (!isNaN(el[el.length - 1])) {
+          
+
+        if(el[el.length - 1].charAt(0) === 'S'){
+            console.log('/////////////////////////////////////////////')
+            console.log(el[el.length - 4])
+            console.log(el[el.length - 3])
+            console.log(el[el.length - 7])
+            console.log(el[3].charAt(el.length))
+            productObject.price = `${el[el.length - 4]}.${el[el.length - 3]}`
+            productObject.weight = el[el.length - 7]
+        }
+
+        else if (!isNaN(el[el.length - 1])) {
             productObject.price = `${el[el.length - 2]}.${el[el.length - 1]}`
             productObject.type = 'ea'
         } else {
