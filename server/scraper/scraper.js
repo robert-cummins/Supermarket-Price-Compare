@@ -104,4 +104,4 @@ module.exports = {
             scrapeSites
         }
 
-scrapeSites()
+// scrapeSites()
