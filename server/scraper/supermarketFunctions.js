@@ -32,8 +32,17 @@ function getCountdownDataObject(trimedArr, category) {
         productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate() }
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
+        } 
+        if(el[3] != undefined && (el[3].charAt(2) === 'p' || el[3].charAt(1) === 'p')){
+            productObject.weight = el[3]
         }
-        if (!isNaN(el[el.length - 1])) {
+          
+        if(el[el.length - 1].charAt(0) === 'S'){
+            productObject.price = `${el[el.length - 4]}.${el[el.length - 3]}`
+            productObject.weight = el[el.length - 7]
+        }
+
+        else if (!isNaN(el[el.length - 1])) {
             productObject.price = `${el[el.length - 2]}.${el[el.length - 1]}`
             productObject.type = 'ea'
         } else {
