@@ -39,9 +39,8 @@ function getCountdownDataObject(trimedArr, category) {
         //     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
         //     console.log(el)
         // }
-        if(el[3].charAt(2) === 'p'){
-            console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-          console.log(el[3].length)
+        if(el[3].charAt(2) === 'p' || el[3].charAt(1) === 'p'){
+            productObject.weight = el[3]
         }
           
 
