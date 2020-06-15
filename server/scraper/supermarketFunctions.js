@@ -21,9 +21,7 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
     }
 
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
-    console.log(countdownElementTextArr)
     const countdownData = getCountdownDataObject(countdownElementTextArr, category)
-    console.log(countdownData)
     dbFunctions.insertData(countdownData, marketModel)
 }
 
@@ -35,7 +33,7 @@ function getCountdownDataObject(trimedArr, category) {
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
         } 
-        if(el[3].charAt(2) === 'p' || el[3].charAt(1) === 'p'){
+        if(el[3] != undefined && (el[3].charAt(2) === 'p' || el[3].charAt(1) === 'p')){
             productObject.weight = el[3]
         }
           
