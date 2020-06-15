@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => {
     return (
-        <h1 className="main-text">Supermarket Price Compare</h1>
+        <h1 className="main-text">SUPERMARKET PRICE COMPARE</h1>
     )
 }
 
