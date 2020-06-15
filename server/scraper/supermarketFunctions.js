@@ -35,21 +35,11 @@ function getCountdownDataObject(trimedArr, category) {
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
         } 
-        // if(el[3].charAt(el.length - 2) === 'k'){
-        //     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-        //     console.log(el)
-        // }
         if(el[3].charAt(2) === 'p' || el[3].charAt(1) === 'p'){
             productObject.weight = el[3]
         }
           
-
         if(el[el.length - 1].charAt(0) === 'S'){
-            console.log('/////////////////////////////////////////////')
-            console.log(el[el.length - 4])
-            console.log(el[el.length - 3])
-            console.log(el[el.length - 7])
-            console.log(el[3].charAt(el.length))
             productObject.price = `${el[el.length - 4]}.${el[el.length - 3]}`
             productObject.weight = el[el.length - 7]
         }
