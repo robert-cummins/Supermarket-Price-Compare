@@ -99,7 +99,7 @@ async function scrapeSites() {
         await browser.close();
     }
 
-
+marketFunction.scrapeSuperMarketTextData
 module.exports = {
             scrapeSites
         }

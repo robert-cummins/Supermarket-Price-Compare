@@ -66,6 +66,11 @@ function getNewworldOrPakSaveDataObject(trimedArr, market, category) {
     return dataArray
 }
 
+async function getPictureArray(page, element){
+    return await page.$$eval(element, el => el.map(x => x.getAttribute("style")));
+    
+}
+
 
 async function scrapeSuperMarketTextData(page, element) {
     const elements = await page.$$(element)
@@ -98,5 +103,6 @@ module.exports = {
     scrapeCountdown,
     getCountdownDataObject,
     getNewworldOrPakSaveDataObject,
-    scrapeSuperMarketTextData
+    scrapeSuperMarketTextData,
+    getPictureArray
 }
