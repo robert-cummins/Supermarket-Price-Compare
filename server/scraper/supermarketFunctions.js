@@ -6,17 +6,9 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-
-    // newWorldElementTextArr is a array of arrays that contain products and info
-    // console.log(newWorldElementTextArr)
-    const pics = await getPictureArray(page, ".fs-product-card__product-image" )
-
+    const pics = await getNewWorldPaksavePics(page)
+    console.log(pics)
     const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
-
-    
-
-    // pics is an array of hrefs for pictures. They seem to match order of newWorldElementTextArr. Do more research to confirm and find a way to add href to the finished object of each item
-    // console.log(pics)
     dbFunctions.insertData(newWorldData, marketModel)
 }
 
@@ -79,11 +71,8 @@ function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
     return dataArray
 }
 
-async function getPictureArray(page, element, market){
-    if(market === "newworld" || "paksave"){
-        return await page.$$eval(element, el => el.map(x => x.getAttribute('style')));
-    }    
-    
+async function getNewWorldPaksavePics(page){
+    return await page.$$eval(".fs-product-card__product-image", el => el.map(x => x.getAttribute('style')));
 }
 
 async function getCountdownPics(page){
@@ -134,13 +123,12 @@ async function autoScroll(page){
     });
 }
 
-// getDate()
+
 
 module.exports = {
     scrapeNewWorldPakSave,
     scrapeCountdown,
     getCountdownDataObject,
     getNewworldOrPakSaveDataObject,
-    scrapeSuperMarketTextData,
-    getPictureArray
+    scrapeSuperMarketTextData
 }
