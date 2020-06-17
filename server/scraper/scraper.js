@@ -28,20 +28,20 @@ async function scrapeSites() {
     await page.setViewport({ width: 1366, height: 768})
     const context = browser.defaultBrowserContext();
 
-    await page.setRequestInterception(true);
+    // await page.setRequestInterception(true);
 
-    page.on('request', (req) => {
-        if(req.resourceType() === 'image'){
-            req.abort();
-        }
-        else {
-            req.continue();
-        }
-    });
+    // page.on('request', (req) => {
+    //     if(req.resourceType() === 'image'){
+    //         req.abort();
+    //     }
+    //     else {
+    //         req.continue();
+    //     }
+    // });
 
         // for (let i = 1; i <= 20; i++) {
         //     if (i <= 2) {
-        //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meat?page=", i, context, page, CountdownProduct, categorys.fresh)
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meat?page=", 1, context, page, CountdownProduct, categorys.fresh)
         //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/seafood?page=", i, context, page, CountdownProduct, categorys.fresh)
         //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/liquor-beer-cider?page=", i, context, page, CountdownProduct, categorys.alcohol)
         //     }
@@ -51,7 +51,7 @@ async function scrapeSites() {
         //     }
         //     if (i <= 4) { await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/bakery?page=", i, context, page, CountdownProduct, categorys.fresh) }
         //     if (i <= 5) {
-                await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/desserts?ps=50&pg=", 1, context, page, NewWorldProduct, 'NewWorld', categorys.frozen)
+                // await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/desserts?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld', categorys.frozen)
         //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/baby-care?page=", i, context, page, CountdownProduct, categorys.baby)
         //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/canned-prepared-foods?page=", i, context, page, CountdownProduct, categorys.pantry)
         //     }

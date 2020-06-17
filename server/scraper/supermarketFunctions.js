@@ -29,8 +29,10 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
     if (pageNum <= 1) {
         if (await page.$('#pageSize') !== null) await page.select("select#pageSize", "120")
     }
-
+    await autoScroll(page)
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
+    const pics = await getCountdownPics(page)
+    console.log(pics)
     const countdownData = getCountdownDataObject(countdownElementTextArr, category)
     dbFunctions.insertData(countdownData, marketModel)
 }
@@ -73,15 +75,20 @@ function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
         }
         return dataArray.push(productObject)
     })
-    console.log(dataArray)
+
     return dataArray
 }
 
-async function getPictureArray(page, element){
-    return await page.$$eval(element, el => el.map(x => x.getAttribute("style")));
+async function getPictureArray(page, element, market){
+    if(market === "newworld" || "paksave"){
+        return await page.$$eval(element, el => el.map(x => x.getAttribute('style')));
+    }    
     
 }
 
+async function getCountdownPics(page){
+    return await page.$$eval(".product-entry > figure > img", el => el.map(x => x.getAttribute('src')));
+}
 
 async function scrapeSuperMarketTextData(page, element) {
     const elements = await page.$$(element)
@@ -108,7 +115,26 @@ function getDate() {
     return today
 }
 
-getDate()
+async function autoScroll(page){
+    await page.evaluate(async () => {
+        await new Promise((resolve, reject) => {
+            var totalHeight = 0;
+            var distance = 100;
+            var timer = setInterval(() => {
+                var scrollHeight = document.body.scrollHeight;
+                window.scrollBy(0, distance);
+                totalHeight += distance;
+
+                if(totalHeight >= scrollHeight){
+                    clearInterval(timer);
+                    resolve();
+                }
+            }, 100);
+        });
+    });
+}
+
+// getDate()
 
 module.exports = {
     scrapeNewWorldPakSave,
