@@ -7,7 +7,6 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
     const pics = await getNewWorldPaksavePics(page)
-    // console.log(pics)
     const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
     dbFunctions.insertData(newWorldData, marketModel)
 }
@@ -16,13 +15,14 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
-    if (pageNum <= 1) {
-        if (await page.$('#pageSize') !== null) await page.select("select#pageSize", "120")
-    }
     await autoScroll(page)
+    if (await page.$('#itemsperpage-dropdown-1') !== null) console.log('found');
+    else console.log('not found');
+    if (pageNum <= 1) {
+        if (await page.$('#itemsperpage-dropdown-1') !== null) await page.select("select#itemsperpage-dropdown-1", "120")
+    }
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
     const pics = await getCountdownPics(page)
-    // console.log(pics)
     const countdownData = getCountdownDataObject(countdownElementTextArr, pics, category)
     dbFunctions.insertData(countdownData, marketModel)
 }
@@ -31,7 +31,7 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
 function getCountdownDataObject(trimedArr, picsArr, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
-        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate(), pictuire: picsArr[i] }
+        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate(), picture: picsArr[i] }
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
         } 
@@ -53,7 +53,6 @@ function getCountdownDataObject(trimedArr, picsArr, category) {
         }
         return dataArray.push(productObject)
     })
-    console.log(dataArray)
     return dataArray
 }
 

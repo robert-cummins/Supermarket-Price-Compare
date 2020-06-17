@@ -29,9 +29,9 @@ async function scrapeSites() {
     const context = browser.defaultBrowserContext();
 
 
-        // for (let i = 1; i <= 20; i++) {
+        for (let i = 1; i <= 20; i++) {
         //     if (i <= 2) {
-                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meat?page=", 1, context, page, CountdownProduct, categorys.fresh)
+                // await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meat?page=", i, context, page, CountdownProduct, categorys.fresh)
         //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/seafood?page=", i, context, page, CountdownProduct, categorys.fresh)
         //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/liquor-beer-cider?page=", i, context, page, CountdownProduct, categorys.alcohol)
         //     }
@@ -40,11 +40,11 @@ async function scrapeSites() {
                 // await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/fruit-vegetables?page=", i, context, page, CountdownProduct, categorys.fresh)
         //     }
         //     if (i <= 4) { await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/bakery?page=", i, context, page, CountdownProduct, categorys.fresh) }
-        //     if (i <= 5) {
+            if (i <= 5) {
                 // await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/desserts?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld', categorys.frozen)
         //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/baby-care?page=", i, context, page, CountdownProduct, categorys.baby)
-        //         await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/canned-prepared-foods?page=", i, context, page, CountdownProduct, categorys.pantry)
-        //     }
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/canned-prepared-foods?page=", i, context, page, CountdownProduct, categorys.pantry)
+            }
         //     if (i <= 6) {
         //         await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/chilled-frozen-and-desserts/cheese?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld', categorys.fresh)
         //         await marketFunction.scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/chilled-frozen-and-desserts/cheese?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave', categorys.fresh)
@@ -85,8 +85,8 @@ async function scrapeSites() {
 
 
 
-        // }
-        await browser.close();
+        }
+        // await browser.close();
     }
 
 marketFunction.scrapeSuperMarketTextData
