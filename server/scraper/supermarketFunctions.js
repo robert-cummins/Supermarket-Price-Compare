@@ -6,7 +6,16 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+
+    // newWorldElementTextArr is a array of arrays that contain products and info
+    console.log(newWorldElementTextArr)
+
     const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName, category)
+
+    const pics = await getPictureArray(page, ".fs-product-card__product-image" )
+
+    // pics is an array of hrefs for pictures. They seem to match order of newWorldElementTextArr. Do more research to confirm and find a way to add href to the finished object of each item
+    console.log(pics)
     dbFunctions.insertData(newWorldData, marketModel)
 }
 
@@ -77,6 +86,7 @@ async function scrapeSuperMarketTextData(page, element) {
     const elementHandles = await Promise.all(elements.map(handle => {
         return handle.getProperty('innerText')
     }))
+
 
     const elementText = await Promise.all(elementHandles.map(handle => {
         return handle.jsonValue()
