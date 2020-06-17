@@ -8,14 +8,15 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
 
     // newWorldElementTextArr is a array of arrays that contain products and info
-    console.log(newWorldElementTextArr)
-
-    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName, category)
-
+    // console.log(newWorldElementTextArr)
     const pics = await getPictureArray(page, ".fs-product-card__product-image" )
 
+    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
+
+    
+
     // pics is an array of hrefs for pictures. They seem to match order of newWorldElementTextArr. Do more research to confirm and find a way to add href to the finished object of each item
-    console.log(pics)
+    // console.log(pics)
     dbFunctions.insertData(newWorldData, marketModel)
 }
 
@@ -63,15 +64,16 @@ function getCountdownDataObject(trimedArr, category) {
     return dataArray
 }
 
-function getNewworldOrPakSaveDataObject(trimedArr, market, category) {
+function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
     let dataArray = []
-    trimedArr.map((el) => {
-        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate() }
+    trimedArr.map((el, i) => {
+        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate(), picture: picsArr[i] }
         if (!isNaN(el[2].charAt(0))) {
             productObject.weight = el[2]
         }
         return dataArray.push(productObject)
     })
+    console.log(dataArray)
     return dataArray
 }
 
