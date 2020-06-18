@@ -30,6 +30,9 @@ const productSchema = new mongoose.Schema({
     },
     dateAdded: {
         type: String
+    },
+    picture: {
+        type: String
     }
 })
 

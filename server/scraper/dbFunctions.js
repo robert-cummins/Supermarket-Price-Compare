@@ -14,6 +14,7 @@ function insertData(arr, superMarket) {
         supermarketProduct.selected = false
         supermarketProduct.category = el.category
         supermarketProduct.dateAdded = el.dateAdded
+        supermarketProduct.picture = el.picture
         supermarketProduct.save((err, doc) => {
             if (!err) {
                 console.log("Sucess")
