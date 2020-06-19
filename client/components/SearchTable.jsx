@@ -31,7 +31,7 @@ class SearchTable extends React.Component {
 
 
     render() {
-        const regExp = /\(([^)]+)\)/
+        
         if (this.props[this.props.supermarket].length != 0) {
             return (
                 <table key={this.props.categorys} className="ui selectable celled table">
@@ -47,16 +47,6 @@ class SearchTable extends React.Component {
                         {this.props[this.props.supermarket].map((item, i) => {
                             
                             return this.props.categorys.map(category => {
-                                let url = regExp.exec(item.picture)
-                                if(item.supermarket === "NewWorld" || item.supermarket === "PakSave"){
-                                    url = url[0].replace(/[{()}]/g, '');
-                                    url = url.replace(/'/g, '')
-                                    
-                                } else {
-                                    url = item.picture
-                                }
-
-                                console.log(url)
                                 
                                 if (item.category == category.value && category.isChecked == true) {
                                     return (

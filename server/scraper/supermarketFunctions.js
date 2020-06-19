@@ -59,13 +59,13 @@ function getCountdownDataObject(trimedArr, picsArr, category) {
 function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
-        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate(), picture: picsArr[i] }
+        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate(), picture: trimNewWorldPakSavePicUrl(picsArr[i]) }
         if (!isNaN(el[2].charAt(0))) {
             productObject.weight = el[2]
         }
         return dataArray.push(productObject)
     })
-
+    console.log(dataArray)
     return dataArray
 }
 
@@ -119,6 +119,14 @@ async function autoScroll(page){
             }, 100);
         });
     });
+}
+
+function trimNewWorldPakSavePicUrl(url){
+    const regExp = /\(([^)]+)\)/
+    url =  regExp.exec(url)
+    url = url[0].replace(/[{()}]/g, '');
+    url = url.replace(/'/g, '')
+    return url
 }
 
 
