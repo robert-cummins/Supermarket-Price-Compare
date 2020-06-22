@@ -8,7 +8,7 @@ const Instructions = () => {
             </p>
             <ul>
                 <li className="instructions">
-                    Search for items on your shopping list, e.g., "nescafe coffee" using the search bar. Results will be shown for all 3 supermarkets under the "Search Results" tab.
+                    Search for items on your shopping list, e.g., "beef mince" using the search bar. Results will be shown for all 3 supermarkets under the "Search Results" tab.
                 </li>
                 <li className="instructions">
                     If you would like to see the total cost of multiple items at a supermarket, use the "add item" button to keep track.
