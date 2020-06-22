@@ -67,7 +67,7 @@ class LandingPage extends React.Component {
 
                 {this.props.tabs.activeTab == 'search' &&
                     <>
-                        <p style={{textAlign: 'center'}}><strong>Prices Last Updated On: </strong>{this.props.newWorld[0].dateAdded}</p>
+                        <p className={"price-update"}><strong>Prices Last Updated On: </strong>{this.props.newWorld[0].dateAdded}</p>
                         <SearchResults/>
                     </>
                 }
