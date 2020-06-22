@@ -15,14 +15,15 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
-    await autoScroll(page)
-    if (await page.$('#itemsperpage-dropdown-1') !== null) console.log('found');
-    else console.log('not found');
+
     if (pageNum <= 1) {
         if (await page.$('#itemsperpage-dropdown-1') !== null) await page.select("select#itemsperpage-dropdown-1", "120")
     }
+
+    await autoScroll(page)
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
     const pics = await getCountdownPics(page)
+    console.log(pics)
     const countdownData = getCountdownDataObject(countdownElementTextArr, pics, category)
     dbFunctions.insertData(countdownData, marketModel)
 }
@@ -65,7 +66,6 @@ function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
         }
         return dataArray.push(productObject)
     })
-    console.log(dataArray)
     return dataArray
 }
 

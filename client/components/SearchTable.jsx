@@ -49,7 +49,7 @@ class SearchTable extends React.Component {
                             return this.props.categorys.map(category => {
                                 
                                 if (item.category == category.value && category.isChecked == true) {
-                                    console.log(item)
+                                    console.log(item.picture)
                                     return (
                                         <React.Fragment key={i}>
                                             <tr name={item.name}>
