@@ -145,4 +145,14 @@ tr {
     max-width: 100%;
 }
 
+.product-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+.price-update {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-size: 18px;
+}
   
