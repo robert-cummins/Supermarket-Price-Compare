@@ -37,9 +37,9 @@ class SearchTable extends React.Component {
                 <table key={this.props.categorys} className="ui selectable celled table">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>NAME</th>
                             <th>PRICE</th>
-                            <th></th>
 
                         </tr>
                     </thead>
@@ -49,13 +49,13 @@ class SearchTable extends React.Component {
                             return this.props.categorys.map(category => {
                                 
                                 if (item.category == category.value && category.isChecked == true) {
-                                    console.log(item.picture)
                                     return (
                                         <React.Fragment key={i}>
                                             <tr name={item.name}>
+                                                <td><img className={"product-img"} src={item.picture}></img></td>
                                                 <td name={item.name}>{item.name}</td>
                                                 <td>{'$' + item.price} <br/>{item.type}</td>
-                                                <td><img src={item.picture}></img></td>
+                                                
                                                 <td>
                                                     {!item.selected ? 
                                                         <>
