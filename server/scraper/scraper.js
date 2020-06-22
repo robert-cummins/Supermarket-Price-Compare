@@ -28,16 +28,6 @@ async function scrapeSites() {
     await page.setViewport({ width: 1366, height: 768})
     const context = browser.defaultBrowserContext();
 
-    await page.setRequestInterception(true);
-
-    page.on('request', (req) => {
-        if(req.resourceType() === 'image'){
-            req.abort();
-        }
-        else {
-            req.continue();
-        }
-    });
 
         for (let i = 1; i <= 20; i++) {
             if (i <= 2) {
@@ -93,13 +83,11 @@ async function scrapeSites() {
             await marketFunction.scrapeNewWorldPakSave("https://www.ishopnewworld.co.nz/category/kitchen-dining-and-household?ps=50&pg=", i, context, page, NewWorldProduct, 'NewWorld', categorys.kitchen)
             await marketFunction.scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/kitchen-dining-and-household?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave', categorys.kitchen)
 
-
-
         }
         await browser.close();
     }
 
-
+marketFunction.scrapeSuperMarketTextData
 module.exports = {
             scrapeSites
         }

@@ -6,30 +6,33 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, marketName, category)
+    const pics = await getNewWorldPaksavePics(page)
+    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
     dbFunctions.insertData(newWorldData, marketModel)
 }
 
 async function scrapeCountdown(url, pageNum, context, page, marketModel, category) {
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
-    if (await page.$('#pageSize') !== null) console.log('found');
-    else console.log('not found');
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
+
     if (pageNum <= 1) {
-        if (await page.$('#pageSize') !== null) await page.select("select#pageSize", "120")
+        if (await page.$('#itemsperpage-dropdown-1') !== null) await page.select("select#itemsperpage-dropdown-1", "120")
     }
 
+    await autoScroll(page)
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
-    const countdownData = getCountdownDataObject(countdownElementTextArr, category)
+    const pics = await getCountdownPics(page)
+    console.log(pics)
+    const countdownData = getCountdownDataObject(countdownElementTextArr, pics, category)
     dbFunctions.insertData(countdownData, marketModel)
 }
 
 
-function getCountdownDataObject(trimedArr, category) {
+function getCountdownDataObject(trimedArr, picsArr, category) {
     let dataArray = []
-    trimedArr.map(el => {
-        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate() }
+    trimedArr.map((el, i) => {
+        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate(), picture: picsArr[i] }
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
         } 
@@ -54,10 +57,10 @@ function getCountdownDataObject(trimedArr, category) {
     return dataArray
 }
 
-function getNewworldOrPakSaveDataObject(trimedArr, market, category) {
+function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
     let dataArray = []
-    trimedArr.map((el) => {
-        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate() }
+    trimedArr.map((el, i) => {
+        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate(), picture: trimNewWorldPakSavePicUrl(picsArr[i]) }
         if (!isNaN(el[2].charAt(0))) {
             productObject.weight = el[2]
         }
@@ -66,12 +69,20 @@ function getNewworldOrPakSaveDataObject(trimedArr, market, category) {
     return dataArray
 }
 
+async function getNewWorldPaksavePics(page){
+    return await page.$$eval(".fs-product-card__product-image", el => el.map(x => x.getAttribute('style')));
+}
+
+async function getCountdownPics(page){
+    return await page.$$eval(".product-entry > figure > img", el => el.map(x => x.getAttribute('src')));
+}
 
 async function scrapeSuperMarketTextData(page, element) {
     const elements = await page.$$(element)
     const elementHandles = await Promise.all(elements.map(handle => {
         return handle.getProperty('innerText')
     }))
+
 
     const elementText = await Promise.all(elementHandles.map(handle => {
         return handle.jsonValue()
@@ -91,7 +102,34 @@ function getDate() {
     return today
 }
 
-getDate()
+async function autoScroll(page){
+    await page.evaluate(async () => {
+        await new Promise((resolve, reject) => {
+            var totalHeight = 0;
+            var distance = 100;
+            var timer = setInterval(() => {
+                var scrollHeight = document.body.scrollHeight;
+                window.scrollBy(0, distance);
+                totalHeight += distance;
+
+                if(totalHeight >= scrollHeight){
+                    clearInterval(timer);
+                    resolve();
+                }
+            }, 100);
+        });
+    });
+}
+
+function trimNewWorldPakSavePicUrl(url){
+    const regExp = /\(([^)]+)\)/
+    url =  regExp.exec(url)
+    url = url[0].replace(/[{()}]/g, '');
+    url = url.replace(/'/g, '')
+    return url
+}
+
+
 
 module.exports = {
     scrapeNewWorldPakSave,

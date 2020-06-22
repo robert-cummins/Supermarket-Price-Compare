@@ -16,6 +16,7 @@ router.get('/pakandsave', (req, res) => {
 
 
 router.get('/countdown', (req, res) => {
+  
   Supermarket.countdown.find((err, supermarketData) => {
     if(err){
       console.log("There is an error: " + err)

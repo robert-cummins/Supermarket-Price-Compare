@@ -31,14 +31,15 @@ class SearchTable extends React.Component {
 
 
     render() {
+        
         if (this.props[this.props.supermarket].length != 0) {
             return (
                 <table key={this.props.categorys} className="ui selectable celled table">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>NAME</th>
                             <th>PRICE</th>
-                            <th></th>
 
                         </tr>
                     </thead>
@@ -46,13 +47,15 @@ class SearchTable extends React.Component {
                         {this.props[this.props.supermarket].map((item, i) => {
                             
                             return this.props.categorys.map(category => {
-
+                                
                                 if (item.category == category.value && category.isChecked == true) {
                                     return (
                                         <React.Fragment key={i}>
                                             <tr name={item.name}>
+                                                <td><img className={"product-img"} src={item.picture}></img></td>
                                                 <td name={item.name}>{item.name}</td>
                                                 <td>{'$' + item.price} <br/>{item.type}</td>
+                                                
                                                 <td>
                                                     {!item.selected ? 
                                                         <>
