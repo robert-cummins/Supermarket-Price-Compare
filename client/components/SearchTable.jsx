@@ -60,32 +60,33 @@ class SearchTable extends React.Component {
                                 //         </td>
                                 //     </tr>
                                 // </React.Fragment>
-                                
-                                    <Card>
-                                        <Card.Content>
-                                            <Image
-                                                floated='left'
-                                                size='tiny'
-                                                src={item.picture}
-                                            />
-                                            <Card.Header>{item.name}</Card.Header>
-                                            <Card.Meta>{item.supermarket}</Card.Meta>
-                                            <Card.Description>
-                                                Steve wants to add you to the group <strong>best friends</strong>
-                                            </Card.Description>
-                                        </Card.Content>
-                                        <Card.Content extra>
-                                            <div className='ui two buttons'>
-                                                <Button basic color='green'>
-                                                    Approve
-                                                </Button>
-                                                <Button basic color='red'>
-                                                    Decline
-                                                </Button>
-                                            </div>
-                                        </Card.Content>
-                                    </Card>
-                                    
+
+                                <Card>
+                                    <Card.Content>
+                                        <Image
+                                            floated='left'
+                                            size='tiny'
+                                            src={item.picture}
+                                        />
+                                        <Card.Header>{item.name}</Card.Header>
+                                        <Card.Meta>{item.supermarket}</Card.Meta>
+                                        <Card.Description>
+                                            {item.weight}<br />
+                                            {'$' + item.price} {item.type}
+                                        </Card.Description>
+                                    </Card.Content>
+                                    <Card.Content extra>
+                                        {!item.selected ?
+                                            <>
+                                                <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
+                                                <Button primary size="tiny" className="add-item" price={item.price} onClick={(e) => this.handleClick(e, item)} name={item.name} >Add Item</Button></> :
+
+                                            <p key={item.name} className={"added-text"}>Added to shopping basket</p>
+
+                                        }
+                                    </Card.Content>
+                                </Card>
+
                             )
                         }
                     })
