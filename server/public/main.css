@@ -156,4 +156,9 @@ tr {
     text-align: center;
     font-size: 18px;
 }
+
+.price {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px; 
+}
   

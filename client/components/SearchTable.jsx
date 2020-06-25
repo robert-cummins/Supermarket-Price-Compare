@@ -41,6 +41,7 @@ class SearchTable extends React.Component {
                     return this.props.categorys.map(category => {
 
                         if (item.category == category.value && category.isChecked == true) {
+                            if(item.weight === 'N/A') item.weight = ''
                             return (
                                 // <React.Fragment key={i}>
                                 //     <tr name={item.name}>
@@ -60,7 +61,6 @@ class SearchTable extends React.Component {
                                 //         </td>
                                 //     </tr>
                                 // </React.Fragment>
-
                                 <Card>
                                     <Card.Content>
                                         <Image
@@ -72,7 +72,7 @@ class SearchTable extends React.Component {
                                         <Card.Meta>{item.supermarket}</Card.Meta>
                                         <Card.Description>
                                             {item.weight}<br />
-                                            {'$' + item.price} {item.type}
+                                           <p className={'price'}>{'$' + item.price + ' '}{item.type}</p>
                                         </Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
