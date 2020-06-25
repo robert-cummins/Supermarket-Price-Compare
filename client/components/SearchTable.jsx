@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getSelectedItems } from '../actions/selectedItems'
-import { Button } from 'semantic-ui-react'
+import { Button, Card, Icon, Image } from 'semantic-ui-react'
 
 
 class SearchTable extends React.Component {
@@ -14,7 +14,6 @@ class SearchTable extends React.Component {
 
     changeValue = (e) => {
         this.setState({
-            //combine e.target.name and e.target.price to stop items of the same name changing value together
             [e.target.name + e.target.getAttribute('price')]: e.target.value
         })
     }
@@ -31,45 +30,71 @@ class SearchTable extends React.Component {
 
 
     render() {
-        
+
         if (this.props[this.props.supermarket].length != 0) {
             return (
-                <table key={this.props.categorys} className="ui selectable celled table">
-                    
-                    <tbody>
-                        {this.props[this.props.supermarket].map((item, i) => {
-                            
-                            return this.props.categorys.map(category => {
+                // <table key={this.props.categorys} className="ui selectable celled table">
+
+                // <tbody>
+                this.props[this.props.supermarket].map((item, i) => {
+
+                    return this.props.categorys.map(category => {
+
+                        if (item.category == category.value && category.isChecked == true) {
+                            return (
+                                // <React.Fragment key={i}>
+                                //     <tr name={item.name}>
+                                //         <td><img className={"product-img"} src={item.picture}></img></td>
+                                //         <td className={"product-text"} name={item.name}>{item.name}</td>
+                                //         <td className={"product-text"}>{'$' + item.price} <br/>{item.type}</td>
+
+                                //         <td>
+                                //             {!item.selected ? 
+                                //                 <>
+                                //                 <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
+                                //                 <Button primary size="tiny" className="add-item" price={item.price} onClick={(e) => this.handleClick(e, item)} name={item.name} >Add Item</Button></> :
+
+                                //                 <p key={item.name} className={"added-text"}>Added to shopping basket</p>
+
+                                //             }
+                                //         </td>
+                                //     </tr>
+                                // </React.Fragment>
                                 
-                                if (item.category == category.value && category.isChecked == true) {
-                                    return (
-                                        <React.Fragment key={i}>
-                                            <tr name={item.name}>
-                                                <td><img className={"product-img"} src={item.picture}></img></td>
-                                                <td className={"product-text"} name={item.name}>{item.name}</td>
-                                                <td className={"product-text"}>{'$' + item.price} <br/>{item.type}</td>
-                                                
-                                                <td>
-                                                    {!item.selected ? 
-                                                        <>
-                                                        <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                                        <Button primary size="tiny" className="add-item" price={item.price} onClick={(e) => this.handleClick(e, item)} name={item.name} >Add Item</Button></> :
-                                                        
-                                                        <p key={item.name} className={"added-text"}>Added to shopping basket</p>
-                                                
-                                                    }
-                                                </td>
-                                            </tr>
-                                        </React.Fragment>
-                                    )
-                                }
-                            })
+                                    <Card>
+                                        <Card.Content>
+                                            <Image
+                                                floated='left'
+                                                size='tiny'
+                                                src={item.picture}
+                                            />
+                                            <Card.Header>{item.name}</Card.Header>
+                                            <Card.Meta>{item.supermarket}</Card.Meta>
+                                            <Card.Description>
+                                                Steve wants to add you to the group <strong>best friends</strong>
+                                            </Card.Description>
+                                        </Card.Content>
+                                        <Card.Content extra>
+                                            <div className='ui two buttons'>
+                                                <Button basic color='green'>
+                                                    Approve
+                                                </Button>
+                                                <Button basic color='red'>
+                                                    Decline
+                                                </Button>
+                                            </div>
+                                        </Card.Content>
+                                    </Card>
+                                    
+                            )
+                        }
+                    })
 
 
-                        })}
+                })
 
-                    </tbody>
-                </table>
+                // </tbody>
+                // </table>
             )
         } else {
             return <div></div>
