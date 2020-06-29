@@ -61,7 +61,7 @@ class SearchTable extends React.Component {
                                 //         </td>
                                 //     </tr>
                                 // </React.Fragment>
-                                <Card>
+                                <Card className="item-card">
                                     <Card.Content>
                                         <Image
                                             floated='left'

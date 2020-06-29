@@ -161,4 +161,10 @@ tr {
     font-family: 'Open Sans', sans-serif;
     font-size: 18px; 
 }
+
+.item-card {
+    margin: 0 auto !important;
+    width: 80% !important;
+    margin-top: 20px !important;
+}
   
