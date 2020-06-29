@@ -43,24 +43,6 @@ class SearchTable extends React.Component {
                         if (item.category == category.value && category.isChecked == true) {
                             if(item.weight === 'N/A') item.weight = ''
                             return (
-                                // <React.Fragment key={i}>
-                                //     <tr name={item.name}>
-                                //         <td><img className={"product-img"} src={item.picture}></img></td>
-                                //         <td className={"product-text"} name={item.name}>{item.name}</td>
-                                //         <td className={"product-text"}>{'$' + item.price} <br/>{item.type}</td>
-
-                                //         <td>
-                                //             {!item.selected ? 
-                                //                 <>
-                                //                 <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
-                                //                 <Button primary size="tiny" className="add-item" price={item.price} onClick={(e) => this.handleClick(e, item)} name={item.name} >Add Item</Button></> :
-
-                                //                 <p key={item.name} className={"added-text"}>Added to shopping basket</p>
-
-                                //             }
-                                //         </td>
-                                //     </tr>
-                                // </React.Fragment>
                                 <Card className="item-card">
                                     <Card.Content>
                                         <Image
