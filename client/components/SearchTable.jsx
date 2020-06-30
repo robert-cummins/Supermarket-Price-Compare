@@ -46,7 +46,7 @@ class SearchTable extends React.Component {
                                 <Card className="item-card">
                                     <Card.Content>
                                         <Image
-                                            floated='left'
+                                            floated='right'
                                             size='tiny'
                                             src={item.picture}
                                         />
@@ -56,8 +56,6 @@ class SearchTable extends React.Component {
                                             {item.weight}<br />
                                            <p className={'price'}>{'$' + item.price + ' '}{item.type}</p>
                                         </Card.Description>
-                                    </Card.Content>
-                                    <Card.Content extra>
                                         {!item.selected ?
                                             <>
                                                 <input price={item.price} className="num-input" name={item.name} type="number" value={this.state[item.name + item.price] ? this.state[item.name + item.price] : item.numOf} onChange={(e) => this.changeValue(e, item.supermarket)} />
@@ -67,6 +65,7 @@ class SearchTable extends React.Component {
 
                                         }
                                     </Card.Content>
+                                    
                                 </Card>
 
                             )
