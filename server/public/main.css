@@ -139,6 +139,7 @@ tr {
 
 .add-item {
     margin-top: 2px !important;
+    margin-left: 20px !important;
 }
 
 .product-img {
@@ -154,5 +155,17 @@ tr {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     font-size: 18px;
+}
+
+.price {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px; 
+}
+
+.item-card {
+    margin: 0 auto !important;
+    width: 80% !important;
+    margin-top: 20px !important;
+    height: 200px !important;
 }
   
