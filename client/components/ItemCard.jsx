@@ -4,7 +4,7 @@ import { getSelectedItems } from '../actions/selectedItems'
 import { Button, Card, Icon, Image } from 'semantic-ui-react'
 
 
-class SearchTable extends React.Component {
+class ItemCard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -33,9 +33,6 @@ class SearchTable extends React.Component {
 
         if (this.props[this.props.supermarket].length != 0) {
             return (
-                // <table key={this.props.categorys} className="ui selectable celled table">
-
-                // <tbody>
                 this.props[this.props.supermarket].map((item, i) => {
 
                     return this.props.categorys.map(category => {
@@ -43,7 +40,7 @@ class SearchTable extends React.Component {
                         if (item.category == category.value && category.isChecked == true) {
                             if(item.weight === 'N/A') item.weight = ''
                             return (
-                                <Card className="item-card">
+                                <Card key={i} className="item-card">
                                     <Card.Content>
                                         <Image
                                             floated='right'
@@ -75,11 +72,9 @@ class SearchTable extends React.Component {
 
                 })
 
-                // </tbody>
-                // </table>
             )
         } else {
-            return <div></div>
+            return <div key={i}></div>
         }
     }
 
@@ -97,6 +92,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(SearchTable)
+export default connect(mapStateToProps)(ItemCard)
 
 
