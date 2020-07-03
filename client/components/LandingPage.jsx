@@ -10,7 +10,7 @@ import Instructions from './Instructions'
 import Header from './Header'
 import Spinner from './Spinner'
 import Tabs from './Tabs'
-import SearchResults from './SearchResults'
+import ItemCard from './ItemCard'
 
 
 class LandingPage extends React.Component {
@@ -68,7 +68,7 @@ class LandingPage extends React.Component {
                 {this.props.tabs.activeTab == 'search' &&
                     <>
                         <p className={"price-update"}><strong>Prices Last Updated On: </strong>{this.props.newWorld[0].dateAdded}</p>
-                        <SearchResults/>
+                        <ItemCard/>
                     </>
                 }
                 
