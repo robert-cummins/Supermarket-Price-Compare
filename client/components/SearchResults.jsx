@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import SearchTable from './SearchTable'
+import ItemCard from './ItemCard'
 import { Grid } from 'semantic-ui-react'
 
 
@@ -14,21 +14,21 @@ class SearchResults extends React.Component {
                         {this.props.searchedNewWorldItems && !!this.props.searchedNewWorldItems.length &&
                             <Grid.Column>
                                 <h2 className="market-headers newworld">NEW WORLD</h2>
-                                <SearchTable supermarket={'searchedNewWorldItems'} />
+                                <ItemCard supermarket={'searchedNewWorldItems'} />
                             </Grid.Column>
                         }
 
                         {this.props.searchedCountdownItems && !!this.props.searchedCountdownItems.length &&
                             <Grid.Column>
                                 <h2 className="market-headers countdown">Countdown</h2>
-                                <SearchTable supermarket={'searchedCountdownItems'} />
+                                <ItemCard supermarket={'searchedCountdownItems'} />
                             </Grid.Column>
                         }
 
                         {this.props.searchedPakSaveItems && !!this.props.searchedPakSaveItems.length &&
                             <Grid.Column>
                                 <h2 className="market-headers paknsave">PAK'nSAVE</h2>
-                                <SearchTable supermarket={'searchedPakSaveItems'} />
+                                <ItemCard supermarket={'searchedPakSaveItems'} />
                             </Grid.Column>
                         }
                     </Grid.Row>
