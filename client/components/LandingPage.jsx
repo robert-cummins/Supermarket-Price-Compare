@@ -40,6 +40,12 @@ class LandingPage extends React.Component {
         this.props.dispatch(fetchPakSaveData())
         this.props.dispatch(fetchCountdownData())
     }
+    
+    checkDate = () => {
+        console.log(this.props.newWorld[0])
+        if(this.props.newWorld[0] === undefined) {return null}
+        else {return this.props.newWorld[0].dateAdded}
+    }
 
 
 
@@ -67,7 +73,7 @@ class LandingPage extends React.Component {
 
                 {this.props.tabs.activeTab == 'search' &&
                     <>
-                        <p className={"price-update"}><strong>Prices Last Updated On: </strong>{this.props.newWorld[0].dateAdded}</p>
+                        <p className={"price-update"}><strong>Prices Last Updated On: </strong>{this.checkDate()}</p>
                         <SearchResults/>
                     </>
                 }
