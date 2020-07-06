@@ -6,6 +6,7 @@
 body {
     /* background-color: #f6f6f6; */
     background-color: #005181;
+    color: white
 }
 
 td { 
@@ -99,7 +100,7 @@ table {
 #context1 a {
     margin-top: 40px;
     margin-bottom: 40px;
-    background-color: #ffed89;
+    background-color: white;
     border: none ;
     color: #005181;
 }
