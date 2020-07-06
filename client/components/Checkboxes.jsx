@@ -19,7 +19,7 @@ class Checkboxes extends React.Component {
         return (
           <div key={category.value} className="ui checkbox category-checkbox">
             <input onChange={this.handleCheck} type="checkbox" checked={category.isChecked} name={category.value} />
-            <label>{category.value}</label>
+            <label style={{color: "white"}}>{category.value}</label>
           </div>
         )
       })
