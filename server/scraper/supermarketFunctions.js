@@ -1,4 +1,5 @@
 const dbFunctions = require('./dbFunctions')
+const utils = require('./utils')
 
 async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, marketName, category) {
 
@@ -6,7 +7,7 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
-    console.log(newWorldElementTextArr)
+    await utils.autoScroll(page)
     const pics = await getNewWorldPaksavePics(page)
     console.log(pics)
     const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
@@ -22,7 +23,7 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
         if (await page.$('#itemsperpage-dropdown-1') !== null) await page.select("select#itemsperpage-dropdown-1", "120")
     }
 
-    await autoScroll(page)
+    await utils.autoScroll(page)
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
     const pics = await getCountdownPics(page)
     console.log(pics)
@@ -34,7 +35,7 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
 function getCountdownDataObject(trimedArr, picsArr, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
-        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: getDate(), picture: picsArr[i] }
+        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: utils.getDate(), picture: picsArr[i] }
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
         } 
@@ -62,12 +63,15 @@ function getCountdownDataObject(trimedArr, picsArr, category) {
 function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
-        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: getDate(), picture: trimNewWorldPakSavePicUrl(picsArr[i]) }
+        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: utils.getDate(), picture: utils.trimNewWorldPakSavePicUrl(picsArr[i]) }
         if (!isNaN(el[2].charAt(0))) {
             productObject.weight = el[2]
         }
+        console.log(productObject)
         return dataArray.push(productObject)
     })
+    
+    console.log(dataArray)
     return dataArray
 }
 
@@ -93,43 +97,6 @@ async function scrapeSuperMarketTextData(page, element) {
     return elementText.map(el => {
         return el.split(/\r?\n/)
     })
-}
-
-function getDate() {
-    let today = new Date()
-    let dd = String(today.getDate()).padStart(2, '0')
-    let mm = String(today.getMonth() + 1).padStart(2, '0')
-    let yyyy = today.getFullYear()
-    today = dd + '/' + mm + '/' + yyyy
-    return today
-}
-
-async function autoScroll(page){
-    await page.evaluate(async () => {
-        await new Promise((resolve, reject) => {
-            var totalHeight = 0;
-            var distance = 100;
-            var timer = setInterval(() => {
-                var scrollHeight = document.body.scrollHeight;
-                window.scrollBy(0, distance);
-                totalHeight += distance;
-
-                if(totalHeight >= scrollHeight){
-                    clearInterval(timer);
-                    resolve();
-                }
-            }, 100);
-        });
-    });
-}
-
-function trimNewWorldPakSavePicUrl(url){
-    console.log(url)
-    const regExp = /\(([^)]+)\)/
-    url =  regExp.exec(url)
-    url = url[0].replace(/[{()}]/g, '');
-    url = url.replace(/'/g, '')
-    return url
 }
 
 

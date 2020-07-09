@@ -30,25 +30,25 @@ async function scrapeSites() {
 
 
         for (let i = 1; i <= 39; i++) {
-            // if (i <= 2) {
-            //     await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meat-seafood?page=", i, context, page, CountdownProduct, categorys.fresh)
-            // }
+            if (i <= 2) {
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meat-seafood?page=", i, context, page, CountdownProduct, categorys.fresh)
+            }
 
-            // if (i <= 3) {
-            //     await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/fruit-veg?page=", i, context, page, CountdownProduct, categorys.fresh)
-            // }
+            if (i <= 3) {
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/fruit-veg?page=", i, context, page, CountdownProduct, categorys.fresh)
+            }
 
-            // if (i <= 4) { 
-            //     await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/bakery?page=", i, context, page, CountdownProduct, categorys.fresh) 
-            //     await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/baby-child?page=", i, context, page, CountdownProduct, categorys.baby) 
-            // }
+            if (i <= 4) { 
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/bakery?page=", i, context, page, CountdownProduct, categorys.fresh) 
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/baby-child?page=", i, context, page, CountdownProduct, categorys.baby) 
+            }
             
-            // if (i <= 6) {
-            //     await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/pet?page=", i, context, page, CountdownProduct, categorys.pantry)
-            // }
+            if (i <= 6) {
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/pet?page=", i, context, page, CountdownProduct, categorys.pantry)
+            }
 
             if (i <= 7) {
-                // await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/frozen?page=", i, context, page, CountdownProduct, categorys.frozen)
+                await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/frozen?page=", i, context, page, CountdownProduct, categorys.frozen)
                 await marketFunction.scrapeNewWorldPakSave("https://www.paknsaveonline.co.nz/category/baby-toddler-and-kids?ps=50&pg=", i, context, page, PakAndSaveProduct, 'PakSave', categorys.baby)
             }
             
