@@ -6,7 +6,9 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
     const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+    console.log(newWorldElementTextArr)
     const pics = await getNewWorldPaksavePics(page)
+    console.log(pics)
     const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
     dbFunctions.insertData(newWorldData, marketModel)
 }
@@ -122,6 +124,7 @@ async function autoScroll(page){
 }
 
 function trimNewWorldPakSavePicUrl(url){
+    console.log(url)
     const regExp = /\(([^)]+)\)/
     url =  regExp.exec(url)
     url = url[0].replace(/[{()}]/g, '');
