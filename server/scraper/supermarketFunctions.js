@@ -1,34 +1,41 @@
 const dbFunctions = require('./dbFunctions')
 const utils = require('./utils')
 
+
 async function scrapeNewWorldPakSave(url, pageNum, context, page, supermarketProductModel, marketName, category) {
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
-    const newWorldElementTextArr = await scrapeSuperMarketTextData(page, ".fs-product-card")
+    const newWorldElementTextArr = await scrapeSuperMarketProductText(page, ".fs-product-card")
     await utils.autoScroll(page)
-    const pics = await getNewWorldPaksavePics(page)
+    const pics = await getNewWorldPaksavePicUrls(page)
     console.log(pics)
-    const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
+    const newWorldData = await buildNewWorldPakSaveProductObject(newWorldElementTextArr, pics, marketName, category)
     dbFunctions.insertData(newWorldData, supermarketProductModel)
 }
+
+
+
 
 async function scrapeCountdown(url, pageNum, context, page, supermarketProductModel, category) {
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
-
+    
     if (pageNum <= 1) {
         if (await page.$('#itemsperpage-dropdown-1') !== null) await page.select("select#itemsperpage-dropdown-1", "120")
     }
 
     await utils.autoScroll(page)
-    const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
-    const pics = await getCountdownPics(page)
+    const countdownElementTextArr = await scrapeSuperMarketProductText(page, ".product-entry")
+    const pics = await getCountdownPicUrls(page)
     console.log(pics)
     const countdownData = buildCountdownProductObject(countdownElementTextArr, pics, category)
     dbFunctions.insertData(countdownData, supermarketProductModel)
 }
+
+
+
 
 
 function buildCountdownProductObject(trimedArr, picsArr, category) {
@@ -59,7 +66,11 @@ function buildCountdownProductObject(trimedArr, picsArr, category) {
     return dataArray
 }
 
-function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
+
+
+
+
+function buildNewWorldPakSaveProductObject(trimedArr, picsArr, market, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
         productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: utils.getDate(), picture: utils.trimNewWorldPakSavePicUrl(picsArr[i]) }
@@ -74,15 +85,21 @@ function getNewworldOrPakSaveDataObject(trimedArr, picsArr, market, category) {
     return dataArray
 }
 
-async function getNewWorldPaksavePics(page){
+
+
+async function getNewWorldPaksavePicUrls(page){
     return await page.$$eval(".fs-product-card__product-image", el => el.map(x => x.getAttribute('style')));
 }
 
-async function getCountdownPics(page){
+
+
+async function getCountdownPicUrls(page){
     return await page.$$eval(".product-entry > figure > img", el => el.map(x => x.getAttribute('src')));
 }
 
-async function scrapeSuperMarketTextData(page, element) {
+
+
+async function scrapeSuperMarketProductText(page, element) {
     const elements = await page.$$(element)
     const elementHandles = await Promise.all(elements.map(handle => {
         return handle.getProperty('innerText')
@@ -104,6 +121,6 @@ module.exports = {
     scrapeNewWorldPakSave,
     scrapeCountdown,
     buildCountdownProductObject,
-    getNewworldOrPakSaveDataObject,
-    scrapeSuperMarketTextData
+    buildNewWorldPakSaveProductObject,
+    scrapeSuperMarketProductText
 }
