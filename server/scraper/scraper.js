@@ -23,7 +23,7 @@ async function scrapeSites() {
         kitchen: 'Kitchen, dining and household'
     }
 
-    const browser = await puppeteer.launch({ headless: true })
+    const browser = await puppeteer.launch({ headless: false })
     const page = await browser.newPage()
     await page.setViewport({ width: 1366, height: 768})
     const context = browser.defaultBrowserContext();
