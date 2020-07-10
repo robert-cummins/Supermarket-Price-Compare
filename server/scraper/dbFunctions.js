@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const db = mongoose.connection;
 
 
-function insertData(arr, superMarketProduct) {
+function insertData(arr, supermarketProductModel) {
     arr.map(el => {
-        let supermarketProduct = new superMarketProduct()
+        let supermarketProduct = new supermarketProductModel()
         supermarketProduct.name = el.name
         supermarketProduct.price = el.price
         supermarketProduct.type = el.type

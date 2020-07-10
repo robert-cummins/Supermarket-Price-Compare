@@ -1,7 +1,7 @@
 const dbFunctions = require('./dbFunctions')
 const utils = require('./utils')
 
-async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, marketName, category) {
+async function scrapeNewWorldPakSave(url, pageNum, context, page, supermarketProductModel, marketName, category) {
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
@@ -10,10 +10,10 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, m
     const pics = await getNewWorldPaksavePics(page)
     console.log(pics)
     const newWorldData = await getNewworldOrPakSaveDataObject(newWorldElementTextArr, pics, marketName, category)
-    dbFunctions.insertData(newWorldData, marketModel)
+    dbFunctions.insertData(newWorldData, supermarketProductModel)
 }
 
-async function scrapeCountdown(url, pageNum, context, page, marketModel, category) {
+async function scrapeCountdown(url, pageNum, context, page, supermarketProductModel, category) {
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
@@ -26,12 +26,12 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
     const pics = await getCountdownPics(page)
     console.log(pics)
-    const countdownData = getCountdownDataObject(countdownElementTextArr, pics, category)
-    dbFunctions.insertData(countdownData, marketModel)
+    const countdownData = buildCountdownProductObject(countdownElementTextArr, pics, category)
+    dbFunctions.insertData(countdownData, supermarketProductModel)
 }
 
 
-function getCountdownDataObject(trimedArr, picsArr, category) {
+function buildCountdownProductObject(trimedArr, picsArr, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
         productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: utils.getDate(), picture: picsArr[i] }
@@ -103,7 +103,7 @@ async function scrapeSuperMarketTextData(page, element) {
 module.exports = {
     scrapeNewWorldPakSave,
     scrapeCountdown,
-    getCountdownDataObject,
+    buildCountdownProductObject,
     getNewworldOrPakSaveDataObject,
     scrapeSuperMarketTextData
 }
