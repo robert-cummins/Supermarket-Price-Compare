@@ -2,7 +2,6 @@ const dbFunctions = require('./dbFunctions')
 const utils = require('./utils')
 
 async function scrapeNewWorldPakSave(url, pageNum, context, page, marketModel, marketName, category) {
-
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
