@@ -23,7 +23,7 @@ async function scrapeCountdown(url, pageNum, context, page, marketModel, categor
     await autoScroll(page)
     const countdownElementTextArr = await scrapeSuperMarketTextData(page, ".product-entry")
     const pics = await getCountdownPics(page)
-    console.log(pics)
+
     const countdownData = getCountdownDataObject(countdownElementTextArr, pics, category)
     dbFunctions.insertData(countdownData, marketModel)
 }
