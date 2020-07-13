@@ -17,7 +17,7 @@ function insertData(arr, supermarketProductModel) {
         supermarketProduct.picture = el.picture
         supermarketProduct.save((err, doc) => {
             if (!err) {
-                // console.log("Sucess")
+                console.log("Sucess")
             } else {
                 console.log("failed: " + err)
             }
