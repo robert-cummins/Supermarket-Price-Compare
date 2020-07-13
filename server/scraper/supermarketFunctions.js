@@ -6,14 +6,13 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, supermarketPro
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
-    const newWorldElementTextArr = await scrapeSuperMarketProductText(page, ".fs-product-card")
+    const newWorldProductTextArr = await scrapeSuperMarketProductText(page, ".fs-product-card")
+    console.log(newWorldProductTextArr)
     await utils.autoScroll(page)
-    const pics = await getNewWorldPaksavePicUrls(page)
-    console.log(pics)
-    const newWorldData = await buildNewWorldPakSaveProductObject(newWorldElementTextArr, pics, marketName, category)
+    const pictureUrlsArr = await getNewWorldPaksavePicUrls(page)
+    const newWorldData = await buildNewWorldPakSaveProductObject(newWorldProductTextArr, pictureUrlsArr, marketName, category)
     dbFunctions.insertData(newWorldData, supermarketProductModel)
 }
-
 
 
 
@@ -27,24 +26,34 @@ async function scrapeCountdown(url, pageNum, context, page, supermarketProductMo
     }
 
     await utils.autoScroll(page)
-    const countdownElementTextArr = await scrapeSuperMarketProductText(page, ".product-entry")
-    const pics = await getCountdownPicUrls(page)
-    console.log(pics)
-    const countdownData = buildCountdownProductObject(countdownElementTextArr, pics, category)
+    const countProductTextArr = await scrapeSuperMarketProductText(page, ".product-entry")
+    const pictureUrlsArr = await getCountdownPicUrls(page)
+    console.log(pictureUrlsArr)
+    const countdownData = buildCountdownProductObject(countProductTextArr, pictureUrlsArr, category)
     dbFunctions.insertData(countdownData, supermarketProductModel)
 }
 
 
 
-
-
 function buildCountdownProductObject(trimedArr, picsArr, category) {
-    let dataArray = []
+    let productObjectsArr = []
     trimedArr.map((el, i) => {
-        productObject = { name: el[0], price: '', type: '', weight: 'N/A', supermarket: 'Countdown', category: category, dateAdded: utils.getDate(), picture: picsArr[i] }
+       
+        productObject = { 
+            name: el[0], 
+            price: '', 
+            type: '', 
+            weight: 'N/A', 
+            supermarket: 'Countdown', 
+            category: category, 
+            dateAdded: utils.getDate(), 
+            picture: picsArr[i] 
+        }
+
         if (el[5] != undefined && !isNaN(el[5].charAt(0))) {
             productObject.weight = el[5]
         } 
+
         if(el[3] != undefined && (el[3].charAt(2) === 'p' || el[3].charAt(1) === 'p')){
             productObject.weight = el[3]
         }
@@ -61,28 +70,37 @@ function buildCountdownProductObject(trimedArr, picsArr, category) {
             productObject.price = `${el[el.length - 3]}.${el[el.length - 2]}`
             productObject.type = 'kg'
         }
-        return dataArray.push(productObject)
+
+        return productObjectsArr.push(productObject)
     })
-    return dataArray
+    console.log(productObjectsArr)
+    return productObjectsArr
 }
 
 
-
-
-
 function buildNewWorldPakSaveProductObject(trimedArr, picsArr, market, category) {
-    let dataArray = []
     trimedArr.map((el, i) => {
-        productObject = { name: el[0], price: `${el[4]}.${el[5]}`, type: el[6], weight: 'N/A', supermarket: market, category: category, dateAdded: utils.getDate(), picture: utils.trimNewWorldPakSavePicUrl(picsArr[i]) }
+        
+        productObject = { 
+            name: el[0], 
+            price: `${el[4]}.${el[5]}`, 
+            type: el[6], 
+            weight: 'N/A', 
+            supermarket: market, 
+            category: category, 
+            dateAdded: utils.getDate(), 
+            picture: utils.trimNewWorldPakSavePicUrl(picsArr[i]) 
+        }
+
         if (!isNaN(el[2].charAt(0))) {
             productObject.weight = el[2]
         }
-        console.log(productObject)
-        return dataArray.push(productObject)
+
+        return productObjectsArr.push(productObject)
     })
     
-    console.log(dataArray)
-    return dataArray
+    console.log(productObjectsArr)
+    return productObjectsArr
 }
 
 
@@ -92,27 +110,16 @@ async function getNewWorldPaksavePicUrls(page){
 }
 
 
-
 async function getCountdownPicUrls(page){
     return await page.$$eval(".product-entry > figure > img", el => el.map(x => x.getAttribute('src')));
 }
 
-
-
 async function scrapeSuperMarketProductText(page, element) {
-    const elements = await page.$$(element)
-    const elementHandles = await Promise.all(elements.map(handle => {
-        return handle.getProperty('innerText')
-    }))
-
-
-    const elementText = await Promise.all(elementHandles.map(handle => {
-        return handle.jsonValue()
-    }))
-
-    return elementText.map(el => {
+    const text = await page.$$eval(element, divs => divs.map(({innerText}) => innerText))
+    const trimmedTextArray = text.map(el => {
         return el.split(/\r?\n/)
     })
+    return trimmedTextArray
 }
 
 
