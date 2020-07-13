@@ -9,8 +9,9 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, supermarketPro
     const newWorldProductsTextArr = await scrapeSuperMarketProductsText(page, ".fs-product-card")
     await utils.autoScroll(page)
     const pics = await getNewWorldPaksavePicUrls(page)
-    const newWorldData = await buildNewWorldPakSaveProductObject(newWorldProductsTextArr, pics, marketName, category)
-    dbFunctions.insertData(newWorldData, supermarketProductModel)
+    const newWorldPakSaveProductArr = await buildNewWorldPakSaveProductArr(newWorldProductsTextArr, pics, marketName, category)
+    console.log(newWorldPakSaveProductArr)
+    dbFunctions.insertData(newWorldPakSaveProductArr, supermarketProductModel)
 }
 
 
@@ -28,15 +29,16 @@ async function scrapeCountdown(url, pageNum, context, page, supermarketProductMo
     await utils.autoScroll(page)
     const countdownProductsTextArr = await scrapeSuperMarketProductsText(page, ".product-entry")
     const pics = await getCountdownPicUrls(page)
-    const countdownData = buildCountdownProductObject(countdownProductsTextArr, pics, category)
-    dbFunctions.insertData(countdownData, supermarketProductModel)
+    const countdownProductArr = buildCountdownProductArr(countdownProductsTextArr, pics, category)
+    console.log(countdownProductArr)
+    dbFunctions.insertData(countdownProductArr, supermarketProductModel)
 }
 
 
 
 
 
-function buildCountdownProductObject(trimedArr, picsArr, category) {
+function buildCountdownProductArr(trimedArr, picsArr, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
 
@@ -79,7 +81,7 @@ function buildCountdownProductObject(trimedArr, picsArr, category) {
 
 
 
-function buildNewWorldPakSaveProductObject(trimedArr, picsArr, market, category) {
+function buildNewWorldPakSaveProductArr(trimedArr, picsArr, market, category) {
     let dataArray = []
     trimedArr.map((el, i) => {
 
@@ -129,7 +131,7 @@ async function scrapeSuperMarketProductsText(page, element) {
     const trimmedProductTextArr = productText.map(el => {
         return el.split(/\r?\n/)
     })
-    console.log(trimmedProductTextArr)
+    return trimmedProductTextArr
 }
 
 

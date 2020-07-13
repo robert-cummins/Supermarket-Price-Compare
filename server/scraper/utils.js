@@ -29,13 +29,11 @@ async function autoScroll(page){
 
 
 function trimNewWorldPakSavePicUrl(url){
-    console.log(url)
     const regExp = /\(([^)]+)\)/
     url =  regExp.exec(url)
     url = url[0].replace(/[{()}]/g, '');
     url = url.replace(/'/g, '')
     url = url.replace(/"/g, '')
-    console.log(url)
     return url
 }
 
