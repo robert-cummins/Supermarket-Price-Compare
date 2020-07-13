@@ -89,7 +89,7 @@ function buildNewWorldPakSaveProductArr(trimedArr, picsArr, market, category) {
             name: el[0],
             price: `${el[4]}.${el[5]}`,
             type: el[6], weight: 'N/A',
-            upermarket: market,
+            supermarket: market,
             category: category,
             dateAdded: utils.getDate(),
             picture: utils.trimNewWorldPakSavePicUrl(picsArr[i])
