@@ -29,7 +29,7 @@ async function scrapeSites() {
     const context = browser.defaultBrowserContext();
 
 
-    for (let i = 1; i <= 20; i++) {
+    for (let i = 1; i <= 25; i++) {
         if (i <= 2) {
             await marketFunction.scrapeCountdown("https://shop.countdown.co.nz/shop/browse/meat-seafood?page=", i, context, page, CountdownProduct, categorys.fresh)
         }
