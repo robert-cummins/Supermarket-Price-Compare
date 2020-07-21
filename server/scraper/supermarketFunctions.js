@@ -119,18 +119,19 @@ async function getCountdownPicUrls(page) {
 
 
 async function scrapeSuperMarketProductsText(page, element) {
-    const elements = await page.$$(element)
-    const elementHandles = await Promise.all(elements.map(handle => {
+    const elementHandles = await page.$$(element)
+    const elementHandlesInnerText = await Promise.all(elementHandles.map(handle => {
         return handle.getProperty('innerText')
     }))
 
-    const productText = await Promise.all(elementHandles.map(handle => {
+    const productText = await Promise.all(elementHandlesInnerText.map(handle => {
         return handle.jsonValue()
     }))
 
     const trimmedProductTextArr = productText.map(el => {
         return el.split(/\r?\n/)
     })
+    
     return trimmedProductTextArr
 }
 
