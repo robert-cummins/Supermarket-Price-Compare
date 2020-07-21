@@ -6,8 +6,8 @@ async function scrapeNewWorldPakSave(url, pageNum, context, page, supermarketPro
     await context.overridePermissions(url + pageNum, ['geolocation'])
     await page.goto(url + pageNum, { waitUntil: 'networkidle2' })
     await page.setGeolocation({ latitude: -41.274006, longitude: 174.778067 });
-    const newWorldProductsTextArr = await scrapeSuperMarketProductsText(page, ".fs-product-card")
     await utils.autoScroll(page)
+    const newWorldProductsTextArr = await scrapeSuperMarketProductsText(page, ".fs-product-card")
     const pics = await getNewWorldPaksavePicUrls(page)
     const newWorldPakSaveProductArr = await buildNewWorldPakSaveProductArr(newWorldProductsTextArr, pics, marketName, category)
     console.log(newWorldPakSaveProductArr)
