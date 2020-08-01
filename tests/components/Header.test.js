@@ -20,7 +20,7 @@ describe('Header Component', () => {
     })
 
     test('App title is rendered', () => {
-        expect(wrapper.text()).toEqual('Supermarket Saver')
+        expect(wrapper.text()).toEqual('SUPERMARKET SAVER')
     })
 })
 
