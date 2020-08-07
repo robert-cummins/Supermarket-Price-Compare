@@ -4,7 +4,7 @@ const Instructions = () => {
     return (
         <div className="ui container">
             <p className="intro">
-                Welcome to Supermarket Saver. This app allows you to see exactly how much an individual item or whole shopping list will cost at New Zealand's biggest supermarket chains. 
+                Welcome to Supermarket Saver. This app allows you to see exactly how much an individual item or shopping list will cost at New Zealand's biggest supermarket chains. 
             </p>
             <ul>
                 <li className="instructions">
