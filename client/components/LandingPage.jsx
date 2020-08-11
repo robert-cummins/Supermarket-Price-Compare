@@ -73,7 +73,7 @@ class LandingPage extends React.Component {
 
                 {this.props.tabs.activeTab == 'search' &&
                     <>
-                        <p className={"price-update"}><strong>Prices Last Updated On: </strong>{this.checkDate()}</p>
+                        {/* <p className={"price-update"}><strong>Prices Last Updated On: </strong>{this.checkDate()}</p> */}
                         <SearchResults/>
                     </>
                 }
