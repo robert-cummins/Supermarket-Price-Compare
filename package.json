@@ -45,7 +45,7 @@
     "babel-loader": "^8.1.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jest": "^24.9.0",
     "mongodb": "^3.5.8",
     "mongoose": "^5.9.16",
